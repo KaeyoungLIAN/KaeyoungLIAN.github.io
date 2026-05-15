@@ -9,18 +9,18 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 </head>
 <body>
-  <div class="page-glow"></div>
+  <div class="page-accent-line"></div>
 
   <header class="site-header">
     <nav class="nav-bar">
-      <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.title }}</a>
+      <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.author }}</a>
       <div class="nav-links">
-        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">作品</a>
-        <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url == '/about/' %}active{% endif %}">关于</a>
+        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Work</a>
+        <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url == '/about/' %}active{% endif %}">About</a>
       </div>
-      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
-        <span class="icon-sun">☀</span>
-        <span class="icon-moon">☾</span>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="icon-sun">S</span>
+        <span class="icon-moon">M</span>
       </button>
     </nav>
   </header>
@@ -30,17 +30,16 @@
   </main>
 
   <footer class="site-footer">
-    <p>© {{ site.time | date: '%Y' }} {{ site.author }} · Built with Jekyll + React</p>
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
   </footer>
 
   <script src="{{ '/assets/js/bundle.js' | relative_url }}"></script>
   <script>
-    // Theme toggle
-    const toggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    var html = document.documentElement;
     if (localStorage.getItem('theme') === 'light') html.classList.replace('theme-dark', 'theme-light');
-    toggle.addEventListener('click', () => {
-      const isDark = html.classList.contains('theme-dark');
+    toggle.addEventListener('click', function() {
+      var isDark = html.classList.contains('theme-dark');
       html.classList.replace(isDark ? 'theme-dark' : 'theme-light', isDark ? 'theme-light' : 'theme-dark');
       localStorage.setItem('theme', isDark ? 'light' : 'dark');
     });

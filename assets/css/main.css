@@ -1,47 +1,47 @@
 /* ═══════════════════════════════════════════
-   Design: 暗色基底 · 玻璃质感 · 极简动效
-   Accent: Emerald #10b981
+   tasteskill · Design Variance 8 · Motion 6 · Density 4
+   Palette: Zinc + Electric Blue (divorced from GlassToDo)
    ═══════════════════════════════════════════ */
 
 /* ── CSS Variables ── */
 :root {
-  --bg: #0c0c10;
-  --bg-secondary: #131318;
-  --surface: rgba(255,255,255,0.04);
-  --surface-hover: rgba(255,255,255,0.07);
-  --border: rgba(255,255,255,0.08);
-  --border-hover: rgba(255,255,255,0.12);
-  --text-primary: #ecedf0;
-  --text-secondary: rgba(236,237,240,0.72);
-  --text-tertiary: rgba(236,237,240,0.4);
-  --accent: #10b981;
-  --accent-dim: rgba(16,185,129,0.15);
-  --accent-glow: rgba(16,185,129,0.08);
-  --radius: 12px;
+  --bg: #18181b;
+  --bg-secondary: #1f1f23;
+  --surface: #27272a;
+  --surface-hover: #2f2f33;
+  --border: #36363b;
+  --border-hover: #444449;
+  --text-primary: #f4f4f5;
+  --text-secondary: rgba(244,244,245,0.7);
+  --text-tertiary: rgba(244,244,245,0.4);
+  --accent: #2563eb;
+  --accent-dim: rgba(37,99,235,0.12);
+  --accent-glow: rgba(37,99,235,0.06);
+  --radius: 14px;
   --radius-sm: 8px;
   --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .theme-light {
-  --bg: #ebeced;
-  --bg-secondary: #e2e4e7;
-  --surface: rgba(12,12,16,0.04);
-  --surface-hover: rgba(12,12,16,0.07);
-  --border: rgba(12,12,16,0.08);
-  --border-hover: rgba(12,12,16,0.14);
-  --text-primary: #1a1a1e;
-  --text-secondary: rgba(26,26,30,0.72);
-  --text-tertiary: rgba(26,26,30,0.42);
-  --accent: #059669;
-  --accent-dim: rgba(5,150,105,0.12);
-  --accent-glow: rgba(5,150,105,0.06);
+  --bg: #fafafa;
+  --bg-secondary: #f4f4f5;
+  --surface: #ffffff;
+  --surface-hover: #f4f4f5;
+  --border: #e4e4e7;
+  --border-hover: #d4d4d8;
+  --text-primary: #18181b;
+  --text-secondary: rgba(24,24,27,0.7);
+  --text-tertiary: rgba(24,24,27,0.38);
+  --accent: #2563eb;
+  --accent-dim: rgba(37,99,235,0.08);
+  --accent-glow: rgba(37,99,235,0.04);
 }
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Noto Sans SC", sans-serif;
   background: var(--bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -49,32 +49,30 @@ body {
   transition: background var(--transition), color var(--transition);
 }
 
-/* ── Background Glow ── */
-.page-glow {
+/* ── Page Decoration ── */
+.page-accent-line {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100vh;
+  background: linear-gradient(180deg, var(--accent) 0%, transparent 80%);
+  opacity: 0.3;
   pointer-events: none;
   z-index: -1;
-  background: radial-gradient(ellipse 80% 60% at 50% -10%, var(--accent-glow) 0%, transparent 60%);
-  transition: background var(--transition);
 }
 
-/* ── Header / Navigation ── */
+/* ── Header ── */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  background: rgba(12,12,16,0.6);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
   transition: background var(--transition), border-color var(--transition);
 }
-.theme-light .site-header {
-  background: rgba(235,236,237,0.7);
-}
 .nav-bar {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
   height: 56px;
@@ -83,12 +81,11 @@ body {
   gap: 2rem;
 }
 .nav-logo {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   color: var(--text-primary);
   letter-spacing: -0.01em;
-  transition: color var(--transition);
 }
 .nav-links {
   display: flex;
@@ -139,41 +136,51 @@ body {
 
 /* ── Main Content ── */
 .main-content {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-  animation: fadeIn 0.4s ease;
+  padding: 3rem 1.5rem 5rem;
+  animation: fadeSlideIn 0.5s ease;
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Hero Section ── */
+/* ── Hero ── */
 .hero {
-  padding: 3rem 0 2rem;
+  padding: 3rem 0 3.5rem;
+  position: relative;
 }
 .hero h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 650;
   letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin: 0 0 0.8rem;
+  line-height: 1.1;
+  margin: 0 0 0.6rem;
 }
 .hero .subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
-  max-width: 540px;
+  max-width: 480px;
+  line-height: 1.6;
+}
+.hero-accent {
+  display: inline-block;
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-top: 1.2rem;
 }
 
-/* ── Portfolio Grid ── */
+/* ── Portfolio Grid (asymmetric bento) ── */
 #portfolio-root {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
@@ -182,14 +189,16 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.5rem;
+  padding: 1.75rem;
   transition: all var(--transition);
-  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
   overflow: hidden;
-  animation: cardIn 0.5s ease both;
+  animation: cardSlideUp 0.5s ease both;
 }
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(16px); }
+@keyframes cardSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .portfolio-card:hover {
@@ -197,18 +206,21 @@ body {
   border-color: var(--border-hover);
   transform: translateY(-2px);
 }
-.portfolio-card::before {
+
+/* Accent bar on hover */
+.portfolio-card::after {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  opacity: 0;
-  background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 50%);
-  transition: opacity var(--transition);
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 0 2px 2px 0;
 }
-.portfolio-card:hover::before {
-  opacity: 1;
+.portfolio-card:hover::after {
+  height: 100%;
 }
 
 .card-tags {
@@ -219,72 +231,192 @@ body {
 }
 .card-tag {
   font-size: 0.7rem;
-  padding: 0.15rem 0.5rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 4px;
   background: var(--accent-dim);
   color: var(--accent);
-  border: 1px solid rgba(16,185,129,0.15);
   font-weight: 500;
   letter-spacing: 0.02em;
+  transition: opacity var(--transition);
 }
 
 .card-title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.4rem;
   line-height: 1.3;
-  position: relative;
-  z-index: 1;
+  color: var(--text-primary);
 }
 
 .card-desc {
   font-size: 0.85rem;
   color: var(--text-secondary);
-  line-height: 1.5;
-  position: relative;
-  z-index: 1;
+  line-height: 1.55;
 }
 
-.card-arrow {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 1.2rem;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all var(--transition);
+/* stagger cards — first full width */
+.portfolio-card:first-child {
+  grid-column: 1 / -1;
+  padding: 2.25rem;
+}
+
+/* Filter buttons */
+.filter-bar {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-tertiary);
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.filter-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+.filter-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
   color: var(--accent);
-}
-.portfolio-card:hover .card-arrow {
-  opacity: 1;
-  transform: translateX(0);
+  font-weight: 500;
 }
 
-.card-glow {
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 70% 30%, var(--accent-glow) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.5s;
-  pointer-events: none;
+/* ── Work Detail Page ── */
+.work-detail {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem 0;
 }
-.portfolio-card:hover .card-glow {
-  opacity: 1;
+.back-link {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.back-link:hover { color: var(--accent); }
+.work-header {
+  margin: 2rem 0 2.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+}
+.work-header h1 {
+  font-size: 2.2rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 0.8rem;
+}
+.work-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.tech-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.tech-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.work-date {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+.work-content {
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+.work-content h2 {
+  font-size: 1.3rem;
+  margin: 2rem 0 0.8rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.work-content p { margin: 0 0 1rem; }
+.work-content code {
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+  border: 1px solid var(--border);
+}
+.work-content pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+.work-content ul, .work-content ol {
+  padding-left: 1.5rem;
+  margin: 0 0 1rem;
+}
+.work-content li { margin: 0.3rem 0; }
+.work-content blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 0 0 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.work-actions {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-/* ── About Page ── */
+/* ── About ── */
 .about-page {
   max-width: 640px;
-  margin: 2rem auto;
+  margin: 1.5rem auto;
 }
 .about-page h1 {
   font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+  font-weight: 650;
+  margin-bottom: 1rem;
   letter-spacing: -0.02em;
+}
+.about-page .about-role {
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
 }
 .about-page p {
   color: var(--text-secondary);
@@ -300,7 +432,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s;
@@ -309,20 +441,23 @@ body {
 
 /* ── Footer ── */
 .site-footer {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
   border-top: 1px solid var(--border);
   text-align: center;
 }
 .site-footer p {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-tertiary);
 }
 
 /* ── Responsive ── */
-@media (max-width: 640px) {
-  .hero h1 { font-size: 2rem; }
+@media (max-width: 720px) {
+  .hero h1 { font-size: 2.2rem; }
+  .hero { padding: 2rem 0 2.5rem; }
   .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-card:first-child { grid-column: 1; padding: 1.75rem; }
   .nav-links { gap: 1rem; }
+  .main-content { padding: 1.5rem 1rem 3rem; }
 }
