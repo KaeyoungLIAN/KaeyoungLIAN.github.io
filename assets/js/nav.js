@@ -62,6 +62,9 @@
         pageContent.style.opacity = ''
 
         isTransitioning = false
+
+        // Signal React to re-check SSR after content swap
+        window.dispatchEvent(new CustomEvent('hermes:navigate', { detail: { url: result.url } }))
       }, 150)
     }).catch(function() {
       window.location.href = url
@@ -97,6 +100,7 @@
         if (result.title) document.title = result.title
         pageContent = document.getElementById('page-content')
         window.scrollTo(0, 0)
+        window.dispatchEvent(new CustomEvent('hermes:navigate', { detail: { url: e.state.url } }))
       })
     } else {
       window.location.reload()

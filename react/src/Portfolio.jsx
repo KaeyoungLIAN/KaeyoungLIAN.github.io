@@ -24,21 +24,35 @@ export default function Portfolio() {
   // useEffect runs post-commit — guaranteed React cards already visible
   useEffect(function() {
     if (!ready || works.length === 0) return
-    var ssr = document.getElementById('portfolio-ssr')
-    if (!ssr) return
+    hideSsr()
+  }, [ready, works])
 
-    // Wait one frame to ensure React's painting is fully flushed
-    // then fade SSR out
-    var raf = window.requestAnimationFrame(function() {
+  // Listen for AJAX navigation — SSR may reappear in #page-content
+  useEffect(function() {
+    if (!ready) return
+    function onNavigate() { hideSsr() }
+    window.addEventListener('hermes:navigate', onNavigate)
+    return function() { window.removeEventListener('hermes:navigate', onNavigate) }
+  }, [ready])
+
+  // Hide SSR with fade-out, remove from layout after transition
+  function hideSsr() {
+    var ssr = document.getElementById('portfolio-ssr')
+    if (!ssr || ssr.style.display === 'none') return
+
+    // Reset any existing transition state before re-hiding
+    ssr.classList.remove('ssr-fade-out')
+    ssr.style.display = ''
+    // Force reflow so the next class toggle triggers the transition
+    ssr.offsetHeight
+
+    window.requestAnimationFrame(function() {
       ssr.classList.add('ssr-fade-out')
-      // Remove from layout after CSS transition completes
-      var timer = setTimeout(function() {
+      setTimeout(function() {
         if (ssr.parentNode) ssr.style.display = 'none'
       }, 300)
-      return function() { clearTimeout(timer) }
     })
-    return function() { window.cancelAnimationFrame(raf) }
-  }, [ready, works])
+  }
 
   // Intersection observer for entrance animation
   useEffect(function() {
