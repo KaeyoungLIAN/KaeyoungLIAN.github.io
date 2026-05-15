@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 export default function Portfolio() {
   const [works, setWorks] = useState([])
@@ -6,6 +6,7 @@ export default function Portfolio() {
   const [visible, setVisible] = useState(false)
   const [ready, setReady] = useState(false)
   const ref = useRef(null)
+  const revealedRef = useRef(new Set())
 
   // Fetch works data
   useEffect(() => {
@@ -14,13 +15,12 @@ export default function Portfolio() {
       .then((data) => {
         setWorks(data)
         setReady(true)
-        // Cards are in view on initial load — show immediately
         setVisible(true)
       })
       .catch(() => {})
   }, [])
 
-  // Hide SSR after React has committed its render
+  // Hide SSR after React commit
   useEffect(() => {
     if (!ready || works.length === 0) return
     hideSsr()
@@ -37,11 +37,9 @@ export default function Portfolio() {
   function hideSsr() {
     const ssr = document.getElementById('portfolio-ssr')
     if (!ssr || ssr.style.display === 'none') return
-
     ssr.classList.remove('ssr-fade-out')
     ssr.style.display = ''
     ssr.offsetHeight
-
     requestAnimationFrame(() => {
       ssr.classList.add('ssr-fade-out')
       setTimeout(() => {
@@ -50,7 +48,7 @@ export default function Portfolio() {
     })
   }
 
-  // Intersection observer for entrance animation fallback
+  // IntersectionObserver for entrance
   useEffect(() => {
     if (!ref.current) return
     const obs = new IntersectionObserver(
@@ -94,29 +92,30 @@ export default function Portfolio() {
 
       <div className="portfolio-grid">
         {filtered.map((work, i) => (
-          <a
-            key={work.title}
-            href={work.url}
-            className="portfolio-card"
-            style={{
-              animationDelay: visible ? `${i * 40}ms` : '0ms',
-              animationPlayState: visible ? 'running' : 'paused'
-            }}
-          >
-            {work.tech && work.tech.length > 0 && (
-              <div className="card-tags">
-                {work.tech.slice(0, 3).map((t) => (
-                  <span key={t} className="card-tag">{t}</span>
-                ))}
-              </div>
-            )}
+          <div key={work.title} className="card-outer">
+            <a
+              href={work.url}
+              className="portfolio-card"
+              style={{
+                animationDelay: visible ? `${i * 40}ms` : '0ms',
+                animationPlayState: visible ? 'running' : 'paused'
+              }}
+            >
+              {work.tech && work.tech.length > 0 && (
+                <div className="card-tags">
+                  {work.tech.slice(0, 3).map((t) => (
+                    <span key={t} className="card-tag">{t}</span>
+                  ))}
+                </div>
+              )}
 
-            <h3 className="card-title">{work.title}</h3>
+              <h3 className="card-title">{work.title}</h3>
 
-            {work.description && (
-              <p className="card-desc">{work.description}</p>
-            )}
-          </a>
+              {work.description && (
+                <p className="card-desc">{work.description}</p>
+              )}
+            </a>
+          </div>
         ))}
       </div>
     </div>
