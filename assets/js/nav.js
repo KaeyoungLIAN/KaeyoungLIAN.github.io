@@ -27,9 +27,6 @@
     if (isTransitioning || !pageContent) return
     isTransitioning = true
 
-    // On the homepage, tell React to leave SSR alone
-    var returningHome = isHomePage(url)
-
     getPage(url).then(function(result) {
       if (!result) {
         window.location.href = url
@@ -38,13 +35,14 @@
 
       // Fade out
       pageContent.style.opacity = '0'
+      pageContent.style.transform = 'translateY(-4px)'
 
       setTimeout(function() {
-        // Swap page content only — portfolio-root stays intact
+        // Swap content
         pageContent.innerHTML = result.content
         if (result.title) document.title = result.title
 
-        // Update active nav
+        // Update active nav link
         var links = document.querySelectorAll('.nav-link')
         var path = result.url.replace(window.location.origin, '').split('?')[0].split('#')[0] || '/'
         for (var i = 0; i < links.length; i++) {
@@ -54,18 +52,20 @@
 
         window.scrollTo(0, 0)
 
-        // Fade in
+        // Reset and fade in
         pageContent.style.transition = 'none'
         pageContent.style.opacity = '0'
+        pageContent.style.transform = 'translateY(8px)'
         pageContent.offsetHeight
         pageContent.style.transition = ''
         pageContent.style.opacity = ''
+        pageContent.style.transform = ''
 
         isTransitioning = false
 
         // Signal React to re-check SSR after content swap
         window.dispatchEvent(new CustomEvent('hermes:navigate', { detail: { url: result.url } }))
-      }, 150)
+      }, 200)
     }).catch(function() {
       window.location.href = url
       isTransitioning = false

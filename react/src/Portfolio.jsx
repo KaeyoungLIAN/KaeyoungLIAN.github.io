@@ -1,76 +1,72 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 export default function Portfolio() {
-  var [works, setWorks] = useState([])
-  var [filter, setFilter] = useState('all')
-  var [visible, setVisible] = useState(false)
-  var [ready, setReady] = useState(false)
-  var ref = useRef(null)
+  const [works, setWorks] = useState([])
+  const [filter, setFilter] = useState('all')
+  const [visible, setVisible] = useState(false)
+  const [ready, setReady] = useState(false)
+  const ref = useRef(null)
 
   // Fetch works data
-  useEffect(function() {
+  useEffect(() => {
     fetch('/works.json')
-      .then(function(res) { return res.json() })
-      .then(function(data) {
+      .then((res) => res.json())
+      .then((data) => {
         setWorks(data)
         setReady(true)
         // Cards are in view on initial load — show immediately
         setVisible(true)
       })
-      .catch(function() {})
+      .catch(() => {})
   }, [])
 
-  // Hide SSR AFTER React has committed its render to the DOM
-  // useEffect runs post-commit — guaranteed React cards already visible
-  useEffect(function() {
+  // Hide SSR after React has committed its render
+  useEffect(() => {
     if (!ready || works.length === 0) return
     hideSsr()
   }, [ready, works])
 
-  // Listen for AJAX navigation — SSR may reappear in #page-content
-  useEffect(function() {
+  // Listen for AJAX navigation
+  useEffect(() => {
     if (!ready) return
-    function onNavigate() { hideSsr() }
+    const onNavigate = () => hideSsr()
     window.addEventListener('hermes:navigate', onNavigate)
-    return function() { window.removeEventListener('hermes:navigate', onNavigate) }
+    return () => window.removeEventListener('hermes:navigate', onNavigate)
   }, [ready])
 
-  // Hide SSR with fade-out, remove from layout after transition
   function hideSsr() {
-    var ssr = document.getElementById('portfolio-ssr')
+    const ssr = document.getElementById('portfolio-ssr')
     if (!ssr || ssr.style.display === 'none') return
 
-    // Reset any existing transition state before re-hiding
     ssr.classList.remove('ssr-fade-out')
     ssr.style.display = ''
-    // Force reflow so the next class toggle triggers the transition
     ssr.offsetHeight
 
-    window.requestAnimationFrame(function() {
+    requestAnimationFrame(() => {
       ssr.classList.add('ssr-fade-out')
-      setTimeout(function() {
+      setTimeout(() => {
         if (ssr.parentNode) ssr.style.display = 'none'
-      }, 300)
+      }, 250)
     })
   }
 
-  // Intersection observer for entrance animation
-  useEffect(function() {
+  // Intersection observer for entrance animation fallback
+  useEffect(() => {
     if (!ref.current) return
-    var obs = new IntersectionObserver(
-      function(entries) {
-        if (entries[0].isIntersecting) setVisible(true)
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true)
       },
       { threshold: 0.1 }
     )
     obs.observe(ref.current)
-    return function() { obs.disconnect() }
+    return () => obs.disconnect()
   }, [])
 
-  var allTags = [...new Set(works.flatMap(function(w) { return w.tags || [] }))]
-  var filtered = filter === 'all'
+  const allTags = [...new Set(works.flatMap((w) => w.tags || []))]
+  const filtered = filter === 'all'
     ? works
-    : works.filter(function(w) { return (w.tags || []).includes(filter) })
+    : works.filter((w) => (w.tags || []).includes(filter))
 
   if (!ready || !works.length) return null
 
@@ -80,48 +76,48 @@ export default function Portfolio() {
         <div className="filter-bar">
           <button
             className={'filter-btn' + (filter === 'all' ? ' active' : '')}
-            onClick={function() { setFilter('all') }}
-          >All</button>
-          {allTags.map(function(t) {
-            return (
-              <button
-                key={t}
-                className={'filter-btn' + (filter === t ? ' active' : '')}
-                onClick={function() { setFilter(t) }}
-              >{t}</button>
-            )
-          })}
+            onClick={() => setFilter('all')}
+          >
+            All
+          </button>
+          {allTags.map((t) => (
+            <button
+              key={t}
+              className={'filter-btn' + (filter === t ? ' active' : '')}
+              onClick={() => setFilter(t)}
+            >
+              {t}
+            </button>
+          ))}
         </div>
       )}
 
       <div className="portfolio-grid">
-        {filtered.map(function(work, i) {
-          return (
-            <a
-              key={work.title}
-              href={work.url}
-              className="portfolio-card"
-              style={{
-                animationDelay: visible ? (i * 70) + 'ms' : '0ms',
-                animationPlayState: visible ? 'running' : 'paused'
-              }}
-            >
-              {work.tech && work.tech.length > 0 && (
-                <div className="card-tags">
-                  {work.tech.slice(0, 3).map(function(t) {
-                    return <span key={t} className="card-tag">{t}</span>
-                  })}
-                </div>
-              )}
+        {filtered.map((work, i) => (
+          <a
+            key={work.title}
+            href={work.url}
+            className="portfolio-card"
+            style={{
+              animationDelay: visible ? `${i * 40}ms` : '0ms',
+              animationPlayState: visible ? 'running' : 'paused'
+            }}
+          >
+            {work.tech && work.tech.length > 0 && (
+              <div className="card-tags">
+                {work.tech.slice(0, 3).map((t) => (
+                  <span key={t} className="card-tag">{t}</span>
+                ))}
+              </div>
+            )}
 
-              <h3 className="card-title">{work.title}</h3>
+            <h3 className="card-title">{work.title}</h3>
 
-              {work.description && (
-                <p className="card-desc">{work.description}</p>
-              )}
-            </a>
-          )
-        })}
+            {work.description && (
+              <p className="card-desc">{work.description}</p>
+            )}
+          </a>
+        ))}
       </div>
     </div>
   )

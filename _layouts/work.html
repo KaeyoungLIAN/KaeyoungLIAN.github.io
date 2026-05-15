@@ -2,8 +2,13 @@
 layout: default
 ---
 
-<article class="work-detail">
-  <a href="{{ '/' | relative_url }}" class="back-link">&#8592; Back</a>
+<article class="work-detail glass-surface">
+  <a href="{{ '/' | relative_url }}" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Back
+  </a>
 
   <header class="work-header">
     <h1>{{ page.title }}</h1>
@@ -27,7 +32,14 @@ layout: default
 
   {% if page.github %}
   <div class="work-actions">
-    <a href="{{ page.github }}" class="btn" target="_blank" rel="noopener">View Source</a>
+    <a href="{{ page.github }}" class="btn" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+      View Source
+    </a>
   </div>
   {% endif %}
 </article>
