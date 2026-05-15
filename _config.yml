@@ -1,0 +1,41 @@
+title: Kaeyoung
+description: 个人作品集 — GlassToDo 等
+author: Kaeyoung
+email: kaeyounglk@outlook.com
+url: https://kaeyounglian.github.io
+baseurl: ""
+
+# Social
+github_username: KaeyoungLIAN
+
+# Build settings
+markdown: kramdown
+theme: null
+
+# Collections
+collections:
+  works:
+    output: true
+    permalink: /works/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: works
+    values:
+      layout: work
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+
+# Exclude React source from Jekyll build
+exclude:
+  - react/
+  - package.json
+  - node_modules/
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - .github/

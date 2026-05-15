@@ -1,0 +1,10 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+node_modules/
+react/node_modules/
+react/dist/
+assets/js/_react/
+Gemfile.lock
+.DS_Store

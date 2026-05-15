@@ -1,0 +1,57 @@
+---
+layout: default
+---
+
+<article class="work-detail">
+  <a href="{{ '/' | relative_url }}" class="back-link">← 返回作品集</a>
+  
+  <header class="work-header">
+    <h1>{{ page.title }}</h1>
+    <div class="work-meta">
+      {% if page.tech %}
+      <div class="tech-tags">
+        {% for t in page.tech %}
+        <span class="tech-tag">{{ t }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if page.date %}
+      <time class="work-date">{{ page.date | date: '%Y年%-m月' }}</time>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="work-content">
+    {{ content }}
+  </div>
+
+  {% if page.github %}
+  <div class="work-actions">
+    <a href="{{ page.github }}" class="btn" target="_blank" rel="noopener">查看源码 →</a>
+  </div>
+  {% endif %}
+</article>
+
+<style>
+.work-detail { max-width: 720px; margin: 0 auto; padding: 2rem 0; }
+.back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.back-link:hover { color: var(--accent); }
+.work-header { margin: 2rem 0 3rem; }
+.work-header h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 1rem; }
+.work-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.tech-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tech-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; color: var(--text-secondary); }
+.work-date { font-size: 0.85rem; color: var(--text-tertiary); }
+.work-content { line-height: 1.8; color: var(--text-secondary); }
+.work-content h2 { font-size: 1.4rem; margin: 2rem 0 0.8rem; color: var(--text-primary); font-weight: 600; }
+.work-content p { margin: 0 0 1rem; }
+.work-content code { background: var(--surface); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+.work-content pre { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; overflow-x: auto; font-size: 0.85rem; }
+.work-content ul, .work-content ol { padding-left: 1.5rem; margin: 0 0 1rem; }
+.work-content li { margin: 0.3rem 0; }
+.work-content blockquote { border-left: 3px solid var(--accent); margin: 0 0 1rem; padding: 0.5rem 1rem; background: var(--surface); border-radius: 0 8px 8px 0; }
+.work-content img { max-width: 100%; border-radius: 8px; margin: 1rem 0; }
+.work-actions { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; padding: 0.6rem 1.4rem; border-radius: 8px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
+.btn:hover { opacity: 0.85; transform: translateY(-1px); }
+</style>

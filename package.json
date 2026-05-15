@@ -1,0 +1,8 @@
+{
+  "name": "kaeyoung-portfolio",
+  "private": true,
+  "scripts": {
+    "build:react": "cd react && npm install && npm run build",
+    "build": "npm run build:react && cp assets/js/_react/bundle.js assets/js/bundle.js"
+  }
+}
