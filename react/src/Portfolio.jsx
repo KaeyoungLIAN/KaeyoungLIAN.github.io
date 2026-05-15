@@ -7,33 +7,38 @@ export default function Portfolio() {
   var [ready, setReady] = useState(false)
   var ref = useRef(null)
 
+  // Fetch works data
   useEffect(function() {
     fetch('/works.json')
       .then(function(res) { return res.json() })
       .then(function(data) {
-        // Step 1: Schedule React render with data
         setWorks(data)
         setReady(true)
-
-        // Step 2: Hide SSR AFTER React has committed to the DOM
-        // requestAnimationFrame defers to the next paint cycle,
-        // by which time React has already rendered its cards.
-        window.requestAnimationFrame(function() {
-          var ssr = document.getElementById('portfolio-ssr')
-          if (ssr) {
-            ssr.classList.add('ssr-fade-out')
-            // Fully remove from layout after transition completes
-            setTimeout(function() {
-              if (ssr && ssr.classList.contains('ssr-fade-out')) {
-                ssr.style.display = 'none'
-              }
-            }, 300)
-          }
-        })
       })
       .catch(function() {})
   }, [])
 
+  // Hide SSR AFTER React has committed its render to the DOM
+  // useEffect runs post-commit — guaranteed React cards already visible
+  useEffect(function() {
+    if (!ready || works.length === 0) return
+    var ssr = document.getElementById('portfolio-ssr')
+    if (!ssr) return
+
+    // Wait one frame to ensure React's painting is fully flushed
+    // then fade SSR out
+    var raf = window.requestAnimationFrame(function() {
+      ssr.classList.add('ssr-fade-out')
+      // Remove from layout after CSS transition completes
+      var timer = setTimeout(function() {
+        if (ssr.parentNode) ssr.style.display = 'none'
+      }, 300)
+      return function() { clearTimeout(timer) }
+    })
+    return function() { window.cancelAnimationFrame(raf) }
+  }, [ready, works])
+
+  // Intersection observer for entrance animation
   useEffect(function() {
     if (!ref.current) return
     var obs = new IntersectionObserver(
@@ -46,7 +51,6 @@ export default function Portfolio() {
     return function() { obs.disconnect() }
   }, [])
 
-  // Collect unique tags
   var allTags = [...new Set(works.flatMap(function(w) { return w.tags || [] }))]
   var filtered = filter === 'all'
     ? works
