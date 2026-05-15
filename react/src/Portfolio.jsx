@@ -14,6 +14,8 @@ export default function Portfolio() {
       .then(function(data) {
         setWorks(data)
         setReady(true)
+        // Cards are in view on initial load — show immediately
+        setVisible(true)
       })
       .catch(function() {})
   }, [])
