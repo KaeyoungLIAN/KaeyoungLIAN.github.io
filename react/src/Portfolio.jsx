@@ -4,31 +4,41 @@ export default function Portfolio() {
   const [works, setWorks] = useState([])
   const [filter, setFilter] = useState('all')
   const [visible, setVisible] = useState(false)
+  const [ready, setReady] = useState(false)
   const ref = useRef(null)
 
-  useEffect(() => {
+  useEffect(function() {
     fetch('/works.json')
       .then(function(res) { return res.json() })
-      .then(function(data) { setWorks(data) })
+      .then(function(data) {
+        setWorks(data)
+        // Hide SSR content once React has data
+        var ssr = document.getElementById('portfolio-ssr')
+        if (ssr) ssr.style.display = 'none'
+        setReady(true)
+      })
       .catch(function() {})
   }, [])
 
   useEffect(function() {
     if (!ref.current) return
     var obs = new IntersectionObserver(
-      function(entries) { if (entries[0].isIntersecting) setVisible(true) },
+      function(entries) {
+        if (entries[0].isIntersecting) setVisible(true)
+      },
       { threshold: 0.1 }
     )
     obs.observe(ref.current)
     return function() { obs.disconnect() }
   }, [])
 
+  // Collect unique tags
   var allTags = [...new Set(works.flatMap(function(w) { return w.tags || [] }))]
   var filtered = filter === 'all'
     ? works
     : works.filter(function(w) { return (w.tags || []).includes(filter) })
 
-  if (!works.length) return null
+  if (!ready || !works.length) return null
 
   return (
     <div ref={ref}>
