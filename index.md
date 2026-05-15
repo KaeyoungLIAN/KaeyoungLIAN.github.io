@@ -42,7 +42,4 @@ layout: default
   {% endif %}
 </div>
 
-<!-- React mounts here — replaces SSR when ready -->
-<div id="portfolio-root"></div>
-
-<script src="{{ '/assets/js/bundle.js' | relative_url }}"></script>
+<!-- React mounts here into the layout-provided #portfolio-root -->

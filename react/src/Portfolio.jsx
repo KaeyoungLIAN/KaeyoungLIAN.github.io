@@ -1,21 +1,35 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 export default function Portfolio() {
-  const [works, setWorks] = useState([])
-  const [filter, setFilter] = useState('all')
-  const [visible, setVisible] = useState(false)
-  const [ready, setReady] = useState(false)
-  const ref = useRef(null)
+  var [works, setWorks] = useState([])
+  var [filter, setFilter] = useState('all')
+  var [visible, setVisible] = useState(false)
+  var [ready, setReady] = useState(false)
+  var ref = useRef(null)
 
   useEffect(function() {
     fetch('/works.json')
       .then(function(res) { return res.json() })
       .then(function(data) {
+        // Step 1: Schedule React render with data
         setWorks(data)
-        // Hide SSR content once React has data
-        var ssr = document.getElementById('portfolio-ssr')
-        if (ssr) ssr.style.display = 'none'
         setReady(true)
+
+        // Step 2: Hide SSR AFTER React has committed to the DOM
+        // requestAnimationFrame defers to the next paint cycle,
+        // by which time React has already rendered its cards.
+        window.requestAnimationFrame(function() {
+          var ssr = document.getElementById('portfolio-ssr')
+          if (ssr) {
+            ssr.classList.add('ssr-fade-out')
+            // Fully remove from layout after transition completes
+            setTimeout(function() {
+              if (ssr && ssr.classList.contains('ssr-fade-out')) {
+                ssr.style.display = 'none'
+              }
+            }, 300)
+          }
+        })
       })
       .catch(function() {})
   }, [])

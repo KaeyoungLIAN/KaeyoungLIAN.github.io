@@ -452,6 +452,17 @@ body {
   color: var(--text-tertiary);
 }
 
+/* ── SSR Fade-out (React takeover) ── */
+#portfolio-ssr.ssr-fade-out {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* ── Theme-independent entry animation ── */
+.main-content {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
 /* ── Responsive ── */
 @media (max-width: 720px) {
   .hero h1 { font-size: 2.2rem; }
