@@ -68,38 +68,47 @@ export default function Portfolio() {
   if (!ready || !works.length) return null
 
   return (
-    <div ref={ref}>
-      {allTags.length > 0 && (
-        <div className="filter-bar">
-          <button
-            className={'filter-btn' + (filter === 'all' ? ' active' : '')}
-            onClick={() => setFilter('all')}
-          >
-            All
-          </button>
-          {allTags.map((t) => (
-            <button
-              key={t}
-              className={'filter-btn' + (filter === t ? ' active' : '')}
-              onClick={() => setFilter(t)}
-            >
-              {t}
-            </button>
-          ))}
+    <section className="tile-dark">
+      <div className="tile-content" ref={ref}>
+        <div className="section-header">
+          <h2>Work</h2>
         </div>
-      )}
 
-      <div className="portfolio-grid">
-        {filtered.map((work, i) => (
-          <div key={work.title} className="card-outer">
+        {allTags.length > 0 && (
+          <div className="filter-bar">
+            <button
+              className={'filter-chip' + (filter === 'all' ? ' active' : '')}
+              onClick={() => setFilter('all')}
+            >
+              All
+            </button>
+            {allTags.map((t) => (
+              <button
+                key={t}
+                className={'filter-chip' + (filter === t ? ' active' : '')}
+                onClick={() => setFilter(t)}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="portfolio-grid">
+          {filtered.map((work, i) => (
             <a
+              key={work.title}
               href={work.url}
-              className="portfolio-card"
+              className="store-card"
               style={{
                 animationDelay: visible ? `${i * 40}ms` : '0ms',
                 animationPlayState: visible ? 'running' : 'paused'
               }}
             >
+              <div className="card-img-wrap">
+                <div className="card-img-placeholder">{work.title}</div>
+              </div>
+
               {work.tech && work.tech.length > 0 && (
                 <div className="card-tags">
                   {work.tech.slice(0, 3).map((t) => (
@@ -113,10 +122,14 @@ export default function Portfolio() {
               {work.description && (
                 <p className="card-desc">{work.description}</p>
               )}
+
+              <span className="card-footer-link">
+                View Project →
+              </span>
             </a>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
