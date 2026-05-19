@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 export default function Portfolio() {
   const [works, setWorks] = useState([])
@@ -6,7 +6,6 @@ export default function Portfolio() {
   const [visible, setVisible] = useState(false)
   const [ready, setReady] = useState(false)
   const ref = useRef(null)
-  const revealedRef = useRef(new Set())
 
   // Fetch works data
   useEffect(() => {
@@ -20,21 +19,9 @@ export default function Portfolio() {
       .catch(() => {})
   }, [])
 
-  // Hide SSR after React commit
+  // On initial data load: fade out SSR gracefully (first page load only)
   useEffect(() => {
     if (!ready || works.length === 0) return
-    hideSsr()
-  }, [ready, works])
-
-  // Listen for AJAX navigation
-  useEffect(() => {
-    if (!ready) return
-    const onNavigate = () => hideSsr()
-    window.addEventListener('hermes:navigate', onNavigate)
-    return () => window.removeEventListener('hermes:navigate', onNavigate)
-  }, [ready])
-
-  function hideSsr() {
     const ssr = document.getElementById('portfolio-ssr')
     if (!ssr || ssr.style.display === 'none') return
     ssr.classList.remove('ssr-fade-out')
@@ -46,9 +33,21 @@ export default function Portfolio() {
         if (ssr.parentNode) ssr.style.display = 'none'
       }, 250)
     })
-  }
+  }, [ready, works])
 
-  // IntersectionObserver for entrance
+  // On AJAX navigation: immediately hide SSR (no fade, prevents flash)
+  useEffect(() => {
+    const onNavigate = () => {
+      const ssr = document.getElementById('portfolio-ssr')
+      if (ssr && ssr.style.display !== 'none') {
+        ssr.style.display = 'none'
+      }
+    }
+    window.addEventListener('hermes:navigate', onNavigate)
+    return () => window.removeEventListener('hermes:navigate', onNavigate)
+  }, [])
+
+  // IntersectionObserver for entrance animation
   useEffect(() => {
     if (!ref.current) return
     const obs = new IntersectionObserver(

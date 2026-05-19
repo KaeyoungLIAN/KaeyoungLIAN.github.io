@@ -23,6 +23,22 @@
     return path === '/' || path === ''
   }
 
+  function togglePortfolio(path) {
+    if (!portfolioRoot) return
+    var isHome = path === '/' || path === ''
+    portfolioRoot.style.display = isHome ? '' : 'none'
+
+    // On home: immediately hide SSR to prevent flash
+    // SSR content is swapped into page-content by nav, but
+    // React content is already mounted. Hide SSR before paint.
+    if (isHome) {
+      var ssr = document.getElementById('portfolio-ssr')
+      if (ssr && ssr.style.display !== 'none') {
+        ssr.style.display = 'none'
+      }
+    }
+  }
+
   function navigateTo(url) {
     if (isTransitioning || !pageContent) return
     isTransitioning = true
@@ -50,6 +66,11 @@
           links[i].classList.toggle('active', href === path)
         }
 
+        // Toggle portfolio visibility based on page
+        // Must happen BEFORE the navigate event so Portfolio's
+        // SSR hide runs in the same paint cycle
+        togglePortfolio(path)
+
         window.scrollTo(0, 0)
 
         // Reset and fade in
@@ -63,7 +84,7 @@
 
         isTransitioning = false
 
-        // Signal React to re-check SSR after content swap
+        // Signal React to handle SSR cleanup
         window.dispatchEvent(new CustomEvent('hermes:navigate', { detail: { url: result.url } }))
       }, 200)
     }).catch(function() {
@@ -99,6 +120,8 @@
         pageContent.innerHTML = result.content
         if (result.title) document.title = result.title
         pageContent = document.getElementById('page-content')
+        var path = e.state.url.replace(window.location.origin, '').split('?')[0].split('#')[0] || '/'
+        togglePortfolio(path)
         window.scrollTo(0, 0)
         window.dispatchEvent(new CustomEvent('hermes:navigate', { detail: { url: e.state.url } }))
       })
