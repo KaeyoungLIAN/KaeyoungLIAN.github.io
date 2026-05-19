@@ -2,7 +2,6 @@
 layout: default
 ---
 
-<!-- Apple Hero Tile (light) -->
 <section class="tile-light hero-tile">
   <div class="tile-content">
     <h1>Kaeyoung</h1>
@@ -14,27 +13,16 @@ layout: default
   </div>
 </section>
 
-<!-- Server-rendered portfolio — visible immediately, hidden when React takes over -->
-<section class="tile-dark" id="portfolio-ssr">
+<section class="tile-dark">
   <div class="tile-content">
     <div class="section-header">
       <h2>Work</h2>
     </div>
-    {% if site.works.size > 0 %}
-    <div class="filter-bar" data-ssr>
-      <button class="filter-chip active">All</button>
-      {% assign all_tags = site.works | map: "tags" | join: "," | split: "," | uniq | sort %}
-      {% for tag in all_tags %}
-        {% assign trimmed = tag | strip %}
-        {% if trimmed != "" %}
-        <button class="filter-chip">{{ trimmed }}</button>
-        {% endif %}
-      {% endfor %}
-    </div>
 
+    {% if site.works.size > 0 %}
     <div class="portfolio-grid">
       {% for work in site.works %}
-      <a href="{{ work.url | relative_url }}" class="store-card" style="animation-delay: {{ forloop.index0 | times: 70 }}ms">
+      <a href="{{ work.url | relative_url }}" class="store-card">
         <div class="card-img-wrap">
           <div class="card-img-placeholder">{{ work.title }}</div>
         </div>
@@ -49,11 +37,10 @@ layout: default
         {% if work.description %}
         <p class="card-desc">{{ work.description }}</p>
         {% endif %}
+        <span class="card-footer-link">View Project →</span>
       </a>
       {% endfor %}
     </div>
     {% endif %}
   </div>
 </section>
-
-<!-- React mounts here into the layout-provided #portfolio-root -->

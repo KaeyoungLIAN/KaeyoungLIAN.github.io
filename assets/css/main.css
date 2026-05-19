@@ -1,63 +1,49 @@
 /* ═══════════════════════════════════════════
-   apple-style-design · Apple Design Language
-   Photography-first · Edge-to-edge tiles · Single blue accent
-   Palette: White + Parchment + Near-Black + Action Blue #0066cc
+   apple-style-design · Kaeyoung Portfolio
+   Apple Design Language — Light theme only
    ═══════════════════════════════════════════ */
 
-/* ── CSS Variables (Light — Apple default) ── */
+/* ── Design Tokens ── */
 :root {
-  /* Brand */
   --accent: #0066cc;
   --accent-hover: #0071e3;
-  --accent-on-dark: #2997ff;
   --accent-dim: rgba(0, 102, 204, 0.08);
 
-  /* Surfaces */
   --canvas: #ffffff;
   --canvas-alt: #f5f5f7;
   --tile-dark: #272729;
   --tile-dark-2: #2a2a2c;
   --surface-black: #000000;
-  --surface-pearl: #fafafc;
-  --chip-translucent: #d2d2d7;
 
-  /* Text */
   --text: #1d1d1f;
   --text-secondary: rgba(29, 29, 31, 0.56);
   --text-tertiary: rgba(29, 29, 31, 0.32);
-  --text-muted: rgba(29, 29, 31, 0.15);
   --text-on-dark: #ffffff;
   --text-muted-dark: #cccccc;
-  --text-ink-80: #333333;
   --text-ink-48: #7a7a7a;
 
-  /* Hairlines & Borders */
   --hairline: #e0e0e0;
   --hairline-soft: rgba(0, 0, 0, 0.06);
-  --divider-soft: #f0f0f0;
 
-  /* Radii */
   --radius-sm: 8px;
-  --radius-md: 11px;
   --radius-lg: 18px;
   --radius-pill: 9999px;
 
-  /* Typography */
   --font-display: "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Easing */
   --curve-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --curve-lift: cubic-bezier(0.16, 1, 0.3, 1);
-  --curve-out: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: 200ms var(--curve-lift);
-  --transition-normal: 450ms var(--curve-spring);
-  --transition-slow: 700ms var(--curve-spring);
 }
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 body {
   font-family: var(--font-body);
@@ -68,10 +54,9 @@ body {
   line-height: 1.47;
   letter-spacing: -0.374px;
   min-height: 100dvh;
-  transition: background var(--transition-slow), color var(--transition-slow);
 }
 
-/* ── Apple Global Nav (black bar) ── */
+/* ── Apple Global Nav ── */
 .site-header {
   position: sticky;
   top: 0;
@@ -81,7 +66,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--transition-slow);
 }
 
 .nav-bar {
@@ -95,14 +79,12 @@ body {
 }
 
 .nav-logo {
-  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.0;
   letter-spacing: -0.12px;
   text-decoration: none;
   color: var(--text-on-dark);
-  transition: opacity var(--transition-fast);
 }
 .nav-logo:hover { opacity: 0.65; }
 
@@ -113,7 +95,6 @@ body {
 }
 
 .nav-link {
-  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.0;
@@ -123,59 +104,21 @@ body {
   transition: color var(--transition-fast);
 }
 .nav-link:hover { color: var(--text-on-dark); }
-.nav-link.active { color: var(--accent-on-dark); }
+.nav-link.active { color: #2997ff; }
 
-/* Theme toggle */
-.theme-toggle {
-  background: none;
-  border: none;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.65);
-  transition: color var(--transition-fast), transform var(--transition-fast);
-  flex-shrink: 0;
-}
-.theme-toggle:hover { color: var(--text-on-dark); }
-.theme-toggle:active { transform: scale(0.9); }
-.theme-toggle svg { display: block; }
-
-/* ── Main Content ── */
-.main-content {
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-/* ── Apple Tiles ── */
-
-/* Light Tile (white canvas) */
+/* ── Tiles ── */
 .tile-light {
   background: var(--canvas);
   color: var(--text);
   padding: 80px 24px;
   width: 100%;
-  transition: background var(--transition-slow), color var(--transition-slow);
 }
 
-/* Parchment Tile (alternate light) */
-.tile-parchment {
-  background: var(--canvas-alt);
-  color: var(--text);
-  padding: 80px 24px;
-  width: 100%;
-  transition: background var(--transition-slow), color var(--transition-slow);
-}
-
-/* Dark Tile */
 .tile-dark {
   background: var(--tile-dark);
   color: var(--text-on-dark);
   padding: 80px 24px;
   width: 100%;
-  transition: background var(--transition-slow), color var(--transition-slow);
 }
 
 .tile-content {
@@ -183,21 +126,21 @@ body {
   margin: 0 auto;
 }
 
-/* ── Hero Tile ── */
+.section-header {
+  margin-bottom: 32px;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.10;
+  letter-spacing: 0;
+}
+
+/* ── Hero ── */
 .hero-tile {
   text-align: center;
   padding: 100px 24px 80px;
-}
-
-.hero-eyebrow {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.29;
-  letter-spacing: -0.224px;
-  color: var(--accent);
-  margin-bottom: 12px;
 }
 
 .hero-tile h1 {
@@ -208,7 +151,6 @@ body {
   letter-spacing: -0.28px;
   margin: 0 0 17px;
   text-wrap: balance;
-  transition: color var(--transition-slow);
 }
 
 .hero-tile .subtitle {
@@ -220,7 +162,6 @@ body {
   color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto 32px;
-  transition: color var(--transition-slow);
 }
 
 .hero-actions {
@@ -231,17 +172,14 @@ body {
 }
 
 /* ── Buttons ── */
-
-/* Primary Pill CTA */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: var(--accent);
-  color: #ffffff;
+  color: #fff;
   border: none;
   border-radius: var(--radius-pill);
-  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.0;
@@ -249,17 +187,11 @@ body {
   padding: 11px 22px;
   text-decoration: none;
   cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: background var(--transition-fast), transform var(--transition-fast);
 }
-.btn-primary:hover {
-  background: var(--accent-hover);
-  box-shadow: 0 2px 12px var(--accent-dim);
-}
-.btn-primary:active {
-  transform: scale(0.95);
-}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary:active { transform: scale(0.95); }
 
-/* Ghost Pill CTA */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
@@ -268,7 +200,6 @@ body {
   color: var(--accent);
   border: 1px solid var(--accent);
   border-radius: var(--radius-pill);
-  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.0;
@@ -278,188 +209,32 @@ body {
   cursor: pointer;
   transition: background var(--transition-fast), transform var(--transition-fast);
 }
-.btn-secondary:hover {
-  background: var(--accent-dim);
-}
-.btn-secondary:active {
-  transform: scale(0.95);
-}
+.btn-secondary:hover { background: var(--accent-dim); }
+.btn-secondary:active { transform: scale(0.95); }
 
-/* Dark Utility Button (for dark tiles) */
-.btn-dark-utility {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--text-on-dark);
-  color: var(--tile-dark);
-  border: none;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.29;
-  letter-spacing: -0.224px;
-  padding: 8px 15px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast);
-}
-.btn-dark-utility:active {
-  transform: scale(0.95);
-}
-
-/* Store Hero Button */
-.btn-store-hero {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent);
-  color: #ffffff;
-  border: none;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.0;
-  letter-spacing: 0;
-  padding: 14px 28px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast);
-}
-.btn-store-hero:active {
-  transform: scale(0.95);
-}
-
-/* Icon Circular */
-.btn-icon-circular {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-pill);
-  background: var(--chip-translucent);
-  color: var(--text);
-  border: none;
-  cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast);
-}
-.btn-icon-circular:active {
-  transform: scale(0.95);
-}
-
-/* Text Link */
-.text-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.47;
-  letter-spacing: -0.374px;
-  transition: color var(--transition-fast);
-}
-.text-link:hover { text-decoration: underline; }
-
-.text-link-on-dark {
-  color: var(--accent-on-dark);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-.text-link-on-dark:hover { text-decoration: underline; }
-
-/* ── Section Header ── */
-.section-header {
-  margin-bottom: 32px;
-}
-.section-header h2 {
-  font-family: var(--font-display);
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 1.10;
-  letter-spacing: 0;
-  transition: color var(--transition-slow);
-}
-
-/* ── Filter Bar (Configurator-Option-Chip style) ── */
-.filter-bar {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-}
-
-.filter-chip {
-  background: transparent;
-  border: 1px solid var(--hairline-soft);
-  color: var(--text-secondary);
-  padding: 12px 16px;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.43;
-  letter-spacing: -0.224px;
-  cursor: pointer;
-  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
-}
-.filter-chip:hover {
-  background: var(--accent-dim);
-  border-color: var(--accent);
-  color: var(--accent-on-dark);
-}
-.filter-chip:active {
-  transform: scale(0.97);
-}
-.filter-chip.active {
-  background: var(--accent-dim);
-  border-color: var(--accent);
-  color: var(--accent-on-dark);
-  font-weight: 600;
-}
-
-  font-weight: 600;
-}
-
-/* ── Portfolio Grid (Apple Store Utility Cards) ── */
+/* ── Portfolio Grid ── */
 .portfolio-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-/* Apple Store Utility Card */
 .store-card {
   display: block;
-  background: var(--canvas);
-  border: 1px solid var(--hairline);
+  background: var(--tile-dark-2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   padding: 24px;
   text-decoration: none;
   color: inherit;
-  transition: background var(--transition-slow), border-color var(--transition-slow), color var(--transition-slow), transform var(--transition-fast);
-  animation: card-reveal 700ms var(--curve-spring) both;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 .store-card:hover {
-  border-color: var(--accent);
+  border-color: #2997ff;
   transform: translateY(-2px);
 }
-.store-card:active {
-  transform: scale(0.98);
-}
+.store-card:active { transform: scale(0.98); }
 
-/* Dark tile variant */
-.tile-dark .store-card {
-  background: var(--tile-dark-2);
-  border-color: var(--hairline);
-  color: var(--text-on-dark);
-}
-.tile-dark .store-card:hover {
-  border-color: var(--accent-on-dark);
-}
-
-/* First card — full-width hero card */
 .portfolio-grid > .store-card:first-child {
   grid-column: 1 / -1;
   padding: 32px;
@@ -467,24 +242,13 @@ body {
 
 .card-img-wrap {
   margin: -24px -24px 16px;
-  background: var(--canvas-alt);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   overflow: hidden;
   aspect-ratio: 16/9;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--transition-slow);
-}
-
-.tile-dark .card-img-wrap {
-  background: var(--tile-dark);
-}
-
-.card-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .card-img-placeholder {
@@ -493,7 +257,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-tertiary);
+  color: rgba(255, 255, 255, 0.32);
   font-size: 14px;
   letter-spacing: -0.224px;
 }
@@ -509,19 +273,12 @@ body {
   display: inline-block;
   padding: 6px 12px;
   background: transparent;
-  border: 1px solid var(--hairline-soft);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-pill);
-  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.0;
   letter-spacing: -0.224px;
-  color: var(--text-tertiary);
-  transition: border-color var(--transition-slow), color var(--transition-slow), background var(--transition-slow);
-}
-
-.tile-dark .card-tag {
-  border-color: var(--hairline);
   color: var(--text-muted-dark);
 }
 
@@ -532,67 +289,34 @@ body {
   line-height: 1.17;
   letter-spacing: 0;
   margin-bottom: 4px;
-  color: var(--text);
-  transition: color var(--transition-slow);
-}
-
-.tile-dark .card-title {
   color: var(--text-on-dark);
 }
 
-.store-card:first-child .card-title {
-  font-size: 28px;
-}
+.store-card:first-child .card-title { font-size: 28px; }
 
 .card-desc {
-  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.47;
   letter-spacing: -0.374px;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-  transition: color var(--transition-slow);
-}
-
-.tile-dark .card-desc {
   color: var(--text-muted-dark);
+  margin-bottom: 12px;
 }
 
 .card-footer-link {
-  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.0;
   letter-spacing: -0.224px;
-  color: var(--accent);
+  color: #2997ff;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: color var(--transition-slow);
 }
 .card-footer-link:hover { text-decoration: underline; }
 
-.tile-dark .card-footer-link {
-  color: var(--accent-on-dark);
-}
-
-/* ── Card Reveal Animation ── */
-@keyframes card-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-    filter: blur(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-/* ── Work Detail Page ── */
+/* ── Work Detail ── */
 .work-outer {
   max-width: 720px;
   margin: 0 auto;
@@ -605,12 +329,10 @@ body {
   gap: 6px;
   color: var(--accent);
   text-decoration: none;
-  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.47;
   letter-spacing: -0.374px;
-  transition: color var(--transition-fast);
   margin-bottom: 17px;
 }
 .back-link:hover { text-decoration: underline; }
@@ -620,18 +342,12 @@ body {
   border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
   padding: 32px;
-  animation: card-reveal 600ms var(--curve-spring) both;
-  transition: background var(--transition-slow), border-color var(--transition-slow);
-}
-
-  transition: background var(--transition-slow), border-color var(--transition-slow);
 }
 
 .work-header {
   margin-bottom: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--hairline-soft);
-  transition: border-color var(--transition-slow);
 }
 
 .work-header h1 {
@@ -662,40 +378,27 @@ body {
   background: transparent;
   border: 1px solid var(--hairline-soft);
   border-radius: var(--radius-pill);
-  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.0;
   letter-spacing: -0.224px;
   color: var(--text-secondary);
-  transition: border-color var(--transition-slow), color var(--transition-slow), background var(--transition-slow);
-}
-
-  transition: border-color var(--transition-slow), color var(--transition-slow), background var(--transition-slow);
 }
 
 .work-date {
-  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.43;
   letter-spacing: -0.224px;
   color: var(--text-tertiary);
-  transition: color var(--transition-slow);
 }
 
-/* Work content typography */
 .work-content {
-  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.47;
   letter-spacing: -0.374px;
   color: var(--text-secondary);
-  transition: color var(--transition-slow);
-}
-
-  transition: color var(--transition-slow);
 }
 
 .work-content h2 {
@@ -706,7 +409,6 @@ body {
   letter-spacing: 0.196px;
   margin: 24px 0 12px;
   color: var(--text);
-  transition: color var(--transition-slow);
 }
 
 .work-content h3 {
@@ -717,20 +419,17 @@ body {
   letter-spacing: 0.231px;
   margin: 20px 0 8px;
   color: var(--text);
-  transition: color var(--transition-slow);
 }
 
 .work-content p { margin: 0 0 12px; }
 .work-content a { color: var(--accent); text-decoration: none; }
 .work-content a:hover { text-decoration: underline; }
-.work-content strong { color: var(--text); transition: color var(--transition-slow); }
+.work-content strong { color: var(--text); }
 .work-content code {
-  background: var(--divider-soft);
+  background: #f0f0f0;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.88em;
-  border: 1px solid var(--hairline-soft);
-  transition: background var(--transition-slow), border-color var(--transition-slow);
 }
 .work-content pre {
   background: var(--canvas-alt);
@@ -739,12 +438,8 @@ body {
   padding: 16px;
   overflow-x: auto;
   font-size: 14px;
-  transition: background var(--transition-slow), border-color var(--transition-slow);
 }
-.work-content ul, .work-content ol {
-  padding-left: 24px;
-  margin: 0 0 12px;
-}
+.work-content ul, .work-content ol { padding-left: 24px; margin: 0 0 12px; }
 .work-content li { margin: 4px 0; }
 .work-content blockquote {
   border-left: 3px solid var(--accent);
@@ -752,28 +447,24 @@ body {
   padding: 8px 16px;
   background: var(--accent-dim);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  transition: background var(--transition-slow), border-color var(--transition-slow);
 }
 
 .work-actions {
   margin-top: 24px;
   padding-top: 24px;
   border-top: 1px solid var(--hairline-soft);
-  transition: border-color var(--transition-slow);
 }
 
-/* ── About Page ── */
+/* ── About ── */
 .about-page {
   background: var(--canvas-alt);
   width: 100%;
-  transition: background var(--transition-slow);
 }
 
 .about-inner {
   max-width: 640px;
   margin: 0 auto;
   padding: 80px 24px;
-  animation: card-reveal 600ms var(--curve-spring) both;
 }
 
 .about-page h1 {
@@ -783,29 +474,24 @@ body {
   line-height: 1.10;
   letter-spacing: 0;
   margin-bottom: 12px;
-  transition: color var(--transition-slow);
 }
 
 .about-role {
-  font-family: var(--font-body);
   font-size: 21px;
   font-weight: 600;
   line-height: 1.19;
   letter-spacing: 0.231px;
   color: var(--accent);
   margin-bottom: 24px;
-  transition: color var(--transition-slow);
 }
 
 .about-page p {
-  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.47;
   letter-spacing: -0.374px;
   color: var(--text-secondary);
   margin-bottom: 12px;
-  transition: color var(--transition-slow);
 }
 
 .about-links {
@@ -815,15 +501,10 @@ body {
   flex-wrap: wrap;
 }
 
-/* ── Footer (Apple Parchment Style) ── */
+/* ── Footer ── */
 .site-footer {
   background: var(--canvas-alt);
-  color: var(--text-muted);
   width: 100%;
-  transition: background var(--transition-slow), color var(--transition-slow);
-}
-
-  transition: background var(--transition-slow), color var(--transition-slow);
 }
 
 .footer-inner {
@@ -840,39 +521,22 @@ body {
 }
 
 .footer-links a {
-  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.0;
   letter-spacing: -0.12px;
   color: var(--text-ink-48);
   text-decoration: none;
-  transition: color var(--transition-fast);
 }
 .footer-links a:hover { color: var(--accent); }
 
 .site-footer p {
-  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.0;
   letter-spacing: -0.12px;
   text-align: center;
   color: var(--text-ink-48);
-}
-
-/* ── SSR Fade-out ── */
-#portfolio-ssr.ssr-fade-out {
-  opacity: 0;
-  transition: opacity 250ms var(--curve-out);
-}
-#portfolio-ssr {
-  transition: opacity 250ms var(--curve-out);
-}
-
-/* ── Page transition (nav.js) ── */
-.main-content {
-  transition: opacity 200ms var(--curve-out), transform 200ms var(--curve-out);
 }
 
 /* ── Responsive ── */
@@ -885,16 +549,15 @@ body {
   .hero-tile { padding: 80px 24px 60px; }
   .hero-tile h1 { font-size: 40px; }
   .hero-tile .subtitle { font-size: 24px; }
-  .tile-light, .tile-parchment, .tile-dark { padding: 60px 20px; }
+  .tile-light, .tile-dark { padding: 60px 20px; }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-  .nav-links { gap: 16px; }
 }
 
 @media (max-width: 734px) {
   .hero-tile { padding: 60px 20px 48px; }
   .hero-tile h1 { font-size: 34px; }
   .hero-tile .subtitle { font-size: 21px; }
-  .tile-light, .tile-parchment, .tile-dark { padding: 48px 16px; }
+  .tile-light, .tile-dark { padding: 48px 16px; }
   .section-header h2 { font-size: 34px; }
   .work-detail { padding: 20px; }
   .work-outer { padding: 48px 16px; }
@@ -916,6 +579,5 @@ body {
 
 @media (max-width: 419px) {
   .hero-tile h1 { font-size: 28px; }
-  .hero-tile .subtitle { font-size: 17px; }
-  .tile-light, .tile-parchment, .tile-dark { padding: 32px 12px; }
+  .tile-light, .tile-dark { padding: 32px 12px; }
 }

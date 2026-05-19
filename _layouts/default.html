@@ -9,7 +9,6 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 </head>
 <body>
-  <!-- Apple Global Nav (black bar, 44px) -->
   <header class="site-header">
     <nav class="nav-bar">
       <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.author }}</a>
@@ -21,8 +20,7 @@
   </header>
 
   <main class="main-content">
-    <div id="page-content">{{ content }}</div>
-    <div id="portfolio-root"></div>
+    {{ content }}
   </main>
 
   <footer class="site-footer">
@@ -34,8 +32,5 @@
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
     </div>
   </footer>
-
-  <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/bundle.js' | relative_url }}"></script>
 </body>
 </html>
