@@ -55,35 +55,6 @@
   --transition-slow: 700ms var(--curve-spring);
 }
 
-/* ── Dark Theme ── */
-.theme-dark {
-  --canvas: #1d1d1f;
-  --canvas-alt: #272729;
-  --tile-dark: #000000;
-  --tile-dark-2: #1a1a1c;
-  --surface-black: #000000;
-  --surface-pearl: #2a2a2c;
-  --chip-translucent: rgba(210, 210, 215, 0.3);
-
-  --text: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.56);
-  --text-tertiary: rgba(255, 255, 255, 0.32);
-  --text-muted: rgba(255, 255, 255, 0.15);
-  --text-on-dark: #ffffff;
-  --text-muted-dark: #999999;
-  --text-ink-80: #cccccc;
-  --text-ink-48: #7a7a7a;
-
-  --hairline: rgba(255, 255, 255, 0.12);
-  --hairline-soft: rgba(255, 255, 255, 0.06);
-  --divider-soft: rgba(255, 255, 255, 0.08);
-
-  --accent: #2997ff;
-  --accent-hover: #40a9ff;
-  --accent-on-dark: #2997ff;
-  --accent-dim: rgba(41, 151, 255, 0.12);
-}
-
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -111,9 +82,6 @@ body {
   align-items: center;
   justify-content: center;
   transition: background var(--transition-slow);
-}
-.theme-dark .site-header {
-  background: var(--surface-black);
 }
 
 .nav-bar {
@@ -174,8 +142,6 @@ body {
 .theme-toggle:hover { color: var(--text-on-dark); }
 .theme-toggle:active { transform: scale(0.9); }
 .theme-toggle svg { display: block; }
-.theme-light .icon-sun { display: none; }
-.theme-dark .icon-moon { display: none; }
 
 /* ── Main Content ── */
 .main-content {
@@ -453,14 +419,7 @@ body {
   font-weight: 600;
 }
 
-.theme-dark .filter-chip {
-  border-color: var(--hairline);
-  color: var(--text-tertiary);
-}
-.theme-dark .filter-chip.active,
-.theme-dark .filter-chip:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  font-weight: 600;
 }
 
 /* ── Portfolio Grid (Apple Store Utility Cards) ── */
@@ -665,8 +624,7 @@ body {
   transition: background var(--transition-slow), border-color var(--transition-slow);
 }
 
-.theme-dark .work-detail {
-  border-color: var(--hairline);
+  transition: background var(--transition-slow), border-color var(--transition-slow);
 }
 
 .work-header {
@@ -713,9 +671,7 @@ body {
   transition: border-color var(--transition-slow), color var(--transition-slow), background var(--transition-slow);
 }
 
-.theme-dark .tech-tag {
-  border-color: var(--hairline);
-  color: var(--text-muted-dark);
+  transition: border-color var(--transition-slow), color var(--transition-slow), background var(--transition-slow);
 }
 
 .work-date {
@@ -739,8 +695,7 @@ body {
   transition: color var(--transition-slow);
 }
 
-.theme-dark .work-content {
-  color: var(--text-muted-dark);
+  transition: color var(--transition-slow);
 }
 
 .work-content h2 {
@@ -754,8 +709,6 @@ body {
   transition: color var(--transition-slow);
 }
 
-.theme-dark .work-content h2 { color: var(--text-on-dark); }
-
 .work-content h3 {
   font-family: var(--font-display);
   font-size: 21px;
@@ -767,13 +720,10 @@ body {
   transition: color var(--transition-slow);
 }
 
-.theme-dark .work-content h3 { color: var(--text-on-dark); }
-
 .work-content p { margin: 0 0 12px; }
 .work-content a { color: var(--accent); text-decoration: none; }
 .work-content a:hover { text-decoration: underline; }
 .work-content strong { color: var(--text); transition: color var(--transition-slow); }
-.theme-dark .work-content strong { color: var(--text-on-dark); }
 .work-content code {
   background: var(--divider-soft);
   padding: 2px 6px;
@@ -819,10 +769,6 @@ body {
   transition: background var(--transition-slow);
 }
 
-.theme-dark .about-page {
-  background: var(--tile-dark-2);
-}
-
 .about-inner {
   max-width: 640px;
   margin: 0 auto;
@@ -851,10 +797,6 @@ body {
   transition: color var(--transition-slow);
 }
 
-.theme-dark .about-role {
-  color: var(--accent-on-dark);
-}
-
 .about-page p {
   font-family: var(--font-body);
   font-size: 17px;
@@ -864,10 +806,6 @@ body {
   color: var(--text-secondary);
   margin-bottom: 12px;
   transition: color var(--transition-slow);
-}
-
-.theme-dark .about-page p {
-  color: var(--text-muted-dark);
 }
 
 .about-links {
@@ -885,9 +823,7 @@ body {
   transition: background var(--transition-slow), color var(--transition-slow);
 }
 
-.theme-dark .site-footer {
-  background: var(--tile-dark);
-  color: var(--text-muted-dark);
+  transition: background var(--transition-slow), color var(--transition-slow);
 }
 
 .footer-inner {
