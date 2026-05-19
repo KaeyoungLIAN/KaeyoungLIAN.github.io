@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<section class="tile-light hero-tile">
+<section class="tile-surface hero-tile">
   <div class="tile-content">
     <h1>Kaeyoung</h1>
     <p class="subtitle">Building things. Occasionally finishing them.</p>
@@ -13,7 +13,7 @@ layout: default
   </div>
 </section>
 
-<section class="tile-dark">
+<section class="tile-black">
   <div class="tile-content">
     <div class="section-header">
       <h2>Work</h2>
