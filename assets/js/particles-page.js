@@ -1,7 +1,9 @@
-// ── Scene Setup ──
+import * as THREE from 'three';
+
+// ── Setup ──
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position.set(0, 0.8, 7);
+camera.position.set(0, 0.5, 6);
 camera.lookAt(0, 0, 0);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -10,89 +12,202 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setClearColor(0x0d0d0f);
 document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-// ── Constants ──
-const N = 2200;
-const RADIUS = 4.5;
-const HEIGHT = 3.5;
-
-// ── Palette ──
-const PALETTE = [
-  [0.161, 0.592, 1.0],    // #2997ff
-  [0.251, 0.663, 1.0],    // #40a9ff
-  [0.494, 0.784, 0.941],  // #7ec8f0
-  [0.655, 0.545, 0.980],  // #a78bfa
-  [0.404, 0.910, 0.976],  // #67e8f9
-  [1.0,   1.0,   1.0],    // white
+// ── Color Palettes ──
+const palettes = [
+  [0x1a365d, 0x2563eb, 0x2997ff, 0x7dd3fc, 0xffffff],
+  [0x1e1b4b, 0x4338ca, 0x6366f1, 0xa78bfa, 0xc4b5fd],
+  [0x0f172a, 0x0ea5e9, 0x38bdf8, 0x7dd3fc, 0xe0f2fe],
 ];
 
-// ── Geometry ──
+let currentPal = 0;
+let nextPal = 1;
+let paletteLerp = 0;
+
+function getPaletteColors(idx) {
+  return palettes[idx].map(h => new THREE.Color(h));
+}
+
+function lerpPalette(t) {
+  const a = palettes[currentPal];
+  const b = palettes[nextPal];
+  const result = [];
+  for (let i = 0; i < a.length; i++) {
+    const ca = new THREE.Color(a[i]);
+    const cb = new THREE.Color(b[i]);
+    result.push(ca.lerp(cb, t));
+  }
+  return result;
+}
+
+// ── Particle System ──
+const N = 3000;
 const geo = new THREE.BufferGeometry();
 const pos = new Float32Array(N * 3);
-const col = new Float32Array(N * 3);
-const siz = new Float32Array(N);
-const phs = new Float32Array(N);
+const sizes = new Float32Array(N);
+const phases = new Float32Array(N);
+const origins = new Float32Array(N * 3);
 
 for (let i = 0; i < N; i++) {
-  const cluster = Math.floor(Math.random() * 5);
-  const angleOffset = (cluster / 5) * Math.PI * 2;
-  const radiusOffset = 0.5 + Math.random() * 1.5;
+  // Spherical distribution with clusters
+  const cluster = Math.floor(Math.random() * 6);
+  const angleOff = (cluster / 6) * Math.PI * 2 + Math.random() * 0.5;
+  const cx = Math.cos(angleOff) * (0.5 + Math.random() * 1.0);
+  const cy = (Math.random() - 0.5) * 1.5;
+  const cz = Math.sin(angleOff) * (0.5 + Math.random() * 1.0);
 
-  const theta = angleOffset + Math.random() * 1.2;
+  const theta = Math.random() * Math.PI * 2;
   const phi = Math.acos(2 * Math.random() - 1);
-  const r = Math.pow(Math.random(), 1.2) * radiusOffset;
+  const r = Math.pow(Math.random(), 1.3) * 1.8;
 
-  const cx = Math.cos(angleOffset) * 0.8;
-  const cy = (Math.random() - 0.5) * 0.5;
-  const cz = Math.sin(angleOffset) * 0.8;
+  pos[i * 3]     = cx + Math.sin(phi) * Math.cos(theta) * r;
+  pos[i * 3 + 1] = cy + Math.cos(phi) * r * 0.6;
+  pos[i * 3 + 2] = cz + Math.sin(phi) * Math.sin(theta) * r;
 
-  pos[i * 3]     = cx + Math.sin(phi) * Math.cos(theta) * r * 1.2;
-  pos[i * 3 + 1] = cy + Math.cos(phi) * r * 0.7;
-  pos[i * 3 + 2] = cz + Math.sin(phi) * Math.sin(theta) * r * 1.2;
-
-  const c = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-  const bt = 0.55 + Math.random() * 0.45;
-  col[i * 3]     = c[0] * bt;
-  col[i * 3 + 1] = c[1] * bt;
-  col[i * 3 + 2] = c[2] * bt;
-
-  siz[i] = 0.025 + Math.random() * 0.065;
-  phs[i] = Math.random() * Math.PI * 2;
+  sizes[i] = 0.02 + Math.random() * 0.08;
+  phases[i] = Math.random() * Math.PI * 2;
+  origins[i*3] = pos[i*3];
+  origins[i*3+1] = pos[i*3+1];
+  origins[i*3+2] = pos[i*3+2];
 }
 
 geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+geo.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
+geo.setAttribute('origin', new THREE.BufferAttribute(origins, 3));
 
-const mat = new THREE.PointsMaterial({
-  size: 0.09,
-  vertexColors: true,
+// ── Custom Shader Material ──
+const vertexShader = `
+  attribute float size;
+  attribute float phase;
+  attribute vec3 origin;
+
+  uniform float uTime;
+  uniform float uPixelRatio;
+
+  varying vec3 vColor;
+
+  // Simplex-like noise approximation
+  float hash(vec3 p) {
+    p = fract(p * 0.3183099 + .1);
+    p *= 17.0;
+    return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
+  }
+
+  float noise(vec3 p) {
+    vec3 i = floor(p);
+    vec3 f = fract(p);
+    f = f*f*(3.0-2.0*f);
+    float a = hash(i);
+    float b = hash(i + vec3(1,0,0));
+    float c = hash(i + vec3(0,1,0));
+    float d = hash(i + vec3(1,1,0));
+    float e = hash(i + vec3(0,0,1));
+    float f_ = hash(i + vec3(1,0,1));
+    float g = hash(i + vec3(0,1,1));
+    float h = hash(i + vec3(1,1,1));
+    float ux = mix(mix(a,b,f.x), mix(c,d,f.x), f.y);
+    float vx = mix(mix(e,f_,f.x), mix(g,h,f.x), f.y);
+    return mix(ux, vx, f.z);
+  }
+
+  void main() {
+    vec3 p = position;
+    float t = uTime * 0.15;
+
+    // Curl-like drift using noise derivatives
+    float n = noise(p * 0.5 + t + phase);
+    float nx = noise(p * 0.5 + t + phase + vec3(0.3, 0, 0));
+    float ny = noise(p * 0.5 + t + phase + vec3(0, 0.3, 0));
+    float nz = noise(p * 0.5 + t + phase + vec3(0, 0, 0.3));
+
+    float drift = 0.15;
+    p.x += (nx - n) * drift;
+    p.y += (ny - n) * drift * 0.5;
+    p.z += (nz - n) * drift;
+
+    // Gentle orbital drift
+    float orbit = uTime * 0.005;
+    float ox = sin(orbit + phase) * 0.08;
+    float oy = cos(orbit * 0.7 + phase * 1.3) * 0.04;
+    float oz = sin(orbit * 0.8 + phase * 0.7) * 0.08;
+    p += vec3(ox, oy, oz);
+
+    vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
+    vec4 projected = projectionMatrix * mvPosition;
+
+    gl_Position = projected;
+
+    // Soft size
+    float dist = length(mvPosition.xyz);
+    float s = size * uPixelRatio * (8.0 / dist);
+    s *= 0.8 + 0.2 * sin(t * 0.5 + phase);
+    gl_PointSize = s;
+
+    // Color from distance to center + noise
+    float d = length(p) / 3.0;
+    float colorMix = smoothstep(0.0, 1.0, d + 0.3 * noise(p * 0.3 + uTime * 0.1));
+    vColor = mix(vec3(0.161, 0.592, 1.0), vec3(0.655, 0.545, 0.980), colorMix);
+    vColor = mix(vColor, vec3(0.404, 0.910, 0.976), 0.5 * (1.0 - d));
+    vColor += 0.1 * vec3(noise(p * 1.5 + uTime * 0.05));
+  }
+`;
+
+const fragmentShader = `
+  varying vec3 vColor;
+
+  void main() {
+    vec2 center = gl_PointCoord - 0.5;
+    float dist = length(center);
+
+    // Soft glow circle
+    float alpha = 1.0 - smoothstep(0.0, 0.5, dist);
+    alpha = pow(alpha, 1.5);
+
+    // Bright core
+    float core = exp(-dist * dist * 40.0);
+    vec3 color = vColor + core * 0.3;
+
+    // Outer glow
+    float glow = exp(-dist * dist * 8.0);
+    color += vColor * glow * 0.15;
+
+    if (alpha < 0.01) discard;
+
+    gl_FragColor = vec4(color, alpha);
+  }
+`;
+
+const uniforms = {
+  uTime: { value: 0 },
+  uPixelRatio: { value: renderer.getPixelRatio() },
+};
+
+const material = new THREE.ShaderMaterial({
+  uniforms,
+  vertexShader,
+  fragmentShader,
   transparent: true,
-  opacity: 0.95,
   blending: THREE.AdditiveBlending,
   depthWrite: false,
-  sizeAttenuation: true,
 });
 
-const points = new THREE.Points(geo, mat);
+const points = new THREE.Points(geo, material);
 scene.add(points);
 
-// ── Connection lines ──
-const LINE_N = 350;
+// ── Connection Lines ──
+const LINE_COUNT = 300;
 const lineIdx = new Set();
-while (lineIdx.size < LINE_N) lineIdx.add(Math.floor(Math.random() * N));
+while (lineIdx.size < LINE_COUNT) lineIdx.add(Math.floor(Math.random() * N));
 const arr = [...lineIdx];
 
 const lp = [], lc = [];
-const MAX_DIST = 1.0;
-
 for (let i = 0; i < arr.length; i++) {
   for (let j = i + 1; j < arr.length; j++) {
     const a = arr[i], b = arr[j];
     const dx = pos[a*3]-pos[b*3], dy = pos[a*3+1]-pos[b*3+1], dz = pos[a*3+2]-pos[b*3+2];
-    const d = Math.sqrt(dx*dx + dy*dy + dz*dz);
-    if (d < MAX_DIST) {
+    if (Math.sqrt(dx*dx+dy*dy+dz*dz) < 0.9) {
       lp.push(pos[a*3], pos[a*3+1], pos[a*3+2], pos[b*3], pos[b*3+1], pos[b*3+2]);
-      const w = 0.3;
-      lc.push(col[a*3]*w, col[a*3+1]*w, col[a*3+2]*w, col[b*3]*w, col[b*3+1]*w, col[b*3+2]*w);
+      lc.push(0.161, 0.592, 1.0, 0.404, 0.910, 0.976);
     }
   }
 }
@@ -100,33 +215,25 @@ for (let i = 0; i < arr.length; i++) {
 const lg = new THREE.BufferGeometry();
 lg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(lp), 3));
 lg.setAttribute('color', new THREE.BufferAttribute(new Float32Array(lc), 3));
-const lm = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.25, blending: THREE.AdditiveBlending, depthWrite: false });
+const lm = new THREE.LineBasicMaterial({
+  vertexColors: true, transparent: true, opacity: 0.15,
+  blending: THREE.AdditiveBlending, depthWrite: false,
+});
 const lines = new THREE.LineSegments(lg, lm);
 scene.add(lines);
 
-// ── Center glow ──
-const gg = new THREE.SphereGeometry(0.12, 16, 16);
-const gm = new THREE.MeshBasicMaterial({ color: 0x2997ff, transparent: true, opacity: 0.12 });
-const glow = new THREE.Mesh(gg, gm);
-scene.add(glow);
-
-// ── Floating tech rings ──
-function createRing(radius, yPos, color, opacity) {
-  const rg = new THREE.RingGeometry(radius - 0.008, radius, 64);
+// ── Floating Rings ──
+for (let i = 0; i < 3; i++) {
+  const rg = new THREE.RingGeometry(0.8 + i * 0.4, 0.808 + i * 0.4, 64);
   const rm = new THREE.MeshBasicMaterial({
-    color, transparent: true, opacity, side: THREE.DoubleSide, depthWrite: false,
+    color: 0x2997ff, transparent: true, opacity: 0.04 + i * 0.015,
+    side: THREE.DoubleSide, depthWrite: false,
   });
   const ring = new THREE.Mesh(rg, rm);
-  ring.position.y = yPos;
+  ring.position.y = (i - 1) * 0.7;
   ring.rotation.x = Math.PI / 2;
-  return ring;
-}
-
-const rings = [];
-for (let i = 0; i < 4; i++) {
-  const r = createRing(1.2 + i * 0.5, (i - 1.5) * 0.8, 0x2997ff, 0.06 + i * 0.02);
-  scene.add(r);
-  rings.push(r);
+  ring.userData = { idx: i };
+  scene.add(ring);
 }
 
 // ── Mouse ──
@@ -137,60 +244,56 @@ document.addEventListener('mousemove', e => {
   mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
 });
 
+// ── Color rotation ──
+setInterval(() => {
+  currentPal = nextPal;
+  nextPal = (nextPal + 1) % palettes.length;
+  paletteLerp = 0;
+}, 20000);
+
 // ── Resize ──
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  uniforms.uPixelRatio.value = renderer.getPixelRatio();
 });
 
 // ── Animate ──
 let t = 0;
-const posAttr = points.geometry.attributes.position;
-const origPos = new Float32Array(posAttr.array);
 
 function animate() {
   requestAnimationFrame(animate);
-  t += 0.002;
+  t += 0.016; // ~60fps in seconds
 
-  follow.x += (mouse.x * 0.25 - follow.x) * 0.015;
-  follow.y += (mouse.y * 0.2 - follow.y) * 0.015;
+  uniforms.uTime.value = t;
 
-  // Camera gentle orbit
-  const ox = Math.sin(t * 0.06) * 0.3;
-  const oz = Math.cos(t * 0.04) * 0.3;
+  // Mouse follow
+  follow.x += (mouse.x * 0.2 - follow.x) * 0.012;
+  follow.y += (mouse.y * 0.15 - follow.y) * 0.012;
+
+  // Camera
+  const ox = Math.sin(t * 0.05) * 0.3;
+  const oz = Math.cos(t * 0.035) * 0.3;
   camera.position.x = follow.x + ox;
-  camera.position.y = 0.8 + follow.y * 0.5 + Math.sin(t * 0.04) * 0.08;
-  camera.position.z = 7 + oz * 0.2;
+  camera.position.y = 0.5 + follow.y * 0.4 + Math.sin(t * 0.03) * 0.06;
+  camera.position.z = 6 + oz * 0.15;
   camera.lookAt(0, 0, 0);
 
-  // Particle drift
-  const p = posAttr.array;
-  for (let i = 0; i < N; i++) {
-    const i3 = i * 3;
-    const phase = phs[i];
-    const drift = 0.00025;
-    p[i3]     = origPos[i3]     + Math.sin(t * 0.2 + phase) * drift;
-    p[i3 + 1] = origPos[i3 + 1] + Math.sin(t * 0.15 + phase * 1.3) * drift * 0.5;
-    p[i3 + 2] = origPos[i3 + 2] + Math.cos(t * 0.18 + phase * 0.7) * drift;
-  }
-  posAttr.needsUpdate = true;
-
   // Slow rotation
-  points.rotation.y = t * 0.012;
-  points.rotation.x = Math.sin(t * 0.008) * 0.04;
-  lines.rotation.y = t * 0.012;
-  lines.rotation.x = Math.sin(t * 0.008) * 0.04;
+  points.rotation.y = t * 0.01;
+  points.rotation.x = Math.sin(t * 0.006) * 0.03;
+  lines.rotation.y = t * 0.01;
+  lines.rotation.x = Math.sin(t * 0.006) * 0.03;
 
-  // Rings rotation
-  rings.forEach((r, i) => {
-    r.rotation.z = t * (0.05 + i * 0.02);
-    r.rotation.x = Math.PI / 2 + Math.sin(t * 0.03 + i) * 0.15;
+  // Rings
+  scene.children.forEach(child => {
+    if (child.isMesh && child.geometry.type === 'RingGeometry') {
+      const i = child.userData.idx || 0;
+      child.rotation.z = t * (0.04 + i * 0.015);
+      child.rotation.x = Math.PI / 2 + Math.sin(t * 0.025 + i) * 0.12;
+    }
   });
-
-  // Glow pulse
-  glow.material.opacity = 0.08 + Math.sin(t * 0.4) * 0.06;
-  glow.scale.setScalar(1 + Math.sin(t * 0.3) * 0.25);
 
   renderer.render(scene, camera);
 }
