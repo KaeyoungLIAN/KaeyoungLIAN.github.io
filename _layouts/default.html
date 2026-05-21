@@ -7,13 +7,6 @@
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "/assets/js/three.module.js"
-      }
-    }
-  </script>
 </head>
 <body>
   <div id="bg-canvas"></div>
@@ -40,6 +33,7 @@
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
     </div>
   </footer>
-  <script type="module" src="{{ '/assets/js/background.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/three.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/background.js' | relative_url }}"></script>
 </body>
 </html>
