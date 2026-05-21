@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particle Cloud — Kaeyoung</title>
+  <meta name="description" content="Three.js 粒子云展示">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #0d0d0f;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    #canvas-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+    }
+    canvas { display: block; }
+    #ui {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      text-align: center;
+      pointer-events: none;
+    }
+    #ui a {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      backdrop-filter: blur(8px);
+      background: rgba(13,13,15,0.4);
+    }
+    #ui a:hover {
+      border-color: rgba(41,151,255,0.4);
+      color: #fff;
+    }
+    #fps {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+      color: rgba(255,255,255,0.15);
+      font-size: 11px;
+      font-family: monospace;
+      pointer-events: none;
+      letter-spacing: 0.5px;
+    }
+    #title {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      text-align: center;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+    #title h1 {
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 200;
+      color: #fff;
+      letter-spacing: 0.15em;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    #title p {
+      font-size: clamp(12px, 1.5vw, 16px);
+      color: rgba(255,255,255,0.3);
+      margin-top: 8px;
+      letter-spacing: 0.05em;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #title { opacity: 0.6; }
+      #ui a { opacity: 0.6; }
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="canvas-container"></div>
+  <div id="title">
+    <h1>✦</h1>
+    <p>Particle Cloud</p>
+  </div>
+  <div id="fps"></div>
+  <div id="ui">
+    <a href="/">← Back</a>
+  </div>
+  <script type="module" src="/assets/js/particles-page.js"></script>
+</body>
+</html>
