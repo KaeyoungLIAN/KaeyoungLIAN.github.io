@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow — Kaeyoung</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body { width:100%; height:100%; overflow:hidden; background:#f0f0f0; font-family:system-ui,-apple-system,sans-serif; }
+    #c { position:fixed; top:0; left:0; width:100vw; height:100vh; }
+    canvas { display:block; }
+    #ui {
+      position:fixed; bottom:32px; left:50%; transform:translateX(-50%);
+      z-index:10; text-align:center; pointer-events:none;
+      display:flex; gap:10px;
+    }
+    #ui a, #ui button {
+      display:inline-block; padding:6px 14px;
+      border:1px solid rgba(0,0,0,0.1); border-radius:6px;
+      color:rgba(0,0,0,0.5); font-size:12px; text-decoration:none;
+      transition:all 0.3s ease; pointer-events:auto;
+      background:rgba(255,255,255,0.7); cursor:pointer;
+      backdrop-filter:blur(8px); font-family:inherit;
+    }
+    #ui button:hover, #ui a:hover { border-color:rgba(0,0,0,0.2); color:#000; }
+  </style>
+</head>
+<body>
+  <div id="c"></div>
+  <div id="ui">
+    <a href="/">← Back</a>
+    <button id="randBtn">Randomize</button>
+    <button id="pauseBtn">Pause</button>
+  </div>
+
+  <script src="/assets/js/three.min.js"></script>
+  <script>
+(function() {
+'use strict';
+
+// ── Simplify: no RoundedPrismGeometry, use standard CylinderGeometry(6 sides) ──
+
+// Perlin noise (simplified 2D)
+var perm = new Uint8Array(512);
+(function() {
+  var p = [];
+  for (var i = 0; i < 256; i++) p[i] = i;
+  for (var i = 255; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = p[i]; p[i] = p[j]; p[j] = t;
+  }
+  for (var i = 0; i < 512; i++) perm[i] = p[i & 255];
+})();
+
+function fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+function lerp(a, b, t) { return a + t * (b - a); }
+function grad(hash, x, y) {
+  var h = hash & 3;
+  var u = h < 2 ? x : y;
+  var v = h < 2 ? y : x;
+  return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
+}
+
+function perlin2(x, y) {
+  var X = Math.floor(x) & 255;
+  var Y = Math.floor(y) & 255;
+  x -= Math.floor(x);
+  y -= Math.floor(y);
+  var u = fade(x);
+  var v = fade(y);
+  var aa = perm[perm[X] + Y];
+  var ab = perm[perm[X] + Y + 1];
+  var ba = perm[perm[X + 1] + Y];
+  var bb = perm[perm[X + 1] + Y + 1];
+  return lerp(
+    lerp(grad(aa, x, y), grad(ba, x - 1, y), u),
+    lerp(grad(ab, x, y - 1), grad(bb, x - 1, y - 1), u),
+    v
+  );
+}
+
+// ── InOutQuad ease ──
+function inOutQuad(t) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+}
+
+// ── Scene Setup ──
+var scene = new THREE.Scene();
+
+var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(8, 8, 8);
+camera.lookAt(0, 0, 0);
+
+var renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.setClearColor(0xffffff);
+document.getElementById('c').appendChild(renderer.domElement);
+
+// ── Fog ──
+scene.fog = new THREE.FogExp2(0xffffff, 0.015);
+
+// ── Ground ──
+var ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(100, 100),
+  new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2, metalness: 0 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -12;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// ── Lighting ──
+var ambient = new THREE.AmbientLight(0xffffff, 0.08);
+scene.add(ambient);
+
+var hemi = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.4);
+hemi.position.set(0, 50, 0);
+scene.add(hemi);
+
+var dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+dirLight.position.set(-3, 5, 3);
+dirLight.castShadow = true;
+dirLight.shadow.mapSize.width = 2048;
+dirLight.shadow.mapSize.height = 2048;
+var r = 10;
+dirLight.shadow.camera.left = -r;
+dirLight.shadow.camera.right = r;
+dirLight.shadow.camera.top = r;
+dirLight.shadow.camera.bottom = -r;
+dirLight.shadow.camera.near = -10;
+dirLight.shadow.camera.far = 20;
+scene.add(dirLight);
+
+// ── Hex Grid ──
+var W = 80;
+var H = Math.round(80 / (Math.sqrt(3) / 2));
+var total = W * H;
+var meshGeo = new THREE.CylinderGeometry(0.4, 0.4, 1, 6, 1);
+meshGeo.translate(0, 0.5, 0); // origin at bottom
+
+var meshMat = new THREE.MeshStandardMaterial({
+  color: 0xffffff,
+  roughness: 0.15,
+  metalness: 0,
+  flatShading: true,
+});
+
+var instanced = new THREE.InstancedMesh(meshGeo, meshMat, total);
+instanced.castShadow = true;
+instanced.receiveShadow = true;
+instanced.scale.set(0.5, 0.5, 0.5);
+scene.add(instanced);
+
+// ── Backdrop ──
+var backdrop = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(40, 2),
+  new THREE.MeshStandardMaterial({ color: 0xf5f5f5, side: THREE.BackSide })
+);
+scene.add(backdrop);
+
+// ── Params (matching original) ──
+var params = {
+  distanceFactor: 3,
+  timeFactor1: 0.8,
+  perlinScale: 12,
+  timeFactor2: 0.6,
+  timeFactor3: 0.7,
+  scale: 2.5,
+};
+
+var matrix = new THREE.Matrix4();
+var vec = new THREE.Vector3();
+
+function updateGrid(time) {
+  var f = Math.sqrt(3) / 2;
+  var ptr = 0;
+
+  for (var y = 0; y < H; y++) {
+    for (var x = 0; x < W; x++) {
+      var dx = x - W * 0.5;
+      var dz = y * f - H * 0.5 * f;
+      var dist = Math.sqrt(dx * dx + dz * dz);
+      var a = Math.atan2(dx, dz);
+
+      // Cosine wave
+      var h = Math.cos(dist / params.distanceFactor + time * params.timeFactor1);
+      h = inOutQuad(0.5 + 0.5 * h);
+
+      // Perlin noise overlay
+      h += 0.5 * perlin2(
+        dx / params.perlinScale + time * params.timeFactor2,
+        dz / params.perlinScale + time * params.timeFactor3
+      );
+
+      // Edge falloff
+      var edgeX = parabola(x / W, 1);
+      var edgeY = parabola(y / H, 1);
+      h *= edgeX * edgeY;
+
+      var height = h * params.scale;
+      vec.set(dx, height - 8, dz);
+      if (y % 2 === 1) vec.x += 0.5;
+
+      matrix.makeTranslation(vec.x, vec.y, vec.z);
+
+      // Scale height only (keep base size)
+      var s = 0.5 + 0.3 * Math.max(0, height / 5);
+      matrix.multiply(new THREE.Matrix4().makeScale(s, 1, s));
+
+      instanced.setMatrixAt(ptr, matrix);
+      ptr++;
+    }
+  }
+  instanced.instanceMatrix.needsUpdate = true;
+}
+
+function parabola(x, k) {
+  return Math.pow(4 * x * (1 - x), k);
+}
+
+// ── Post-processing (simple bloom via render target) ──
+var bloomRenderTarget = new THREE.WebGLRenderTarget(
+  window.innerWidth, window.innerHeight,
+  { format: THREE.RGBAFormat, type: THREE.UnsignedByteType }
+);
+
+// Simple bloom blur
+function bloomBlur(source, target) {
+  var blurMat = new THREE.ShaderMaterial({
+    uniforms: {
+      tDiffuse: { value: source.texture },
+      resolution: { value: new THREE.Vector2(1/window.innerWidth, 1/window.innerHeight) },
+      blurSize: { value: 4.0 },
+    },
+    vertexShader: [
+      'varying vec2 vUv;',
+      'void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }'
+    ].join('\n'),
+    fragmentShader: [
+      'uniform sampler2D tDiffuse;',
+      'uniform vec2 resolution;',
+      'uniform float blurSize;',
+      'varying vec2 vUv;',
+      'void main() {',
+      '  vec4 sum = vec4(0.0);',
+      '  for(float x = -4.0; x <= 4.0; x += 1.0) {',
+      '    for(float y = -4.0; y <= 4.0; y += 1.0) {',
+      '      vec2 off = vec2(x, y) * resolution * blurSize;',
+      '      float w = exp(-(x*x + y*y) / 16.0);',
+      '      sum += texture2D(tDiffuse, vUv + off) * w;',
+      '    }',
+      '  }',
+      '  sum /= 81.0;',
+      '  gl_FragColor = sum;',
+      '}'
+    ].join('\n'),
+    depthWrite: false,
+  });
+
+  var fullScreenQuad = new THREE.Mesh(
+    new THREE.PlaneGeometry(2, 2),
+    blurMat
+  );
+  var fsScene = new THREE.Scene();
+  fsScene.add(fullScreenQuad);
+  var fsCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+  var tempTarget = new THREE.WebGLRenderTarget(
+    window.innerWidth, window.innerHeight,
+    { format: THREE.RGBAFormat, type: THREE.UnsignedByteType }
+  );
+
+  renderer.setRenderTarget(tempTarget);
+  renderer.render(fsScene, fsCamera);
+  fullScreenQuad.material.uniforms.tDiffuse.value = tempTarget.texture;
+  renderer.setRenderTarget(target);
+  renderer.render(fsScene, fsCamera);
+  renderer.setRenderTarget(null);
+}
+
+// ── Mouse Orbit ──
+var mouseX = 0, mouseY = 0;
+var targetRotX = 0, targetRotY = 0;
+
+document.addEventListener('mousemove', function(e) {
+  mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+  mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
+// ── Resize ──
+window.addEventListener('resize', function() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// ── Controls ──
+var isPaused = false;
+
+document.getElementById('pauseBtn').addEventListener('click', function() {
+  isPaused = !isPaused;
+  this.textContent = isPaused ? 'Resume' : 'Pause';
+});
+
+document.getElementById('randBtn').addEventListener('click', function() {
+  params.distanceFactor = 2 + Math.random() * 6;
+  params.timeFactor1 = -3 + Math.random() * 6;
+  params.perlinScale = 1 + Math.random() * 99;
+  params.timeFactor2 = -3 + Math.random() * 6;
+  params.timeFactor3 = -3 + Math.random() * 6;
+  params.scale = 1 + Math.random() * 19;
+  instanced.rotation.y = Math.random() * Math.PI * 2;
+});
+
+// ── Animate ──
+var time = 0;
+var prevTime = performance.now();
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  var now = performance.now();
+  var dt = now - prevTime;
+  prevTime = now;
+
+  if (!isPaused) {
+    time += dt / 1000;
+    instanced.rotation.y += dt / 10000;
+    updateGrid(time);
+  }
+
+  // Camera orbit with mouse
+  targetRotX += (mouseX * 0.5 - targetRotX) * 0.01;
+  targetRotY += (mouseY * 0.3 - targetRotY) * 0.01;
+
+  var rad = 12;
+  var theta = targetRotX + Math.PI / 4;
+  var phi = Math.PI / 4 + targetRotY * 0.3;
+
+  camera.position.x = rad * Math.sin(theta) * Math.cos(phi);
+  camera.position.y = rad * Math.sin(phi) + 2;
+  camera.position.z = rad * Math.cos(theta) * Math.cos(phi);
+  camera.lookAt(0, -2, 0);
+
+  renderer.render(scene, camera);
+}
+
+animate();
+
+})();
+  </script>
+</body>
+</html>
