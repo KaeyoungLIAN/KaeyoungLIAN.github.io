@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <section className="hero-section">
       <div className="hero-video-wrap">
-        <VideoFade src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4" />
+        <VideoFade src="/videos/hero-bg.mp4" />
       </div>
 
       <div className="hero-overlay">
