@@ -1,42 +1,51 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 interface Segment {
   text: string;
   className: string;
 }
 
-interface Props {
+interface WordsPullUpMultiStyleProps {
   segments: Segment[];
-  delay?: number;
+  className?: string;
+  stagger?: number;
 }
 
-/**
- * Splits text into words, each word animates up from y:20 with stagger.
- * Supports multi-style segments (normal text vs italic serif).
- */
-export default function WordsPullUpMultiStyle({ segments, delay = 0.08 }: Props) {
-  const words = segments.flatMap((seg) =>
-    seg.text.split(' ').map((word) => ({ word, className: seg.className })),
-  );
+export default function WordsPullUpMultiStyle({
+  segments,
+  className = '',
+  stagger = 0.08,
+}: WordsPullUpMultiStyleProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  let wordIdx = 0;
+  const elements: { word: string; className: string; idx: number }[] = [];
+
+  for (const seg of segments) {
+    for (const word of seg.text.split(' ')) {
+      elements.push({ word, className: seg.className, idx: wordIdx++ });
+    }
+  }
 
   return (
-    <span className="inline-flex flex-wrap justify-center">
-      {words.map(({ word, className }, i) => (
+    <div ref={ref} className={className}>
+      {elements.map((el, i) => (
         <motion.span
-          key={`${word}-${i}`}
-          className={className}
+          key={i}
+          className={`inline-block mr-[0.25em] ${el.className}`}
           initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: '-80px' }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{
-            delay: i * delay,
+            delay: i * stagger,
             duration: 0.5,
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          {word}{i < words.length - 1 ? '\u00A0' : ''}
+          {el.word}
         </motion.span>
       ))}
-    </span>
+    </div>
   );
 }
