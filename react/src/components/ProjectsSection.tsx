@@ -11,6 +11,7 @@ const projects = [
     tech: ['Tauri 2', 'React 19', 'Rust', 'CSS Glassmorphism'],
     url: 'https://github.com/KaeyoungLIAN/GlassToDo',
     accent: '#10b981',
+    bg: 'radial-gradient(ellipse at 20% 0%, #10b98130 0%, transparent 60%), radial-gradient(ellipse at 80% 100%, #0d948830 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
   },
   {
     title: 'CS2 Market Analyzer',
@@ -20,6 +21,7 @@ const projects = [
     tech: ['Django', 'Python', 'Steam API', 'DeepSeek AI'],
     url: 'https://github.com/KaeyoungLIAN/CS2-Market-Analyzer-Backend',
     accent: '#6366f1',
+    bg: 'radial-gradient(ellipse at 80% 0%, #6366f130 0%, transparent 60%), radial-gradient(ellipse at 20% 100%, #4f46e530 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
   },
   {
     title: 'PingPong Mate',
@@ -29,6 +31,7 @@ const projects = [
     tech: ['Django', 'WeChat Mini Program', 'DRF', 'Token Auth'],
     url: 'https://github.com/KaeyoungLIAN/pingpong-mate-server',
     accent: '#f59e0b',
+    bg: 'radial-gradient(ellipse at 30% 0%, #f59e0b30 0%, transparent 60%), radial-gradient(ellipse at 70% 100%, #d9770630 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
   },
   {
     title: 'Workday Allocator',
@@ -38,6 +41,7 @@ const projects = [
     tech: ['Django', 'Python', 'SQLite'],
     url: 'https://github.com/KaeyoungLIAN/workday_allocation',
     accent: '#06b6d4',
+    bg: 'radial-gradient(ellipse at 60% 0%, #06b6d430 0%, transparent 60%), radial-gradient(ellipse at 40% 100%, #0891b230 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
   },
 ];
 
@@ -55,24 +59,112 @@ function ProjectCard({
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="liquid-glass block group"
+      className="liquid-glass group block"
       style={{
         borderRadius: '24px',
         overflow: 'hidden',
         textDecoration: 'none',
         cursor: 'pointer',
+        position: 'relative',
       }}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.15 }}
     >
-      {/* Accent top bar */}
+      {/* Background layer — rich gradient that gets blurred on hover */}
       <div
-        style={{ height: '4px', backgroundColor: project.accent, opacity: 0.6 }}
+        className="project-card-bg"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: project.bg,
+          transition: 'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)',
+          zIndex: 0,
+        }}
       />
 
-      {/* Body */}
-      <div style={{ padding: '32px' }}>
+      {/* Accent top bar */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          height: '4px',
+          backgroundColor: project.accent,
+          opacity: 0.5,
+        }}
+      />
+
+      {/* Hover overlay — blur + darken */}
+      <div
+        className="project-hover-overlay"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 3,
+          background: 'rgba(2, 6, 23, 0.75)',
+          backdropFilter: 'blur(14px)',
+          WebkitBackdropFilter: 'blur(14px)',
+          opacity: 0,
+          transition: 'opacity 0.4s ease',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '24px',
+        }}
+      >
+        {/* Hover label */}
+        <div
+          className="project-hover-label"
+          style={{
+            opacity: 0,
+            transform: 'translateY(8px)',
+            transition: 'opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s',
+            background: 'white',
+            borderRadius: '9999px',
+            padding: '10px 24px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: '#020617',
+            fontSize: '14px',
+            fontWeight: 500,
+            position: 'relative',
+          }}
+        >
+          <span>View</span>
+          <span
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+              fontStyle: 'italic',
+            }}
+          >
+            {project.title}
+          </span>
+          <ArrowUpRight className="w-4 h-4" />
+          {/* Gradient border ring */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: '-2px',
+              borderRadius: '9999px',
+              background:
+                'linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.4))',
+              zIndex: -1,
+              opacity: 0.6,
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Content — sits above bg, below hover overlay */}
+      <div
+        className="project-content"
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          padding: '32px',
+        }}
+      >
         <div
           style={{
             display: 'flex',
@@ -91,7 +183,10 @@ function ProjectCard({
           >
             {project.tag}
           </span>
-          <div className="liquid-glass" style={{ borderRadius: '9999px', padding: '8px' }}>
+          <div
+            className="liquid-glass"
+            style={{ borderRadius: '9999px', padding: '8px' }}
+          >
             <ArrowUpRight
               className="w-4 h-4"
               style={{ color: 'white', opacity: 0.6 }}
@@ -188,7 +283,7 @@ export default function ProjectsSection() {
               display: 'inline-block',
             }}
           >
-            Projects
+            Selected Works
           </span>
           <h2
             style={{
@@ -198,13 +293,12 @@ export default function ProjectsSection() {
               letterSpacing: '-0.03em',
             }}
           >
-            Things I've built
+            Things I've <em style={{ fontFamily: "'Instrument Serif', serif", fontStyle: 'italic', color: 'rgba(255,255,255,0.6)' }}>built</em>
           </h2>
         </motion.div>
 
         {/* Project grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
@@ -216,6 +310,20 @@ export default function ProjectsSection() {
           ))}
         </div>
       </div>
+
+      {/* Hover CSS — separate from Tailwind to avoid purge */}
+      <style>{`
+        .group:hover .project-card-bg {
+          transform: scale(1.04);
+        }
+        .group:hover .project-hover-overlay {
+          opacity: 1;
+        }
+        .group:hover .project-hover-label {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+      `}</style>
     </section>
   );
 }
