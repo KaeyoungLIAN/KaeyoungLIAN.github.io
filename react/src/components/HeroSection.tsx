@@ -9,7 +9,7 @@ export default function HeroSection() {
     <section className="hero-section">
       <div className="hero-video-wrap">
         <img
-          src="/videos/hero-bg.jpg"
+          src="/videos/hero-bg.jpg?v=2"
           alt="The Starry Night — Vincent van Gogh"
           className="hero-video"
         />
