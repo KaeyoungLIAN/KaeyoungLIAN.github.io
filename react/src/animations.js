@@ -228,10 +228,11 @@ function boot() {
     return span;
   });
 
+  // Reveal the name container (CSS hides it initially)
+  heroName.style.opacity = '1';
+
   const badge = document.querySelector('.hero-badge');
   if (badge) {
-    badge.style.opacity = '0';
-    badge.style.transform = 'translateY(10px)';
     const badgeSpring = new Spring({ stiffness: 120, damping: 14 });
     let badgeStart = null;
     (function badgeAnim(now) {

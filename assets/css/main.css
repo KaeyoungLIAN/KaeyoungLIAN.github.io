@@ -184,6 +184,10 @@ body {
 }
 
 /* Hero animated elements — initially hidden, JS reveals them */
+.hero-name {
+  opacity: 0;
+}
+
 .hero-section .hero-subtitle {
   opacity: 0;
   transform: translateY(20px);
@@ -192,6 +196,11 @@ body {
 .hero-section .hero-actions {
   opacity: 0;
   transform: translateY(15px);
+}
+
+.hero-badge {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 /* Hero ambient light */
