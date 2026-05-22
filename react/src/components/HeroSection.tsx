@@ -8,13 +8,10 @@ export default function HeroSection() {
   return (
     <section className="hero-section">
       <div className="hero-video-wrap">
-        <video
-          src="/videos/hero-bg.mp4"
+        <img
+          src="/videos/hero-poster.jpg"
+          alt="Background"
           className="hero-video"
-          autoPlay
-          muted
-          loop
-          playsInline
         />
       </div>
 
