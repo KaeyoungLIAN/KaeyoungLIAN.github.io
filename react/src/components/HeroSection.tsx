@@ -4,7 +4,7 @@ import VideoFade from './VideoFade';
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative overflow-hidden" style={{ height: '100vh' }}>
       {/* Video fills entire section */}
       <div className="absolute inset-0 w-full h-full">
         <VideoFade
