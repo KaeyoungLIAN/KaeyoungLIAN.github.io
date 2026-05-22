@@ -15,7 +15,11 @@ function ProjectCard({
   isInView: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  const tag = lang === 'zh' ? project.tagZh : project.tag;
+  const desc = lang === 'zh' && project.descriptionZh ? project.descriptionZh : project.description;
+  const techs = lang === 'zh' ? project.techZh : project.tech;
 
   return (
     <motion.div
@@ -145,7 +149,7 @@ function ProjectCard({
                   textTransform: 'uppercase',
                 }}
               >
-                {project.tag}
+                {tag}
               </span>
               <div
                 className="liquid-glass"
@@ -178,14 +182,14 @@ function ProjectCard({
                 marginBottom: '24px',
               }}
             >
-              {project.description}
+              {desc}
             </p>
 
             {/* Tech tags */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {project.tech.map((t) => (
+              {techs.map((tech) => (
                 <span
-                  key={t}
+                  key={tech}
                   className="liquid-glass"
                   style={{
                     borderRadius: '9999px',
@@ -195,7 +199,7 @@ function ProjectCard({
                     letterSpacing: '0.05em',
                   }}
                 >
-                  {t}
+                  {tech}
                 </span>
               ))}
             </div>

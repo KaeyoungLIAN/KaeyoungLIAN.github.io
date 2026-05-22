@@ -27,6 +27,7 @@ export default function ProjectDetail() {
     );
   }
 
+  const tag = lang === 'zh' ? project.tagZh : project.tag;
   const description = lang === 'zh' && project.descriptionZh
     ? project.descriptionZh
     : project.description;
@@ -34,6 +35,8 @@ export default function ProjectDetail() {
   const longDescription = lang === 'zh' && project.longDescriptionZh
     ? project.longDescriptionZh
     : project.longDescription;
+
+  const techs = lang === 'zh' ? project.techZh : project.tech;
 
   return (
     <div className="min-h-screen bg-black" style={{ paddingTop: '80px' }}>
@@ -99,7 +102,7 @@ export default function ProjectDetail() {
                 marginBottom: '12px',
               }}
             >
-              {project.tag}
+              {tag}
             </span>
 
             {/* Title */}
@@ -260,9 +263,9 @@ export default function ProjectDetail() {
             {t('detail.techStack')}
           </h3>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-            {project.tech.map((t) => (
+            {techs.map((tech) => (
               <span
-                key={t}
+                key={tech}
                 className="liquid-glass"
                 style={{
                   borderRadius: '9999px',
@@ -272,7 +275,7 @@ export default function ProjectDetail() {
                   letterSpacing: '0.05em',
                 }}
               >
-                {t}
+                {tech}
               </span>
             ))}
           </div>

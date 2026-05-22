@@ -2,11 +2,13 @@ export interface Project {
   slug: string;
   title: string;
   tag: string;
+  tagZh: string;
   description: string;
   descriptionZh?: string;
   longDescription: string;
   longDescriptionZh?: string;
   tech: string[];
+  techZh: string[];
   accent: string;
   bg: string;
   githubUrl: string;
@@ -60,6 +62,7 @@ export const projects: Project[] = [
     slug: 'glass-todo',
     title: 'GlassToDo',
     tag: 'Desktop',
+    tagZh: '桌面应用',
     description:
       'Window-level glassmorphism todo app with spring physics, multi-language support, dark/light themes, and a 5MB Tauri 2 binary.',
     descriptionZh:
@@ -75,6 +78,7 @@ The architecture follows a clean separation of concerns: Rust commands (#[tauri:
 
 架构遵循清晰的关注点分离：Rust 命令（#[tauri::command]）处理所有窗口特效和操作系统级操作，React 通过极简的轻依赖栈管理 UI 状态。`,
     tech: ['Tauri 2', 'React 19', 'Rust', 'CSS Glassmorphism'],
+    techZh: ['Tauri 2', 'React 19', 'Rust', 'CSS 毛玻璃'],
     accent: '#10b981',
     bg: 'radial-gradient(ellipse at 20% 0%, #10b98130 0%, transparent 60%), radial-gradient(ellipse at 80% 100%, #0d948830 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
     githubUrl: 'https://github.com/KaeyoungLIAN/GlassToDo',
@@ -84,6 +88,7 @@ The architecture follows a clean separation of concerns: Rust commands (#[tauri:
     slug: 'cs2-market-analyzer',
     title: 'CS2 Market Analyzer',
     tag: 'Analytics',
+    tagZh: '数据分析',
     description:
       'Real-time Steam market analytics with K-line charts, AI-powered price predictions via DeepSeek, and multi-key API rotation for 39k+ items.',
     descriptionZh:
@@ -99,6 +104,7 @@ Built with a focus on data accuracy and performance, the analyzer runs scheduled
 
 专注于数据准确性和性能，分析器运行定时采集任务、生成可执行的洞察，并通过清晰的数据密集型界面呈现一切。`,
     tech: ['Django', 'Python', 'Steam API', 'DeepSeek AI'],
+    techZh: ['Django', 'Python', 'Steam 接口', 'DeepSeek AI'],
     accent: '#6366f1',
     bg: 'radial-gradient(ellipse at 80% 0%, #6366f130 0%, transparent 60%), radial-gradient(ellipse at 20% 100%, #4f46e530 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
     githubUrl: 'https://github.com/KaeyoungLIAN/CS2-Market-Analyzer-Backend',
@@ -108,6 +114,7 @@ Built with a focus on data accuracy and performance, the analyzer runs scheduled
     slug: 'pingpong-mate',
     title: 'PingPong Mate',
     tag: 'WeChat Mini Program',
+    tagZh: '微信小程序',
     description:
       'WeChat social app for ping-pong enthusiasts — find matches, track scores, manage court bookings with Django REST API backend.',
     descriptionZh:
@@ -123,6 +130,7 @@ The project demonstrates full-stack capability across mobile and server: the WeC
 
 该项目展示了跨移动端和服务端的全栈能力：微信小程序在微信框架内提供了原生级的用户体验，Django 后端处理复杂业务逻辑、SQLite/PostgreSQL 数据持久化和 API 安全。`,
     tech: ['Django', 'WeChat Mini Program', 'DRF', 'Token Auth'],
+    techZh: ['Django', '微信小程序', 'DRF', 'Token 认证'],
     accent: '#f59e0b',
     bg: 'radial-gradient(ellipse at 30% 0%, #f59e0b30 0%, transparent 60%), radial-gradient(ellipse at 70% 100%, #d9770630 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
     githubUrl: 'https://github.com/KaeyoungLIAN/pingpong-mate-server',
@@ -132,6 +140,7 @@ The project demonstrates full-stack capability across mobile and server: the WeC
     slug: 'workday-allocator',
     title: 'Workday Allocator',
     tag: 'Scheduling',
+    tagZh: '智能排班',
     description:
       'Smart work hours allocation system with weighted priority scoring, recurring shifts, and constraint-satisfaction scheduling logic.',
     descriptionZh:
@@ -147,6 +156,7 @@ Built with a practical, algorithm-first approach, Workday Allocator focuses on s
 
 采用务实的算法优先方法，Workday Allocator 致力于解决真实的排班难题：临时换班、工作量分配不均、工时合规等。`,
     tech: ['Django', 'Python', 'SQLite'],
+    techZh: ['Django', 'Python', 'SQLite'],
     accent: '#06b6d4',
     bg: 'radial-gradient(ellipse at 60% 0%, #06b6d430 0%, transparent 60%), radial-gradient(ellipse at 40% 100%, #0891b230 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
     githubUrl: 'https://github.com/KaeyoungLIAN/workday_allocation',
