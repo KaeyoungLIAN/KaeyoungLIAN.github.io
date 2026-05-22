@@ -2,10 +2,9 @@ import { useRef, useEffect } from 'react';
 
 interface VideoFadeProps {
   src: string;
-  className?: string;
 }
 
-export default function VideoFade({ src, className = '' }: VideoFadeProps) {
+export default function VideoFade({ src }: VideoFadeProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -24,11 +23,8 @@ export default function VideoFade({ src, className = '' }: VideoFadeProps) {
         const elapsed = now - start;
         const progress = Math.min(elapsed / 500, 1);
         video.style.opacity = String(initialOpacity + (1 - initialOpacity) * progress);
-        if (progress < 1) {
-          animFrame = requestAnimationFrame(step);
-        } else {
-          fadingIn = false;
-        }
+        if (progress < 1) animFrame = requestAnimationFrame(step);
+        else fadingIn = false;
       }
       animFrame = requestAnimationFrame(step);
     }
@@ -41,34 +37,19 @@ export default function VideoFade({ src, className = '' }: VideoFadeProps) {
         const elapsed = now - start;
         const progress = Math.min(elapsed / 500, 1);
         video.style.opacity = String(initialOpacity * (1 - progress));
-        if (progress < 1) {
-          animFrame = requestAnimationFrame(step);
-        } else {
-          fadingOut = false;
-        }
+        if (progress < 1) animFrame = requestAnimationFrame(step);
+        else fadingOut = false;
       }
       animFrame = requestAnimationFrame(step);
     }
 
-    function onCanPlay() {
-      video.play();
-      fadeIn();
-    }
-
+    function onCanPlay() { video.play(); fadeIn(); }
     function onTimeUpdate() {
-      const remaining = video.duration - video.currentTime;
-      if (remaining <= 0.55 && !fadingOut) {
-        fadeOut();
-      }
+      if (video.duration - video.currentTime <= 0.55 && !fadingOut) fadeOut();
     }
-
     function onEnded() {
       video.style.opacity = '0';
-      setTimeout(() => {
-        video.currentTime = 0;
-        video.play();
-        fadeIn();
-      }, 100);
+      setTimeout(() => { video.currentTime = 0; video.play(); fadeIn(); }, 100);
     }
 
     video.addEventListener('canplay', onCanPlay);
@@ -91,8 +72,15 @@ export default function VideoFade({ src, className = '' }: VideoFadeProps) {
       autoPlay
       playsInline
       preload="auto"
-      className={className}
-      style={{ opacity: 0 }}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: 'bottom',
+        opacity: 0,
+      }}
     />
   );
 }
