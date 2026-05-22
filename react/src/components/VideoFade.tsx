@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface VideoFadeProps {
   src: string;
@@ -6,6 +6,7 @@ interface VideoFadeProps {
 
 export default function VideoFade({ src }: VideoFadeProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [errored, setErrored] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -68,6 +69,8 @@ export default function VideoFade({ src }: VideoFadeProps) {
       playsInline
       preload="auto"
       className="hero-video"
+      onError={() => setErrored(true)}
+      style={{ opacity: errored ? 0 : undefined }}
     />
   );
 }
