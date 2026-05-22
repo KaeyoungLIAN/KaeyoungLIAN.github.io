@@ -134,7 +134,7 @@ function ProjectCard({
           transition={{ duration: 0.25, delay: 0.08, ease: 'ease' }}
         >
           <span>View</span>
-          <span style={{ fontFamily: "'Instrument Serif', serif", fontStyle: 'italic' }}>
+          <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}>
             {project.title}
           </span>
           <ArrowUpRight className="w-4 h-4" />
@@ -279,13 +279,14 @@ export default function ProjectsSection() {
               display: 'inline-block',
             }}
           >
-            Selected Works
+            My Projects
           </span>
           <h2
             style={{
               color: 'white',
               fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              fontWeight: 600,
+              fontFamily: "'Playfair Display', serif",
+              fontWeight: 500,
               letterSpacing: '-0.03em',
             }}
           >
