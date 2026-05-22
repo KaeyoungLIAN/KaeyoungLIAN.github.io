@@ -36,8 +36,6 @@ export default function ProjectDetail() {
     ? project.longDescriptionZh
     : project.longDescription;
 
-  const techs = lang === 'zh' ? project.techZh : project.tech;
-
   return (
     <div className="min-h-screen bg-black" style={{ paddingTop: '80px' }}>
       {/* Back button */}
@@ -263,7 +261,7 @@ export default function ProjectDetail() {
             {t('detail.techStack')}
           </h3>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-            {techs.map((tech) => (
+            {project.tech.map((tech) => (
               <span
                 key={tech}
                 className="liquid-glass"

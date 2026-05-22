@@ -19,7 +19,6 @@ function ProjectCard({
 
   const tag = lang === 'zh' ? project.tagZh : project.tag;
   const desc = lang === 'zh' && project.descriptionZh ? project.descriptionZh : project.description;
-  const techs = lang === 'zh' ? project.techZh : project.tech;
 
   return (
     <motion.div
@@ -187,7 +186,7 @@ function ProjectCard({
 
             {/* Tech tags */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {techs.map((tech) => (
+              {project.tech.map((tech) => (
                 <span
                   key={tech}
                   className="liquid-glass"
