@@ -1,43 +1,55 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { projects } from '../data/projects';
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const { t, lang } = useLanguage();
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-white text-3xl font-bold mb-4">Project not found</h1>
+          <h1 className="text-white text-3xl font-bold mb-4">
+            {t('detail.notFound')}
+          </h1>
           <Link
             to="/"
             className="text-white/50 hover:text-white transition-colors text-sm"
           >
-            ← Back to home
+            ← {t('detail.backHome')}
           </Link>
         </div>
       </div>
     );
   }
 
+  const description = lang === 'zh' && project.descriptionZh
+    ? project.descriptionZh
+    : project.description;
+
+  const longDescription = lang === 'zh' && project.longDescriptionZh
+    ? project.longDescriptionZh
+    : project.longDescription;
+
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black" style={{ paddingTop: '80px' }}>
       {/* Back button */}
-      <div className="max-w-5xl mx-auto px-6 pt-8">
+      <div className="max-w-5xl mx-auto px-6 pt-4 pb-8">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to projects
+          {t('detail.back')}
         </Link>
       </div>
 
       {/* Hero section: screenshot + info side by side */}
-      <section className="max-w-5xl mx-auto px-6 pt-8 pb-16">
+      <section className="max-w-5xl mx-auto px-6 pb-16">
         <div
           style={{
             display: 'grid',
@@ -113,7 +125,7 @@ export default function ProjectDetail() {
                 marginBottom: '32px',
               }}
             >
-              {project.description}
+              {description}
             </p>
 
             {/* Pill buttons: GitHub + Live URL */}
@@ -146,7 +158,7 @@ export default function ProjectDetail() {
                 }}
               >
                 <Github className="w-4 h-4" />
-                View on GitHub
+                {t('detail.viewGitHub')}
                 <ExternalLink className="w-3 h-3" style={{ opacity: 0.5 }} />
               </a>
 
@@ -177,7 +189,7 @@ export default function ProjectDetail() {
                   }}
                 >
                   <ExternalLink className="w-4 h-4" />
-                  Live Project
+                  {t('detail.liveProject')}
                 </a>
               )}
             </div>
@@ -210,7 +222,7 @@ export default function ProjectDetail() {
               fontFamily: "'Outfit', sans-serif",
             }}
           >
-            About this project
+            {t('detail.about')}
           </h2>
 
           <div
@@ -221,7 +233,7 @@ export default function ProjectDetail() {
               maxWidth: '720px',
             }}
           >
-            {project.longDescription.split('\n\n').map((paragraph, i) => (
+            {longDescription.split('\n\n').map((paragraph, i) => (
               <p key={i} style={{ marginBottom: '20px' }}>
                 {paragraph.trim()}
               </p>
@@ -245,7 +257,7 @@ export default function ProjectDetail() {
               marginBottom: '16px',
             }}
           >
-            Tech Stack
+            {t('detail.techStack')}
           </h3>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
             {project.tech.map((t) => (

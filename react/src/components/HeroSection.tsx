@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
-import { Github, ArrowDown } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import VideoFade from './VideoFade';
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="hero-section">
       <div className="hero-video-wrap">
@@ -10,48 +13,6 @@ export default function HeroSection() {
       </div>
 
       <div className="hero-overlay">
-        {/* Nav */}
-        <div style={{ padding: '24px 24px 0' }}>
-          <nav
-            className="liquid-glass"
-            style={{
-              borderRadius: '9999px',
-              maxWidth: '1200px',
-              margin: '0 auto',
-              padding: '12px 24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <span style={{ color: 'white', fontWeight: 600, fontSize: '18px' }}>
-              Kaeyoung
-            </span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <a
-                href="https://github.com/KaeyoungLIAN"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="liquid-glass"
-                style={{
-                  borderRadius: '9999px',
-                  padding: '8px 16px',
-                  color: 'rgba(255,255,255,0.8)',
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  textDecoration: 'none',
-                }}
-              >
-                <Github className="w-4 h-4" />
-                <span>GitHub</span>
-              </a>
-            </div>
-          </nav>
-        </div>
-
         <div style={{ flex: 1 }} />
 
         {/* Center content */}
@@ -86,7 +47,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            Builds tools, apps, and systems — from desktop glassmorphism to AI-powered analytics.
+            {t('hero.subtitle')}
           </motion.p>
 
           <motion.div
@@ -111,7 +72,7 @@ export default function HeroSection() {
                 cursor: 'pointer',
               }}
             >
-              <span>View projects</span>
+              <span>{t('hero.viewProjects')}</span>
               <ArrowDown className="w-4 h-4" />
             </a>
           </motion.div>

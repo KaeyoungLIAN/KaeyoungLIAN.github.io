@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { projects } from '../data/projects';
 
 function ProjectCard({
@@ -14,6 +15,7 @@ function ProjectCard({
   isInView: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <motion.div
@@ -94,7 +96,7 @@ function ProjectCard({
               animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 8 }}
               transition={{ duration: 0.25, delay: 0.08, ease: 'easeInOut' }}
             >
-              <span>View</span>
+              <span>{t('projects.view')}</span>
               <span
                 style={{
                   fontFamily: "'Outfit', sans-serif",
@@ -247,7 +249,7 @@ export default function ProjectsSection() {
               display: 'inline-block',
             }}
           >
-            My Projects
+            {t('projects.title')}
           </span>
           <h2
             style={{
@@ -258,7 +260,7 @@ export default function ProjectsSection() {
               letterSpacing: '-0.03em',
             }}
           >
-            Things I've built
+            {t('projects.heading')}
           </h2>
         </motion.div>
 

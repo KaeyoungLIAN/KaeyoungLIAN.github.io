@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { LanguageProvider } from './contexts/LanguageContext';
+import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/ProjectsSection';
 import ProjectDetail from './components/ProjectDetail';
@@ -7,6 +9,7 @@ import ProjectDetail from './components/ProjectDetail';
 function HomePage() {
   return (
     <>
+      <Header />
       <HeroSection />
       <ProjectsSection />
     </>
@@ -50,24 +53,40 @@ function GitHubPagesRedirect() {
   return null;
 }
 
+function AppContent() {
+  return (
+    <div className="bg-black min-h-screen">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <HomePage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/project/:slug"
+          element={
+            <>
+              <Header />
+              <ProjectDetail />
+            </>
+          }
+        />
+      </Routes>
+    </div>
+  );
+}
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <GitHubPagesRedirect />
-      <div className="bg-black min-h-screen">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <HomePage />
-                <Footer />
-              </>
-            }
-          />
-          <Route path="/project/:slug" element={<ProjectDetail />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <GitHubPagesRedirect />
+        <AppContent />
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
