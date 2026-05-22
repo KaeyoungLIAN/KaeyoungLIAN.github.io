@@ -12,19 +12,15 @@ export default function VideoFade({ src }: VideoFadeProps) {
     if (!video) return;
 
     let fadingOut = false;
-    let fadingIn = false;
     let animFrame: number;
 
     function fadeIn() {
-      fadingIn = true;
       const start = performance.now();
-      const initialOpacity = parseFloat(video.style.opacity) || 0;
       function step(now: number) {
         const elapsed = now - start;
         const progress = Math.min(elapsed / 500, 1);
-        video.style.opacity = String(initialOpacity + (1 - initialOpacity) * progress);
+        video.style.opacity = String(progress);
         if (progress < 1) animFrame = requestAnimationFrame(step);
-        else fadingIn = false;
       }
       animFrame = requestAnimationFrame(step);
     }
@@ -32,19 +28,18 @@ export default function VideoFade({ src }: VideoFadeProps) {
     function fadeOut() {
       fadingOut = true;
       const start = performance.now();
-      const initialOpacity = parseFloat(video.style.opacity) || 1;
       function step(now: number) {
         const elapsed = now - start;
         const progress = Math.min(elapsed / 500, 1);
-        video.style.opacity = String(initialOpacity * (1 - progress));
+        video.style.opacity = String(1 - progress);
         if (progress < 1) animFrame = requestAnimationFrame(step);
         else fadingOut = false;
       }
       animFrame = requestAnimationFrame(step);
     }
 
-    function onCanPlay() { video.play(); fadeIn(); }
-    function onTimeUpdate() {
+    function onCanplay() { video.play(); fadeIn(); }
+    function onTimeupdate() {
       if (video.duration - video.currentTime <= 0.55 && !fadingOut) fadeOut();
     }
     function onEnded() {
@@ -52,43 +47,27 @@ export default function VideoFade({ src }: VideoFadeProps) {
       setTimeout(() => { video.currentTime = 0; video.play(); fadeIn(); }, 100);
     }
 
-    video.addEventListener('canplay', onCanPlay);
-    video.addEventListener('timeupdate', onTimeUpdate);
+    video.addEventListener('canplay', onCanplay);
+    video.addEventListener('timeupdate', onTimeupdate);
     video.addEventListener('ended', onEnded);
 
     return () => {
-      video.removeEventListener('canplay', onCanPlay);
-      video.removeEventListener('timeupdate', onTimeUpdate);
+      video.removeEventListener('canplay', onCanplay);
+      video.removeEventListener('timeupdate', onTimeupdate);
       video.removeEventListener('ended', onEnded);
       cancelAnimationFrame(animFrame);
     };
   }, [src]);
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-      }}
-    >
-      <video
-        ref={videoRef}
-        src={src}
-        muted
-        autoPlay
-        playsInline
-        preload="auto"
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'bottom',
-          opacity: 0,
-        }}
-      />
-    </div>
+    <video
+      ref={videoRef}
+      src={src}
+      muted
+      autoPlay
+      playsInline
+      preload="auto"
+      className="hero-video"
+    />
   );
 }
