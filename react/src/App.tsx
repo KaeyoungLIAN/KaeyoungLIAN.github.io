@@ -18,15 +18,7 @@ export default function App() {
       >
         <p
           style={{
-            color: 'rgba(255,255,255,0.3)',
-            fontSize: '13px',
-          }}
-        >
-          Built with React · Tauri · Django
-        </p>
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.2)',
+            color: 'rgba(255,255,255,0.5)',
             fontSize: '12px',
             marginTop: '8px',
           }}
