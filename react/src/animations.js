@@ -198,83 +198,92 @@ function initCardHover() {
 }
 
 /* ── Boot ── */
-document.addEventListener('DOMContentLoaded', () => {
+let firstLoad = true;
+
+function boot() {
   initSmartNav();
-  initAmbientLight();
   initCardHover();
   initScrollReveal();
 
-  // Hero entrance: spring in the heading letters
+  // Hero entrance: only on first load or when navigating to home
+  if (!firstLoad && location.pathname !== '/') return;
+  firstLoad = false;
+
+  // Re-create ambient light each time (Turbo replaces body)
+  const oldAmbient = document.querySelector('.hero-ambient');
+  if (oldAmbient) oldAmbient.remove();
+  initAmbientLight();
+
   const heroName = document.querySelector('.hero-name');
-  if (heroName) {
-    const text = heroName.textContent.trim();
-    heroName.textContent = '';
+  if (!heroName) return;
 
-    const letters = text.split('').map((char) => {
-      const span = document.createElement('span');
-      span.textContent = char === ' ' ? '\u00A0' : char;
-      span.style.display = 'inline-block';
-      heroName.appendChild(span);
-      return span;
-    });
+  const text = heroName.textContent.trim();
+  heroName.textContent = '';
 
-    // Animate badge first, then letters, then subtitle
-    const badge = document.querySelector('.hero-badge');
-    if (badge) {
-      badge.style.opacity = '0';
-      badge.style.transform = 'translateY(10px)';
-      const badgeSpring = new Spring({ stiffness: 120, damping: 14 });
-      let badgeStart = null;
-      (function badgeAnim(now) {
-        if (!badgeStart) badgeStart = now;
-        if ((now - badgeStart) / 1000 > 0.4) {
-          badge.style.opacity = '1';
-          badge.style.transform = 'translateY(0)';
-          // Start letters after badge
-          springEntrance(letters, { stiffness: 100, damping: 20, stagger: 0.06 });
-          return;
-        }
-        const val = badgeSpring.step();
-        badge.style.opacity = String(val);
-        badge.style.transform = `translateY(${10 * (1 - val)}px)`;
-        requestAnimationFrame(badgeAnim);
-      })(performance.now());
-    } else {
-      springEntrance(letters, { stiffness: 100, damping: 20, stagger: 0.06 });
-    }
+  const letters = text.split('').map((char) => {
+    const span = document.createElement('span');
+    span.textContent = char === ' ' ? '\u00A0' : char;
+    span.style.display = 'inline-block';
+    heroName.appendChild(span);
+    return span;
+  });
 
-    // Animate subtitle after letters
-    const subtitle = document.querySelector('.hero-subtitle');
-    if (subtitle) {
-      setTimeout(() => {
-        subtitle.style.opacity = '0';
-        subtitle.style.transform = 'translateY(20px)';
-        const subSpring = new Spring({ stiffness: 80, damping: 18 });
-        (function subAnim(now) {
-          if (subSpring.done) return;
-          const val = subSpring.step();
-          subtitle.style.opacity = String(val);
-          subtitle.style.transform = `translateY(${20 * (1 - val)}px)`;
-          requestAnimationFrame(subAnim);
-        })(performance.now());
-      }, letters.length * 60 + 500);
-    }
-
-    // Animate buttons last
-    const actions = document.querySelector('.hero-actions');
-    if (actions) {
-      setTimeout(() => {
-        actions.style.opacity = '0';
-        actions.style.transform = 'translateY(15px)';
-        const actSpring = new Spring({ stiffness: 90, damping: 16 });
-        (function actAnim(now) {
-          if (actSpring.done) return;
-          const val = actSpring.step();
-          actions.style.opacity = String(val);
-          actions.style.transform = `translateY(${15 * (1 - val)}px)`;
-          requestAnimationFrame(actAnim);
-        })(performance.now());
-      }, letters.length * 60 + 700);
-    }
+  const badge = document.querySelector('.hero-badge');
+  if (badge) {
+    badge.style.opacity = '0';
+    badge.style.transform = 'translateY(10px)';
+    const badgeSpring = new Spring({ stiffness: 120, damping: 14 });
+    let badgeStart = null;
+    (function badgeAnim(now) {
+      if (!badgeStart) badgeStart = now;
+      if ((now - badgeStart) / 1000 > 0.4) {
+        badge.style.opacity = '1';
+        badge.style.transform = 'translateY(0)';
+        springEntrance(letters, { stiffness: 100, damping: 20, stagger: 0.06 });
+        return;
+      }
+      const val = badgeSpring.step();
+      badge.style.opacity = String(val);
+      badge.style.transform = `translateY(${10 * (1 - val)}px)`;
+      requestAnimationFrame(badgeAnim);
+    })(performance.now());
+  } else {
+    springEntrance(letters, { stiffness: 100, damping: 20, stagger: 0.06 });
   }
-});
+
+  const subtitle = document.querySelector('.hero-subtitle');
+  if (subtitle) {
+    setTimeout(() => {
+      subtitle.style.opacity = '0';
+      subtitle.style.transform = 'translateY(20px)';
+      const subSpring = new Spring({ stiffness: 80, damping: 18 });
+      (function subAnim(now) {
+        if (subSpring.done) return;
+        const val = subSpring.step();
+        subtitle.style.opacity = String(val);
+        subtitle.style.transform = `translateY(${20 * (1 - val)}px)`;
+        requestAnimationFrame(subAnim);
+      })(performance.now());
+    }, text.length * 60 + 500);
+  }
+
+  const actions = document.querySelector('.hero-actions');
+  if (actions) {
+    setTimeout(() => {
+      actions.style.opacity = '0';
+      actions.style.transform = 'translateY(15px)';
+      const actSpring = new Spring({ stiffness: 90, damping: 16 });
+      (function actAnim(now) {
+        if (actSpring.done) return;
+        const val = actSpring.step();
+        actions.style.opacity = String(val);
+        actions.style.transform = `translateY(${15 * (1 - val)}px)`;
+        requestAnimationFrame(actAnim);
+      })(performance.now());
+    }, text.length * 60 + 700);
+  }
+}
+
+// Support both standard page load and Turbo Drive
+document.addEventListener('DOMContentLoaded', boot);
+document.addEventListener('turbo:load', boot);
