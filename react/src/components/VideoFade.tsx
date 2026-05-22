@@ -65,22 +65,30 @@ export default function VideoFade({ src }: VideoFadeProps) {
   }, [src]);
 
   return (
-    <video
-      ref={videoRef}
-      src={src}
-      muted
-      autoPlay
-      playsInline
-      preload="auto"
+    <div
       style={{
         position: 'absolute',
         inset: 0,
         width: '100%',
         height: '100%',
-        objectFit: 'cover',
-        objectPosition: 'bottom',
-        opacity: 0,
+        overflow: 'hidden',
       }}
-    />
+    >
+      <video
+        ref={videoRef}
+        src={src}
+        muted
+        autoPlay
+        playsInline
+        preload="auto"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'bottom',
+          opacity: 0,
+        }}
+      />
+    </div>
   );
 }
