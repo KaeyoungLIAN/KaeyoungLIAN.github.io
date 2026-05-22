@@ -134,7 +134,7 @@ function ProjectCard({
           transition={{ duration: 0.25, delay: 0.08, ease: 'ease' }}
         >
           <span>View</span>
-          <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}>
+          <span style={{ fontFamily: "'Outfit', sans-serif", fontStyle: 'italic' }}>
             {project.title}
           </span>
           <ArrowUpRight className="w-4 h-4" />
@@ -285,7 +285,7 @@ export default function ProjectsSection() {
             style={{
               color: 'white',
               fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Outfit', sans-serif",
               fontWeight: 500,
               letterSpacing: '-0.03em',
             }}
