@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
 const projects = [
@@ -54,12 +54,14 @@ function ProjectCard({
   index: number;
   isInView: boolean;
 }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <motion.a
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="liquid-glass group block"
+      className="liquid-glass block"
       style={{
         borderRadius: '24px',
         overflow: 'hidden',
@@ -70,17 +72,19 @@ function ProjectCard({
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.15 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      {/* Background layer — rich gradient that gets blurred on hover */}
-      <div
-        className="project-card-bg"
+      {/* Background layer — rich gradient */}
+      <motion.div
         style={{
           position: 'absolute',
           inset: 0,
           background: project.bg,
-          transition: 'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)',
           zIndex: 0,
         }}
+        animate={{ scale: hovered ? 1.04 : 1 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       />
 
       {/* Accent top bar */}
@@ -95,8 +99,7 @@ function ProjectCard({
       />
 
       {/* Hover overlay — blur + darken */}
-      <div
-        className="project-hover-overlay"
+      <motion.div
         style={{
           position: 'absolute',
           inset: 0,
@@ -104,21 +107,18 @@ function ProjectCard({
           background: 'rgba(2, 6, 23, 0.75)',
           backdropFilter: 'blur(14px)',
           WebkitBackdropFilter: 'blur(14px)',
-          opacity: 0,
-          transition: 'opacity 0.4s ease',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: '24px',
+          pointerEvents: 'none',
         }}
+        animate={{ opacity: hovered ? 1 : 0 }}
+        transition={{ duration: 0.35, ease: 'ease' }}
       >
         {/* Hover label */}
-        <div
-          className="project-hover-label"
+        <motion.div
           style={{
-            opacity: 0,
-            transform: 'translateY(8px)',
-            transition: 'opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s',
             background: 'white',
             borderRadius: '9999px',
             padding: '10px 24px',
@@ -130,14 +130,11 @@ function ProjectCard({
             fontWeight: 500,
             position: 'relative',
           }}
+          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 8 }}
+          transition={{ duration: 0.25, delay: 0.08, ease: 'ease' }}
         >
           <span>View</span>
-          <span
-            style={{
-              fontFamily: "'Instrument Serif', serif",
-              fontStyle: 'italic',
-            }}
-          >
+          <span style={{ fontFamily: "'Instrument Serif', serif", fontStyle: 'italic' }}>
             {project.title}
           </span>
           <ArrowUpRight className="w-4 h-4" />
@@ -153,12 +150,11 @@ function ProjectCard({
               opacity: 0.6,
             }}
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Content — sits above bg, below hover overlay */}
+      {/* Content */}
       <div
-        className="project-content"
         style={{
           position: 'relative',
           zIndex: 2,
@@ -293,7 +289,7 @@ export default function ProjectsSection() {
               letterSpacing: '-0.03em',
             }}
           >
-            Things I've <em style={{ fontFamily: "'Instrument Serif', serif", fontStyle: 'italic', color: 'rgba(255,255,255,0.6)' }}>built</em>
+            Things I've built
           </h2>
         </motion.div>
 
@@ -310,20 +306,6 @@ export default function ProjectsSection() {
           ))}
         </div>
       </div>
-
-      {/* Hover CSS — separate from Tailwind to avoid purge */}
-      <style>{`
-        .group:hover .project-card-bg {
-          transform: scale(1.04);
-        }
-        .group:hover .project-hover-overlay {
-          opacity: 1;
-        }
-        .group:hover .project-hover-label {
-          opacity: 1 !important;
-          transform: translateY(0) !important;
-        }
-      `}</style>
     </section>
   );
 }
