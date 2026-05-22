@@ -183,6 +183,17 @@ body {
   justify-content: center;
 }
 
+/* Hero animated elements — initially hidden, JS reveals them */
+.hero-section .hero-subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-section .hero-actions {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
 /* Hero ambient light */
 .hero-ambient {
   position: absolute;

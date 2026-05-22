@@ -254,8 +254,6 @@ function boot() {
   const subtitle = document.querySelector('.hero-subtitle');
   if (subtitle) {
     setTimeout(() => {
-      subtitle.style.opacity = '0';
-      subtitle.style.transform = 'translateY(20px)';
       const subSpring = new Spring({ stiffness: 80, damping: 18 });
       (function subAnim(now) {
         if (subSpring.done) return;
@@ -270,8 +268,6 @@ function boot() {
   const actions = document.querySelector('.hero-actions');
   if (actions) {
     setTimeout(() => {
-      actions.style.opacity = '0';
-      actions.style.transform = 'translateY(15px)';
       const actSpring = new Spring({ stiffness: 90, damping: 16 });
       (function actAnim(now) {
         if (actSpring.done) return;
