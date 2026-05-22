@@ -34,3 +34,5 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - .github/
+  - react/
+  - node_modules/

@@ -23,6 +23,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build React animations
+        run: |
+          cd react
+          npm ci
+          node build.js
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:

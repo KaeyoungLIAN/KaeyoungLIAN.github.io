@@ -2,34 +2,44 @@
 layout: default
 ---
 
-<section class="tile-surface hero-tile">
-  <div class="tile-content">
-    <h1>Kaeyoung</h1>
-    <p class="subtitle">Building things. Occasionally finishing them.</p>
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Full-stack Developer
+    </div>
+    <h1 class="hero-name">Kaeyoung</h1>
+    <p class="hero-subtitle">Building things. Occasionally finishing them.</p>
     <div class="hero-actions">
-      <a href="https://github.com/KaeyoungLIAN" class="btn-primary" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:kaeyounglk@outlook.com" class="btn-secondary">Email</a>
+      <a href="https://github.com/KaeyoungLIAN" class="btn-primary" target="_blank" rel="noopener">
+        View GitHub
+      </a>
+      <a href="mailto:kaeyounglk@outlook.com" class="btn-secondary">
+        Get in Touch
+      </a>
     </div>
   </div>
 </section>
 
-<section class="tile-black">
+<section class="section-alt">
   <div class="tile-content">
-    <div class="section-header">
-      <h2>Work</h2>
+    <div class="section-header reveal">
+      <h2>Projects</h2>
+      <p class="section-sub">Things I&rsquo;ve built and shipped</p>
     </div>
 
-    {% if site.works.size > 0 %}
+    {% assign works_sorted = site.works | sort: "date" | reverse %}
     <div class="portfolio-grid">
-      {% for work in site.works %}
-      <a href="{{ work.url | relative_url }}" class="store-card">
+      {% for work in works_sorted %}
+      {% assign delay = forloop.index0 | modulo: 4 | plus: 1 %}
+      <a href="{{ work.url | relative_url }}" class="store-card reveal reveal-delay-{{ delay }}">
         <div class="card-img-wrap">
           <div class="card-img-placeholder">{{ work.title }}</div>
         </div>
-        {% if work.tech.size > 0 %}
+        {% if work.tags.size > 0 %}
         <div class="card-tags">
-          {% for tech in work.tech limit:3 %}
-          <span class="card-tag">{{ tech }}</span>
+          {% for tag in work.tags limit:3 %}
+          <span class="card-tag">{{ tag }}</span>
           {% endfor %}
         </div>
         {% endif %}
@@ -41,6 +51,5 @@ layout: default
       </a>
       {% endfor %}
     </div>
-    {% endif %}
   </div>
 </section>
