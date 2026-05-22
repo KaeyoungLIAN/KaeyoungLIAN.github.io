@@ -10,7 +10,7 @@ export default function HeroSection() {
       <div className="hero-video-wrap">
         <img
           src="/videos/hero-bg.jpg"
-          alt="The Path at Giverny — Claude Monet"
+          alt="The Starry Night — Vincent van Gogh"
           className="hero-video"
         />
       </div>

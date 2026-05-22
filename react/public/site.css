@@ -1,7 +1,7 @@
 /* ===== Positioning & Layout ===== */
 .hero-section { height: 100vh; position: relative; overflow: hidden; }
-.hero-video-wrap { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; background: radial-gradient(ellipse at 50% 80%, #1a3a2a 0%, #0d1f17 100%); }
-.hero-video { width: 100%; height: 100%; object-fit: cover; object-position: bottom; animation: heroFadeIn 1.2s ease-out forwards; }
+.hero-video-wrap { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; background: radial-gradient(ellipse at 50% 50%, #0d1b3e 0%, #060b1a 100%); }
+.hero-video { width: 100%; height: 100%; object-fit: cover; object-position: center; animation: heroFadeIn 1.2s ease-out forwards; }
 @keyframes heroFadeIn { from { opacity: 0; } to { opacity: 1; } }
 .hero-overlay { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; }
 
