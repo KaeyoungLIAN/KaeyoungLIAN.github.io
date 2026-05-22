@@ -1,17 +1,39 @@
 import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
-import FeaturedVideoSection from './components/FeaturedVideoSection';
-import PhilosophySection from './components/PhilosophySection';
-import ServicesSection from './components/ServicesSection';
+import ProjectsSection from './components/ProjectsSection';
 
 export default function App() {
   return (
     <div className="bg-black min-h-screen">
       <HeroSection />
-      <AboutSection />
-      <FeaturedVideoSection />
-      <PhilosophySection />
-      <ServicesSection />
+      <ProjectsSection />
+
+      {/* Footer */}
+      <footer
+        style={{
+          background: 'black',
+          borderTop: '1px solid rgba(255,255,255,0.06)',
+          padding: '40px 24px',
+          textAlign: 'center',
+        }}
+      >
+        <p
+          style={{
+            color: 'rgba(255,255,255,0.3)',
+            fontSize: '13px',
+          }}
+        >
+          Built with React · Tauri · Django
+        </p>
+        <p
+          style={{
+            color: 'rgba(255,255,255,0.2)',
+            fontSize: '12px',
+            marginTop: '8px',
+          }}
+        >
+          &copy; {new Date().getFullYear()} Kaeyoung
+        </p>
+      </footer>
     </div>
   );
 }

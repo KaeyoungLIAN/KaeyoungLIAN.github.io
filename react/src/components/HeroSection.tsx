@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Instagram, Twitter, Globe } from 'lucide-react';
+import { Github, ArrowDown } from 'lucide-react';
 import VideoFade from './VideoFade';
 
 export default function HeroSection() {
@@ -12,19 +12,42 @@ export default function HeroSection() {
       <div className="hero-overlay">
         {/* Nav */}
         <div style={{ padding: '24px 24px 0' }}>
-          <nav className="liquid-glass" style={{ borderRadius: '9999px', maxWidth: '1200px', margin: '0 auto', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <Globe className="w-6 h-6 text-white" />
-              <span style={{ color: 'white', fontWeight: 600, fontSize: '18px' }}>Asme</span>
-              <div className="hidden md:flex" style={{ alignItems: 'center', gap: '32px', marginLeft: '32px' }}>
-                <a href="#" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px', fontWeight: 500 }}>Features</a>
-                <a href="#" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px', fontWeight: 500 }}>Pricing</a>
-                <a href="#" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px', fontWeight: 500 }}>About</a>
-              </div>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span style={{ color: 'white', fontSize: '14px', fontWeight: 500, cursor: 'pointer' }}>Sign Up</span>
-              <button className="liquid-glass" style={{ borderRadius: '9999px', padding: '8px 24px', color: 'white', fontSize: '14px', fontWeight: 500 }}>Login</button>
+          <nav
+            className="liquid-glass"
+            style={{
+              borderRadius: '9999px',
+              maxWidth: '1200px',
+              margin: '0 auto',
+              padding: '12px 24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <span style={{ color: 'white', fontWeight: 600, fontSize: '18px' }}>
+              Kaeyoung
+            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <a
+                href="https://github.com/KaeyoungLIAN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="liquid-glass"
+                style={{
+                  borderRadius: '9999px',
+                  padding: '8px 16px',
+                  color: 'rgba(255,255,255,0.8)',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  textDecoration: 'none',
+                }}
+              >
+                <Github className="w-4 h-4" />
+                <span>GitHub</span>
+              </a>
             </div>
           </nav>
         </div>
@@ -32,70 +55,69 @@ export default function HeroSection() {
         <div style={{ flex: 1 }} />
 
         {/* Center content */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 24px', transform: 'translateY(-10%)' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0 24px',
+            transform: 'translateY(-15%)',
+          }}
+        >
           <motion.h1
-            className="text-white tracking-tight whitespace-nowrap text-center"
-            style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(3rem, 12vw, 8rem)' }}
+            className="text-white tracking-tight text-center"
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+              fontSize: 'clamp(3.5rem, 14vw, 9rem)',
+              lineHeight: 1,
+            }}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Know it then <em className="italic">all</em>.
+            Kaeyoung
           </motion.h1>
 
-          <motion.div
-            className="w-full"
-            style={{ maxWidth: '576px', marginTop: '40px' }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <div className="liquid-glass" style={{ borderRadius: '9999px', paddingLeft: '24px', paddingRight: '8px', paddingTop: '8px', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <input type="email" placeholder="Enter your email" style={{ flex: 1, background: 'transparent', color: 'white', outline: 'none', fontSize: '14px' }} />
-              <button style={{ background: 'white', borderRadius: '9999px', padding: '12px', color: 'black', flexShrink: 0 }}>
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </motion.div>
-
           <motion.p
-            className="text-white text-sm leading-relaxed text-center"
-            style={{ padding: '0 16px', maxWidth: '448px', marginTop: '24px' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            Stay updated with the latest news and insights. Subscribe to our newsletter today and never miss out on exciting updates.
-          </motion.p>
-
-          <motion.button
-            className="liquid-glass text-white text-sm font-medium"
-            style={{ borderRadius: '9999px', padding: '12px 32px', marginTop: '24px' }}
+            className="text-white/50 text-sm md:text-base tracking-wider text-center"
+            style={{ marginTop: '20px', maxWidth: '480px' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
           >
-            Manifesto
-          </motion.button>
+            Builds tools, apps, and systems — from desktop glassmorphism to AI-powered analytics.
+          </motion.p>
+
+          <motion.div
+            style={{ marginTop: '40px' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
+            <a
+              href="#projects"
+              className="liquid-glass"
+              style={{
+                borderRadius: '9999px',
+                padding: '12px 28px',
+                color: 'white',
+                fontSize: '14px',
+                fontWeight: 500,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                textDecoration: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              <span>View projects</span>
+              <ArrowDown className="w-4 h-4" />
+            </a>
+          </motion.div>
         </div>
 
         <div style={{ flex: 1 }} />
-
-        {/* Social */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', paddingBottom: '20px' }}>
-          {[Instagram, Twitter, Globe].map((Icon, i) => (
-            <motion.button
-              key={i}
-              className="liquid-glass"
-              style={{ borderRadius: '9999px', padding: '16px', color: 'rgba(255,255,255,0.8)' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-            >
-              <Icon className="w-5 h-5" />
-            </motion.button>
-          ))}
-        </div>
       </div>
     </section>
   );
