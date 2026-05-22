@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import VideoFade from './VideoFade';
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -9,7 +8,11 @@ export default function HeroSection() {
   return (
     <section className="hero-section">
       <div className="hero-video-wrap">
-        <VideoFade src="/videos/hero-bg.mp4" />
+        <img
+          src="/videos/hero-bg.jpg"
+          alt="The Path at Giverny — Claude Monet"
+          className="hero-video"
+        />
       </div>
 
       <div className="hero-overlay">
