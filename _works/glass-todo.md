@@ -1,4 +1,5 @@
 ---
+image: /assets/images/works/glass-todo.svg
 title: GlassToDo
 description: 窗口级毛玻璃待办 · 弹簧物理 · 零 emoji
 date: 2026-05-11

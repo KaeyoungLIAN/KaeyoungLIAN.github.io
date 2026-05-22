@@ -389,6 +389,12 @@ body {
   letter-spacing: -0.224px;
 }
 
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card-tags { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
 
 .card-tag {

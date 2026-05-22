@@ -1,4 +1,5 @@
 ---
+image: /assets/images/works/workday-allocator.svg
 title: Workday Allocator
 description: Smart work hours allocation with weighted priority scoring — plan your week, track completion, manage recurring shifts.
 date: 2026-03-01

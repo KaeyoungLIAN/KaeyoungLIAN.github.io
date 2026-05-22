@@ -1,4 +1,5 @@
 ---
+image: /assets/images/works/cs2-analyzer.svg
 title: CS2 Market Analyzer
 description: Real-time CS2 market analytics with candlestick charts, AI-powered price predictions, and multi-key Steam API rotation.
 date: 2026-05-01

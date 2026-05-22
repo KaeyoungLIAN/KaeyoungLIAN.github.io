@@ -34,7 +34,11 @@ layout: default
       {% assign delay = forloop.index0 | modulo: 4 | plus: 1 %}
       <a href="{{ work.url | relative_url }}" class="store-card reveal reveal-delay-{{ delay }}">
         <div class="card-img-wrap">
+          {% if work.image %}
+          <img src="{{ work.image }}" alt="{{ work.title }}" class="card-img" loading="lazy">
+          {% else %}
           <div class="card-img-placeholder">{{ work.title }}</div>
+          {% endif %}
         </div>
         {% if work.tags.size > 0 %}
         <div class="card-tags">

@@ -1,4 +1,5 @@
 ---
+image: /assets/images/works/pingpong-mate.svg
 title: PingPong Mate
 description: Ping-pong social app — match friends, track games, manage court reservations.
 date: 2026-04-01

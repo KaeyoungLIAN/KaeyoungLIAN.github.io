@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f5f7"/>
+      <stop offset="100%" stop-color="#e8e8ed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <!-- Table tennis table abstraction -->
+  <rect x="360" y="250" width="480" height="200" rx="12" fill="rgba(0,113,227,0.06)" stroke="rgba(0,113,227,0.15)" stroke-width="1"/>
+  <line x1="600" y1="250" x2="600" y2="450" stroke="rgba(0,113,227,0.15)" stroke-width="1"/>
+  <!-- Net -->
+  <rect x="585" y="245" width="30" height="3" rx="1" fill="rgba(0,113,227,0.2)"/>
+  <!-- Two dots representing players -->
+  <circle cx="480" cy="350" r="12" fill="rgba(0,113,227,0.25)"/>
+  <circle cx="720" cy="350" r="12" fill="rgba(0,113,227,0.15)"/>
+  <!-- Ping-pong ball -->
+  <circle cx="560" cy="320" r="6" fill="rgba(0,113,227,0.4)"/>
+  <circle cx="640" cy="380" r="6" fill="rgba(0,113,227,0.4)"/>
+</svg>
