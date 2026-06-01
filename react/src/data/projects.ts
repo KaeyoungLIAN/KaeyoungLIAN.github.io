@@ -160,6 +160,7 @@ Built with a practical, algorithm-first approach, Workday Allocator focuses on s
     accent: '#06b6d4',
     bg: 'radial-gradient(ellipse at 60% 0%, #06b6d430 0%, transparent 60%), radial-gradient(ellipse at 40% 100%, #0891b230 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
     githubUrl: 'https://github.com/KaeyoungLIAN/workday_allocation',
+    liveUrl: 'https://kaeyounglian.github.io/workday_allocation/',
     screenshot: makeScreenshot('Workday Allocator', '#06b6d4'),
   },
 ];
