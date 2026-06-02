@@ -163,4 +163,27 @@ Built with a practical, algorithm-first approach, Workday Allocator focuses on s
     liveUrl: 'https://kaeyounglian.github.io/workday_allocation/',
     screenshot: makeScreenshot('Workday Allocator', '#06b6d4'),
   },
+  {
+    slug: 'quant-wiki',
+    title: 'Quant',
+    tag: 'Wiki',
+    tagZh: '知识库',
+    description:
+      'A self-contained quantitative finance wiki covering prerequisite math (calculus through graph theory) and quant finance (options, strategies, backtesting, execution).',
+    descriptionZh:
+      '自包含的量化金融 Wiki，覆盖预备数学（微积分到图论）和量化金融（期权、策略、回测、执行算法）。',
+    longDescription: `Quant is a comprehensive, self-contained wiki for learning quantitative finance from the ground up. It spans two major sections: Prerequisite Math (10 chapters from calculus through graph theory, built with VitePress) and Quantitative Finance (market instruments, options pricing, Greeks, portfolio theory, factor models, backtesting, market microstructure, and execution algorithms).
+
+Every concept follows a three-step pedagogical pattern: definition → hand-calculation with step-by-step tables → Quant Link showing practical application. The wiki is designed to be fully self-contained — no external references needed, every concept defined before it's used. Clean, minimal VitePress theme with KaTeX math rendering.`,
+
+    longDescriptionZh: `Quant 是一个全面的、自包含的量化金融学习 Wiki。它涵盖两大板块：预备数学（10 章从微积分到图论，VitePress 构建）和量化金融（交易品种、期权定价、Greeks、组合理论、因子模型、回测、市场微观结构、执行算法）。
+
+每个知识点遵循三步教学法：定义 → 手算（含分步表格）→ Quant Link 展示量化应用。Wiki 设计为完全自包含——不依赖外部资料，每个概念在使用前都已定义。采用简洁极简的 VitePress 主题，支持 KaTeX 数学公式渲染。`,
+    tech: ['VitePress', 'KaTeX', 'Markdown', 'Math'],
+    techZh: ['VitePress', 'KaTeX', 'Markdown', '数学'],
+    accent: '#8b5cf6',
+    bg: 'radial-gradient(ellipse at 50% 0%, #8b5cf630 0%, transparent 60%), radial-gradient(ellipse at 50% 100%, #7c3aed30 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
+    githubUrl: 'https://github.com/KaeyoungLIAN/Quant',
+    screenshot: makeScreenshot('Quant Wiki', '#8b5cf6'),
+  },
 ];
