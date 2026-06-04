@@ -184,6 +184,7 @@ Every concept follows a three-step pedagogical pattern: definition → hand-calc
     accent: '#8b5cf6',
     bg: 'radial-gradient(ellipse at 50% 0%, #8b5cf630 0%, transparent 60%), radial-gradient(ellipse at 50% 100%, #7c3aed30 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
     githubUrl: 'https://github.com/KaeyoungLIAN/Quant',
+    liveUrl: 'https://quant-9am.pages.dev/',
     screenshot: makeScreenshot('Quant Wiki', '#8b5cf6'),
   },
   {
@@ -206,7 +207,7 @@ Key features include real-time AI play with configurable difficulty and player c
     accent: '#4F46E5',
     bg: 'radial-gradient(ellipse at 30% 0%, #4f46e530 0%, transparent 60%), radial-gradient(ellipse at 70% 100%, #4338ca30 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
     githubUrl: 'https://github.com/KaeyoungLIAN/Chess',
-    liveUrl: 'https://chess-trainer-4ko.pages.dev/',
+    liveUrl: 'https://chess-1ba.pages.dev/',
     screenshot: makeScreenshot('Chess Trainer', '#4F46E5'),
   },
 ];
