@@ -186,4 +186,27 @@ Every concept follows a three-step pedagogical pattern: definition → hand-calc
     githubUrl: 'https://github.com/KaeyoungLIAN/Quant',
     screenshot: makeScreenshot('Quant Wiki', '#8b5cf6'),
   },
+  {
+    slug: 'chess-trainer',
+    title: 'Chess Trainer',
+    tag: 'Web',
+    tagZh: '网页应用',
+    description:
+      'Browser-based chess training platform with Stockfish AI opponent, PGN analysis with automated per-move engine evaluation, and dark theme UI.',
+    descriptionZh:
+      '浏览器端国际象棋训练平台，内置 Stockfish AI 对弈引擎、PGN 复盘自动每步引擎分析、暗色主题 UI。',
+    longDescription: `Chess Trainer is a browser-based chess learning platform that runs entirely on the client side. It features a Stockfish WASM AI opponent with 10 difficulty levels, a full game analysis mode that automatically evaluates every move in a PGN with engine depth, and a clean dark-themed UI built with the Merida piece set.
+
+Key features include real-time AI play with configurable difficulty and player color, game-over PGN export, and a comprehensive review mode that shows evaluation bar, best-line suggestions, top-3 alternative moves with centipawn loss, and per-move score annotations — all powered by Stockfish running in a Web Worker.`,
+    longDescriptionZh: `Chess Trainer 是一款完全运行在浏览器端的国际象棋学习平台。内置 Stockfish WASM AI 对弈引擎（支持 10 级难度）、完整的复盘分析模式（自动评估 PGN 中每一步的引擎深度）、采用 Merida 棋子的暗色主题界面。
+
+核心功能包括可配置难度和执棋的实时 AI 对弈、对局结束后 PGN 导出、以及全面的复盘分析：评估柱、最佳走法建议、Top3 备选走法（含厘兵损失）、每步评估标注——全部由 Web Worker 中的 Stockfish 驱动。`,
+    tech: ['TypeScript', 'Vite', 'Stockfish WASM', 'chess.js'],
+    techZh: ['TypeScript', 'Vite', 'Stockfish WASM', 'chess.js'],
+    accent: '#4F46E5',
+    bg: 'radial-gradient(ellipse at 30% 0%, #4f46e530 0%, transparent 60%), radial-gradient(ellipse at 70% 100%, #4338ca30 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)',
+    githubUrl: 'https://github.com/KaeyoungLIAN/Chess',
+    liveUrl: 'https://chess-trainer-4ko.pages.dev/',
+    screenshot: makeScreenshot('Chess Trainer', '#4F46E5'),
+  },
 ];
