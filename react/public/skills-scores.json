@@ -508,44 +508,12 @@
     "s": 52.8
   },
   {
-    "n": "taste-brutal",
-    "s": 40.6
-  },
-  {
-    "n": "taste-image-to-code",
-    "s": 50.4
-  },
-  {
-    "n": "taste-minimal",
-    "s": 47.9
-  },
-  {
-    "n": "taste-redesign",
-    "s": 52.8
-  },
-  {
-    "n": "taste-soft",
-    "s": 52.8
-  },
-  {
-    "n": "taste-ui",
-    "s": 56.1
-  },
-  {
-    "n": "tasteskill",
-    "s": 52.8
-  },
-  {
     "n": "touchdesigner-mcp",
     "s": 58.5
   },
   {
     "n": "trl-fine-tuning",
     "s": 55.3
-  },
-  {
-    "n": "ui-ux-pro-max",
-    "s": 40.6
   },
   {
     "n": "unsloth",
@@ -570,5 +538,37 @@
   {
     "n": "youtube-content",
     "s": 52.8
+  },
+  {
+    "n": "design-ui",
+    "s": 56.1
+  },
+  {
+    "n": "design-engineer",
+    "s": 52.8
+  },
+  {
+    "n": "design-style-brutal",
+    "s": 40.6
+  },
+  {
+    "n": "design-style-minimal",
+    "s": 47.9
+  },
+  {
+    "n": "design-style-soft",
+    "s": 52.8
+  },
+  {
+    "n": "design-redesign",
+    "s": 52.8
+  },
+  {
+    "n": "design-imagetocode",
+    "s": 50.4
+  },
+  {
+    "n": "design-pro-max",
+    "s": 40.6
   }
 ]
