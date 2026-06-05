@@ -5,6 +5,7 @@ import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/ProjectsSection';
 import ProjectDetail from './components/ProjectDetail';
+import SkillsPage from './components/SkillsPage';
 
 function HomePage() {
   return (
@@ -65,6 +66,10 @@ function AppContent() {
               <Footer />
             </>
           }
+        />
+        <Route
+          path="/skills"
+          element={<SkillsPage />}
         />
         <Route
           path="/project/:slug"

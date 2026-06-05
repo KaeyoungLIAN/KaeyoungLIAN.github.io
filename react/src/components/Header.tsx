@@ -43,6 +43,21 @@ export default function Header() {
 
         {/* Right side */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Skills */}
+          <Link
+            to="/skills"
+            className="liquid-glass"
+            style={{
+              borderRadius: '9999px',
+              padding: '6px 12px',
+              color: 'rgba(255,255,255,0.8)',
+              fontSize: '13px',
+              fontWeight: 500,
+              textDecoration: 'none',
+            }}
+          >
+            Skills
+          </Link>
           {/* GitHub */}
           <a
             href="https://github.com/KaeyoungLIAN"
