@@ -579,15 +579,9 @@
     "skills": [
       {
         "n": "obsidian",
-        "d": "Read, search, create, and edit notes in the Obsidian vault.",
-        "l": 61,
+        "d": "在 Obsidian vault 中管理笔记——读取、搜索、创建、编辑，以及组织规范（命名、分类、索引、wikilink）",
+        "l": 149,
         "s": 53.6
-      },
-      {
-        "n": "obsidian-vault",
-        "d": "Search, create, and manage notes in an Obsidian vault with wikilinks and index notes. Use when user wants to find, create, or organize notes in Obsidi",
-        "l": 40,
-        "s": 42.3
       }
     ]
   },
