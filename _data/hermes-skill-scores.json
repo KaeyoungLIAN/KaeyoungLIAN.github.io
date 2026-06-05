@@ -1,0 +1,578 @@
+[
+  {
+    "n": "apple-notes",
+    "s": 51.2
+  },
+  {
+    "n": "apple-reminders",
+    "s": 52.8
+  },
+  {
+    "n": "apple-style-design",
+    "s": 53.6
+  },
+  {
+    "n": "architecture-diagram",
+    "s": 52.8
+  },
+  {
+    "n": "ascii-art",
+    "s": 54.4
+  },
+  {
+    "n": "ascii-video",
+    "s": 47.1
+  },
+  {
+    "n": "audiocraft",
+    "s": 43.1
+  },
+  {
+    "n": "axolotl",
+    "s": 30.1
+  },
+  {
+    "n": "baoyu-article-illustrator",
+    "s": 54.4
+  },
+  {
+    "n": "baoyu-comic",
+    "s": 56.1
+  },
+  {
+    "n": "baoyu-infographic",
+    "s": 54.4
+  },
+  {
+    "n": "caveman",
+    "s": 52.0
+  },
+  {
+    "n": "claude-code",
+    "s": 53.6
+  },
+  {
+    "n": "claude-design",
+    "s": 56.1
+  },
+  {
+    "n": "codebase-inspection",
+    "s": 58.5
+  },
+  {
+    "n": "codex",
+    "s": 51.2
+  },
+  {
+    "n": "comfyui",
+    "s": 58.5
+  },
+  {
+    "n": "creative-ideation",
+    "s": 49.6
+  },
+  {
+    "n": "creative-threejs",
+    "s": 45.5
+  },
+  {
+    "n": "cs2-market-data",
+    "s": 60.1
+  },
+  {
+    "n": "design-md",
+    "s": 54.4
+  },
+  {
+    "n": "diagnose",
+    "s": 59
+  },
+  {
+    "n": "django-chart-dashboard",
+    "s": 57
+  },
+  {
+    "n": "django-concurrent-ingest",
+    "s": 63
+  },
+  {
+    "n": "django-llm-analysis",
+    "s": 59
+  },
+  {
+    "n": "django-model-docs",
+    "s": 57
+  },
+  {
+    "n": "django-model-documentation",
+    "s": 52
+  },
+  {
+    "n": "django-react-deployment",
+    "s": 60
+  },
+  {
+    "n": "dogfood",
+    "s": 54.4
+  },
+  {
+    "n": "dspy",
+    "s": 46.3
+  },
+  {
+    "n": "educational-content-audit",
+    "s": 62
+  },
+  {
+    "n": "excalidraw",
+    "s": 53.6
+  },
+  {
+    "n": "findmy",
+    "s": 51.2
+  },
+  {
+    "n": "gif-search",
+    "s": 48.8
+  },
+  {
+    "n": "git-guardrails-claude-code",
+    "s": 39.8
+  },
+  {
+    "n": "github-api-push",
+    "s": 51.2
+  },
+  {
+    "n": "github-auth",
+    "s": 56.1
+  },
+  {
+    "n": "github-code-review",
+    "s": 49.6
+  },
+  {
+    "n": "github-issues",
+    "s": 51.2
+  },
+  {
+    "n": "github-pages",
+    "s": 57.7
+  },
+  {
+    "n": "github-pr-workflow",
+    "s": 53.6
+  },
+  {
+    "n": "github-repo-management",
+    "s": 50.4
+  },
+  {
+    "n": "grill-with-docs",
+    "s": 46
+  },
+  {
+    "n": "heartmula",
+    "s": 54.4
+  },
+  {
+    "n": "hermes-agent",
+    "s": 49.6
+  },
+  {
+    "n": "hermes-agent-skill-authoring",
+    "s": 61
+  },
+  {
+    "n": "hermes-s6-container-supervision",
+    "s": 62
+  },
+  {
+    "n": "himalaya",
+    "s": 55.3
+  },
+  {
+    "n": "homebrew-cn-mirror",
+    "s": 56.1
+  },
+  {
+    "n": "huggingface-hub",
+    "s": 52.8
+  },
+  {
+    "n": "humanizer",
+    "s": 52.0
+  },
+  {
+    "n": "i18n-audit",
+    "s": 57
+  },
+  {
+    "n": "imessage",
+    "s": 51.2
+  },
+  {
+    "n": "improve-codebase-architecture",
+    "s": 43
+  },
+  {
+    "n": "irm-project",
+    "s": 62
+  },
+  {
+    "n": "jupyter-live-kernel",
+    "s": 56.1
+  },
+  {
+    "n": "kanban-codex-lane",
+    "s": 56.9
+  },
+  {
+    "n": "kanban-orchestrator",
+    "s": 60.1
+  },
+  {
+    "n": "kanban-worker",
+    "s": 60.1
+  },
+  {
+    "n": "karpathy-think",
+    "s": 64
+  },
+  {
+    "n": "llama-cpp",
+    "s": 57.7
+  },
+  {
+    "n": "lm-evaluation-harness",
+    "s": 54.4
+  },
+  {
+    "n": "macos-computer-use",
+    "s": 58.5
+  },
+  {
+    "n": "manim-video",
+    "s": 47.1
+  },
+  {
+    "n": "migrate-to-shoehorn",
+    "s": 46
+  },
+  {
+    "n": "minecraft-modpack-server",
+    "s": 47.9
+  },
+  {
+    "n": "mlx-service-management",
+    "s": 60.1
+  },
+  {
+    "n": "native-mcp",
+    "s": 59.3
+  },
+  {
+    "n": "node-inspect-debugger",
+    "s": 64
+  },
+  {
+    "n": "obliteratus",
+    "s": 49.6
+  },
+  {
+    "n": "obsidian",
+    "s": 53.6
+  },
+  {
+    "n": "obsidian-vault",
+    "s": 42.3
+  },
+  {
+    "n": "opencode",
+    "s": 52.8
+  },
+  {
+    "n": "outlines",
+    "s": 47.1
+  },
+  {
+    "n": "p5js",
+    "s": 54.4
+  },
+  {
+    "n": "pixel-art",
+    "s": 55.2
+  },
+  {
+    "n": "plan",
+    "s": 51
+  },
+  {
+    "n": "pokemon-player",
+    "s": 58.5
+  },
+  {
+    "n": "popular-web-designs",
+    "s": 51.2
+  },
+  {
+    "n": "portfolio-cosmic-design",
+    "s": 60
+  },
+  {
+    "n": "pretext",
+    "s": 60.1
+  },
+  {
+    "n": "productivity/airtable",
+    "s": 63
+  },
+  {
+    "n": "productivity/edit-article",
+    "s": 38
+  },
+  {
+    "n": "productivity/google-workspace",
+    "s": 63
+  },
+  {
+    "n": "productivity/grill-me",
+    "s": 63
+  },
+  {
+    "n": "productivity/handoff",
+    "s": 42
+  },
+  {
+    "n": "productivity/linear",
+    "s": 63
+  },
+  {
+    "n": "productivity/maps",
+    "s": 63
+  },
+  {
+    "n": "productivity/mattpocock-caveman",
+    "s": 60
+  },
+  {
+    "n": "productivity/nano-pdf",
+    "s": 43
+  },
+  {
+    "n": "productivity/notion",
+    "s": 63
+  },
+  {
+    "n": "productivity/ocr-and-documents",
+    "s": 64
+  },
+  {
+    "n": "productivity/powerpoint",
+    "s": 64
+  },
+  {
+    "n": "productivity/teams-meeting-pipeline",
+    "s": 65
+  },
+  {
+    "n": "productivity/write-a-skill",
+    "s": 60
+  },
+  {
+    "n": "productivity/writing-beats",
+    "s": 53
+  },
+  {
+    "n": "productivity/writing-fragments",
+    "s": 54
+  },
+  {
+    "n": "productivity/writing-shape",
+    "s": 55
+  },
+  {
+    "n": "project-credential-setup",
+    "s": 56.9
+  },
+  {
+    "n": "prototype",
+    "s": 42
+  },
+  {
+    "n": "python-debugpy",
+    "s": 64
+  },
+  {
+    "n": "qa",
+    "s": 40
+  },
+  {
+    "n": "quant-wiki-content",
+    "s": 58
+  },
+  {
+    "n": "qwen-code",
+    "s": 47.9
+  },
+  {
+    "n": "react-doctor",
+    "s": 57
+  },
+  {
+    "n": "react-remotion",
+    "s": 60
+  },
+  {
+    "n": "react-touch-drag",
+    "s": 43
+  },
+  {
+    "n": "red-teaming/godmode",
+    "s": 64
+  },
+  {
+    "n": "request-refactor-plan",
+    "s": 44
+  },
+  {
+    "n": "requesting-code-review",
+    "s": 64
+  },
+  {
+    "n": "research/arxiv",
+    "s": 63
+  },
+  {
+    "n": "research/blogwatcher",
+    "s": 59
+  },
+  {
+    "n": "research/llm-wiki",
+    "s": 64
+  },
+  {
+    "n": "research/polymarket",
+    "s": 59
+  },
+  {
+    "n": "research/research-paper-writing",
+    "s": 63
+  },
+  {
+    "n": "resource-allocation",
+    "s": 60
+  },
+  {
+    "n": "segment-anything",
+    "s": 43.1
+  },
+  {
+    "n": "setup-pre-commit",
+    "s": 36.6
+  },
+  {
+    "n": "sketch",
+    "s": 56.9
+  },
+  {
+    "n": "smart-home/openhue",
+    "s": 59
+  },
+  {
+    "n": "social-media/xurl",
+    "s": 63
+  },
+  {
+    "n": "software-development/codegraph",
+    "s": 60
+  },
+  {
+    "n": "software-development/debugging-hermes-tui-commands",
+    "s": 65
+  },
+  {
+    "n": "software-development/design-an-interface",
+    "s": 50
+  },
+  {
+    "n": "songsee",
+    "s": 46.3
+  },
+  {
+    "n": "songwriting-and-ai-music",
+    "s": 43.1
+  },
+  {
+    "n": "spotify",
+    "s": 63.4
+  },
+  {
+    "n": "static-site-deployment",
+    "s": 52.8
+  },
+  {
+    "n": "taste-brutal",
+    "s": 40.6
+  },
+  {
+    "n": "taste-image-to-code",
+    "s": 50.4
+  },
+  {
+    "n": "taste-minimal",
+    "s": 47.9
+  },
+  {
+    "n": "taste-redesign",
+    "s": 52.8
+  },
+  {
+    "n": "taste-soft",
+    "s": 52.8
+  },
+  {
+    "n": "taste-ui",
+    "s": 56.1
+  },
+  {
+    "n": "tasteskill",
+    "s": 52.8
+  },
+  {
+    "n": "touchdesigner-mcp",
+    "s": 58.5
+  },
+  {
+    "n": "trl-fine-tuning",
+    "s": 55.3
+  },
+  {
+    "n": "ui-ux-pro-max",
+    "s": 40.6
+  },
+  {
+    "n": "unsloth",
+    "s": 26.8
+  },
+  {
+    "n": "vitepress-wiki",
+    "s": 56.1
+  },
+  {
+    "n": "vllm",
+    "s": 53.6
+  },
+  {
+    "n": "webhook-subscriptions",
+    "s": 55.3
+  },
+  {
+    "n": "weights-and-biases",
+    "s": 45.5
+  },
+  {
+    "n": "youtube-content",
+    "s": 52.8
+  }
+]

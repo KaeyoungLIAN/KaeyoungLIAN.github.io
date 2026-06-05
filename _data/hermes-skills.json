@@ -1,0 +1,1079 @@
+[
+  {
+    "c": "apple",
+    "skills": [
+      {
+        "n": "apple-notes",
+        "d": "Manage Apple Notes via memo CLI: create, search, edit.",
+        "l": 90,
+        "s": 51.2
+      },
+      {
+        "n": "apple-reminders",
+        "d": "Apple Reminders via remindctl: add, list, complete.",
+        "l": 130,
+        "s": 52.8
+      },
+      {
+        "n": "findmy",
+        "d": "Track Apple devices/AirTags via FindMy.app on macOS.",
+        "l": 131,
+        "s": 51.2
+      },
+      {
+        "n": "imessage",
+        "d": "Send and receive iMessages/SMS via the imsg CLI on macOS.",
+        "l": 102,
+        "s": 51.2
+      },
+      {
+        "n": "macos-computer-use",
+        "d": "|",
+        "l": 201,
+        "s": 58.5
+      }
+    ]
+  },
+  {
+    "c": "autonomous-ai-agents",
+    "skills": [
+      {
+        "n": "claude-code",
+        "d": "Delegate coding to Claude Code CLI (features, PRs).",
+        "l": 745,
+        "s": 53.6
+      },
+      {
+        "n": "codex",
+        "d": "Delegate coding to OpenAI Codex CLI (features, PRs).",
+        "l": 130,
+        "s": 51.2
+      },
+      {
+        "n": "darwin-skill",
+        "d": "Darwin Skill 2.0 (达尔文.skill 2.0): autonomous skill optimizer, v2.0 integrates Microsoft Research SkillLens (arXiv 2605.23899) 9-dim rubric + SkillOpt ",
+        "l": 488
+      },
+      {
+        "n": "hermes-agent",
+        "d": "Configure, extend, or contribute to Hermes Agent.",
+        "l": 1017,
+        "s": 49.6
+      },
+      {
+        "n": "kanban-codex-lane",
+        "d": "Use when a Hermes Kanban worker wants to run Codex CLI as an isolated implementation lane while Hermes keeps ownership of task lifecycle, reconciliati",
+        "l": 277,
+        "s": 56.9
+      },
+      {
+        "n": "opencode",
+        "d": "Delegate coding to OpenCode CLI (features, PR review).",
+        "l": 219,
+        "s": 52.8
+      },
+      {
+        "n": "qwen-code",
+        "d": "Delegate coding tasks to Qwen Code (Alibaba/DAMO Academy's CLI agent). Covers headless mode, ACP subagent integration, auth setup, and model configura",
+        "l": 522,
+        "s": 47.9
+      }
+    ]
+  },
+  {
+    "c": "creative",
+    "skills": [
+      {
+        "n": "apple-style-design",
+        "d": "Apple.com design language — photography-first, edge-to-edge tiles, SF Pro typography, single Action Blue (#0066cc) accent, near-invisible chrome. For ",
+        "l": 384,
+        "s": 53.6
+      },
+      {
+        "n": "architecture-diagram",
+        "d": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
+        "l": 148,
+        "s": 52.8
+      },
+      {
+        "n": "ascii-art",
+        "d": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.",
+        "l": 322,
+        "s": 54.4
+      },
+      {
+        "n": "ascii-video",
+        "d": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
+        "l": 241,
+        "s": 47.1
+      },
+      {
+        "n": "baoyu-article-illustrator",
+        "d": "Article illustrations: type × style × palette consistency.",
+        "l": 207,
+        "s": 54.4
+      },
+      {
+        "n": "baoyu-comic",
+        "d": "Knowledge comics (知识漫画): educational, biography, tutorial.",
+        "l": 247,
+        "s": 56.1
+      },
+      {
+        "n": "baoyu-infographic",
+        "d": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
+        "l": 237,
+        "s": 54.4
+      },
+      {
+        "n": "claude-design",
+        "d": "Design one-off HTML artifacts (landing, deck, prototype).",
+        "l": 599,
+        "s": 56.1
+      },
+      {
+        "n": "comfyui",
+        "d": "Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter injection. Uses the official comfy",
+        "l": 612,
+        "s": 58.5
+      },
+      {
+        "n": "creative-ideation",
+        "d": "Generate project ideas via creative constraints.",
+        "l": 152,
+        "s": 49.6
+      },
+      {
+        "n": "creative-threejs",
+        "d": "Three.js 创意编码 — GPU 粒子系统、自定义着色器、噪声动画。参考 spite/codevember-2022 的 Pigment demo 架构。用 importmap 加载 three.module.js（中国用户必须自托管，CDN 不可靠）。",
+        "l": 254,
+        "s": 45.5
+      },
+      {
+        "n": "design-md",
+        "d": "Author/validate/export Google's DESIGN.md token spec files.",
+        "l": 199,
+        "s": 54.4
+      },
+      {
+        "n": "excalidraw",
+        "d": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).",
+        "l": 199,
+        "s": 53.6
+      },
+      {
+        "n": "humanizer",
+        "d": "Humanize text: strip AI-isms and add real voice.",
+        "l": 578,
+        "s": 52.0
+      },
+      {
+        "n": "manim-video",
+        "d": "Manim CE animations: 3Blue1Brown math/algo videos.",
+        "l": 269,
+        "s": 47.1
+      },
+      {
+        "n": "p5js",
+        "d": "p5.js sketches: gen art, shaders, interactive, 3D.",
+        "l": 556,
+        "s": 54.4
+      },
+      {
+        "n": "pixel-art",
+        "d": "Pixel art w/ era palettes (NES, Game Boy, PICO-8).",
+        "l": 218,
+        "s": 55.2
+      },
+      {
+        "n": "popular-web-designs",
+        "d": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
+        "l": 214,
+        "s": 51.2
+      },
+      {
+        "n": "pretext",
+        "d": "Use when building creative browser demos with @chenglou/pretext — DOM-free text layout for ASCII art, typographic flow around obstacles, text-as-geome",
+        "l": 220,
+        "s": 60.1
+      },
+      {
+        "n": "sketch",
+        "d": "Throwaway HTML mockups: 2-3 design variants to compare.",
+        "l": 218,
+        "s": 56.9
+      },
+      {
+        "n": "songwriting-and-ai-music",
+        "d": "Songwriting craft and Suno AI music prompts.",
+        "l": 287,
+        "s": 43.1
+      },
+      {
+        "n": "taste-brutal",
+        "d": "Industrial brutalism & tactical telemetry UI. Swiss typographic print + military terminal aesthetics. Rigid grids, extreme type scale, utilitarian col",
+        "l": 102,
+        "s": 40.6
+      },
+      {
+        "n": "taste-image-to-code",
+        "d": "Image-first frontend pipeline. Generate premium design reference images first, deeply analyze them, then implement pixel-faithful frontend code. Works",
+        "l": 102,
+        "s": 50.4
+      },
+      {
+        "n": "taste-minimal",
+        "d": "Editorial minimalism UI. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels, documentary-style whitespace. No gradients, n",
+        "l": 136,
+        "s": 47.9
+      },
+      {
+        "n": "taste-redesign",
+        "d": "Upgrades existing websites/apps to premium quality. Audits current design, identifies generic AI patterns, applies high-end design standards. Works wi",
+        "l": 137,
+        "s": 52.8
+      },
+      {
+        "n": "taste-soft",
+        "d": "High-end agency-level visual design. Awwwards-tier UI engineering with double-bezel nested architecture, fluid island navigation, magnetic button phys",
+        "l": 120,
+        "s": 52.8
+      },
+      {
+        "n": "taste-ui",
+        "d": "All-rounder frontend design skill. Eliminates generic AI UI patterns. Three configurable dials (variance, motion, density) + anti-inter/inter-font + a",
+        "l": 1424,
+        "s": 56.1
+      },
+      {
+        "n": "tasteskill",
+        "d": "Senior UI/UX Engineer. Architect digital interfaces overriding default LLM biases. Enforces metric-based rules, strict component architecture, CSS har",
+        "l": 227,
+        "s": 52.8
+      },
+      {
+        "n": "touchdesigner-mcp",
+        "d": "Control a running TouchDesigner instance via twozero MCP — create operators, set parameters, wire connections, execute Python, build real-time visuals",
+        "l": 356,
+        "s": 58.5
+      },
+      {
+        "n": "ui-ux-pro-max",
+        "d": "AI-powered design intelligence — 67 UI styles, 161 color palettes, 57 font pairings, 99 UX guidelines, 25 chart types, and 15+ tech stack support",
+        "l": 160,
+        "s": 40.6
+      }
+    ]
+  },
+  {
+    "c": "data-science",
+    "skills": [
+      {
+        "n": "cs2-market-data",
+        "d": "CS2饰品市场数据分析 — BUFF爬虫、SteamDT开放API、Django+React前后端项目架构",
+        "l": 367,
+        "s": 60.1
+      },
+      {
+        "n": "jupyter-live-kernel",
+        "d": "Iterative Python via live Jupyter kernel (hamelnb).",
+        "l": 167,
+        "s": 56.1
+      }
+    ]
+  },
+  {
+    "c": "devops",
+    "skills": [
+      {
+        "n": "git-guardrails-claude-code",
+        "d": "Set up git hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent dest",
+        "l": 34,
+        "s": 39.8
+      },
+      {
+        "n": "github-pages",
+        "d": "Deploy static sites to GitHub Pages — Jekyll, React, custom domains, build pipelines. Covers pure-Jekyll and Jekyll+React hybrid architectures.",
+        "l": 624,
+        "s": 57.7
+      },
+      {
+        "n": "homebrew-cn-mirror",
+        "d": "Configure Homebrew to use Tsinghua mirror and install/formula bottlenecks when ghcr.io is slow or unreachable from mainland China. Covers mirror setup",
+        "l": 125,
+        "s": 56.1
+      },
+      {
+        "n": "kanban-orchestrator",
+        "d": "Decomposition playbook + anti-temptation rules for an orchestrator profile routing work through Kanban. The \"don't do the work yourself\" rule and the ",
+        "l": 213,
+        "s": 60.1
+      },
+      {
+        "n": "kanban-worker",
+        "d": "Pitfalls, examples, and edge cases for Hermes Kanban workers. The lifecycle itself is auto-injected into every worker's system prompt as KANBAN_GUIDAN",
+        "l": 192,
+        "s": 60.1
+      },
+      {
+        "n": "project-credential-setup",
+        "d": "Configure API keys and credentials for a new project without asking the user where to find them. Proactively look at Hermes Agent's own credential sto",
+        "l": 159,
+        "s": 56.9
+      },
+      {
+        "n": "setup-pre-commit",
+        "d": "Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests. Use when user wants to add pre-commit hooks, set up Husky, config",
+        "l": 50,
+        "s": 36.6
+      },
+      {
+        "n": "static-site-deployment",
+        "d": "Deploy static sites to Cloudflare Pages or GitHub Pages — VitePress, Vite+React, Jekyll. Covers framework detection issues, build config pitfalls, Nod",
+        "l": 126,
+        "s": 52.8
+      },
+      {
+        "n": "vitepress-wiki",
+        "d": "Set up a VitePress wiki and deploy to Cloudflare Pages via GitHub push.",
+        "l": 181,
+        "s": 56.1
+      },
+      {
+        "n": "webhook-subscriptions",
+        "d": "Webhook subscriptions: event-driven agent runs.",
+        "l": 204,
+        "s": 55.3
+      }
+    ]
+  },
+  {
+    "c": "dogfood",
+    "skills": [
+      {
+        "n": "caveman",
+        "d": "Token compression conventions for Hermes Agent output and git commit messages. Derived from JuliusBrussee/caveman. Two modes: Git Commit Messages (cav",
+        "l": 166,
+        "s": 52.0
+      },
+      {
+        "n": "dogfood",
+        "d": "Systematic exploratory QA testing of web applications — find bugs, capture evidence, and generate structured reports",
+        "l": 161,
+        "s": 54.4
+      }
+    ]
+  },
+  {
+    "c": "email",
+    "skills": [
+      {
+        "n": "himalaya",
+        "d": "Himalaya CLI: IMAP/SMTP email from terminal.",
+        "l": 304,
+        "s": 55.3
+      }
+    ]
+  },
+  {
+    "c": "gaming",
+    "skills": [
+      {
+        "n": "minecraft-modpack-server",
+        "d": "Host modded Minecraft servers (CurseForge, Modrinth).",
+        "l": 187,
+        "s": 47.9
+      },
+      {
+        "n": "pokemon-player",
+        "d": "Play Pokemon via headless emulator + RAM reads.",
+        "l": 216,
+        "s": 58.5
+      }
+    ]
+  },
+  {
+    "c": "github",
+    "skills": [
+      {
+        "n": "codebase-inspection",
+        "d": "Inspect codebases w/ pygount for LOC stats, plus deep code audit via parallel delegated review.",
+        "l": 289,
+        "s": 58.5
+      },
+      {
+        "n": "github-api-push",
+        "d": "Push files to a GitHub repo when git clone/push is slow or unavailable. Uses the GitHub Contents API (PUT per-file) to create/update files directly. F",
+        "l": 704,
+        "s": 51.2
+      },
+      {
+        "n": "github-auth",
+        "d": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.",
+        "l": 305,
+        "s": 56.1
+      },
+      {
+        "n": "github-code-review",
+        "d": "Review PRs: diffs, inline comments via gh or REST.",
+        "l": 481,
+        "s": 49.6
+      },
+      {
+        "n": "github-issues",
+        "d": "Create, triage, label, assign GitHub issues via gh or REST.",
+        "l": 370,
+        "s": 51.2
+      },
+      {
+        "n": "github-pr-workflow",
+        "d": "GitHub PR lifecycle: branch, commit, open, CI, merge.",
+        "l": 378,
+        "s": 53.6
+      },
+      {
+        "n": "github-repo-management",
+        "d": "Clone/create/fork repos; manage remotes, releases.",
+        "l": 538,
+        "s": 50.4
+      }
+    ]
+  },
+  {
+    "c": "mcp",
+    "skills": [
+      {
+        "n": "native-mcp",
+        "d": "MCP client: connect servers, register tools (stdio/HTTP).",
+        "l": 357,
+        "s": 59.3
+      }
+    ]
+  },
+  {
+    "c": "media",
+    "skills": [
+      {
+        "n": "gif-search",
+        "d": "Search/download GIFs from Tenor via curl + jq.",
+        "l": 91,
+        "s": 48.8
+      },
+      {
+        "n": "heartmula",
+        "d": "HeartMuLa: Suno-like song generation from lyrics + tags.",
+        "l": 171,
+        "s": 54.4
+      },
+      {
+        "n": "songsee",
+        "d": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.",
+        "l": 83,
+        "s": 46.3
+      },
+      {
+        "n": "spotify",
+        "d": "Spotify: play, search, queue, manage playlists and devices.",
+        "l": 135,
+        "s": 63.4
+      },
+      {
+        "n": "youtube-content",
+        "d": "YouTube transcripts to summaries, threads, blogs.",
+        "l": 73,
+        "s": 52.8
+      }
+    ]
+  },
+  {
+    "c": "mlops",
+    "skills": [
+      {
+        "n": "audiocraft",
+        "d": "AudioCraft: MusicGen text-to-music, AudioGen text-to-sound.",
+        "l": 568,
+        "s": 43.1
+      },
+      {
+        "n": "axolotl",
+        "d": "Axolotl: YAML LLM fine-tuning (LoRA, DPO, GRPO).",
+        "l": 165,
+        "s": 30.1
+      },
+      {
+        "n": "dspy",
+        "d": "DSPy: declarative LM programs, auto-optimize prompts, RAG.",
+        "l": 594,
+        "s": 46.3
+      },
+      {
+        "n": "huggingface-hub",
+        "d": "HuggingFace hf CLI: search/download/upload models, datasets.",
+        "l": 135,
+        "s": 52.8
+      },
+      {
+        "n": "llama-cpp",
+        "d": "llama.cpp local GGUF inference + HF Hub model discovery.",
+        "l": 249,
+        "s": 57.7
+      },
+      {
+        "n": "lm-evaluation-harness",
+        "d": "lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.).",
+        "l": 498,
+        "s": 54.4
+      },
+      {
+        "n": "mlx-service-management",
+        "d": "Start, stop, and verify MLX local model server (Qwen3.6-27B) for Hermes. Covers venv path, correct command syntax, cold start timing, and health check",
+        "l": 493,
+        "s": 60.1
+      },
+      {
+        "n": "obliteratus",
+        "d": "OBLITERATUS: abliterate LLM refusals (diff-in-means).",
+        "l": 342,
+        "s": 49.6
+      },
+      {
+        "n": "outlines",
+        "d": "Outlines: structured JSON/regex/Pydantic LLM generation.",
+        "l": 655,
+        "s": 47.1
+      },
+      {
+        "n": "segment-anything",
+        "d": "SAM: zero-shot image segmentation via points, boxes, masks.",
+        "l": 506,
+        "s": 43.1
+      },
+      {
+        "n": "trl-fine-tuning",
+        "d": "TRL: SFT, DPO, PPO, GRPO, reward modeling for LLM RLHF.",
+        "l": 462,
+        "s": 55.3
+      },
+      {
+        "n": "unsloth",
+        "d": "Unsloth: 2-5x faster LoRA/QLoRA fine-tuning, less VRAM.",
+        "l": 83,
+        "s": 26.8
+      },
+      {
+        "n": "vllm",
+        "d": "vLLM: high-throughput LLM serving, OpenAI API, quantization.",
+        "l": 372,
+        "s": 53.6
+      },
+      {
+        "n": "weights-and-biases",
+        "d": "W&B: log ML experiments, sweeps, model registry, dashboards.",
+        "l": 594,
+        "s": 45.5
+      }
+    ]
+  },
+  {
+    "c": "note-taking",
+    "skills": [
+      {
+        "n": "obsidian",
+        "d": "Read, search, create, and edit notes in the Obsidian vault.",
+        "l": 61,
+        "s": 53.6
+      },
+      {
+        "n": "obsidian-vault",
+        "d": "Search, create, and manage notes in an Obsidian vault with wikilinks and index notes. Use when user wants to find, create, or organize notes in Obsidi",
+        "l": 40,
+        "s": 42.3
+      }
+    ]
+  },
+  {
+    "c": "productivity",
+    "skills": [
+      {
+        "n": "airtable",
+        "d": "Airtable REST API via curl. Records CRUD, filters, upserts.",
+        "l": 229
+      },
+      {
+        "n": "edit-article",
+        "d": "Edit and improve articles by restructuring sections, improving clarity, and tightening prose. Use when user wants to edit, revise, or improve an artic",
+        "l": 14
+      },
+      {
+        "n": "google-workspace",
+        "d": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.",
+        "l": 335
+      },
+      {
+        "n": "grill-me",
+        "d": "Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user ",
+        "l": 66
+      },
+      {
+        "n": "handoff",
+        "d": "Compact the current conversation into a handoff document for another agent to pick up. Use when you need to save session context for a future agent se",
+        "l": 12
+      },
+      {
+        "n": "linear",
+        "d": "Linear: manage issues, projects, teams via GraphQL + curl.",
+        "l": 380
+      },
+      {
+        "n": "maps",
+        "d": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
+        "l": 195
+      },
+      {
+        "n": "mattpocock-caveman",
+        "d": "Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler, articles, and pleasantries while keeping full technical accuracy. Use w",
+        "l": 30
+      },
+      {
+        "n": "nano-pdf",
+        "d": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).",
+        "l": 52
+      },
+      {
+        "n": "notion",
+        "d": "Notion API + ntn CLI: pages, databases, markdown, Workers.",
+        "l": 448
+      },
+      {
+        "n": "ocr-and-documents",
+        "d": "Extract text from PDFs/scans (pymupdf, marker-pdf).",
+        "l": 172
+      },
+      {
+        "n": "powerpoint",
+        "d": "Create, read, edit .pptx decks, slides, notes, templates.",
+        "l": 237
+      },
+      {
+        "n": "teams-meeting-pipeline",
+        "d": "Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscript",
+        "l": 116
+      },
+      {
+        "n": "write-a-skill",
+        "d": "Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new age",
+        "l": 58
+      },
+      {
+        "n": "writing-beats",
+        "d": "Shape an article as a journey of beats, choose-your-own-adventure style. User picks starting beat, you write only that beat, then offer options for ne",
+        "l": 29
+      },
+      {
+        "n": "writing-fragments",
+        "d": "Grilling session that mines the user for fragments — heterogeneous nuggets of writing (claims, vignettes, sharp sentences, half-thoughts) — and append",
+        "l": 41
+      },
+      {
+        "n": "writing-shape",
+        "d": "Take raw material (notes, fragments, rough draft) and shape it into an article through a conversational session — drafting candidate openings, growing",
+        "l": 32
+      }
+    ]
+  },
+  {
+    "c": "react-doctor",
+    "skills": [
+      {
+        "n": "react-doctor",
+        "d": "使用时机：完成 React 功能、修复 Bug、提交代码前，或用户想改善个人网站的代码质量时。提供经过 react-doctor 规则提炼的最佳实践指南。",
+        "l": 418,
+        "s": 57
+      }
+    ]
+  },
+  {
+    "c": "red-teaming",
+    "skills": [
+      {
+        "n": "godmode",
+        "d": "Jailbreak LLMs: Parseltongue, GODMODE, ULTRAPLINIAN.",
+        "l": 403
+      }
+    ]
+  },
+  {
+    "c": "research",
+    "skills": [
+      {
+        "n": "arxiv",
+        "d": "Search arXiv papers by keyword, author, category, or ID.",
+        "l": 282
+      },
+      {
+        "n": "blogwatcher",
+        "d": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.",
+        "l": 137
+      },
+      {
+        "n": "llm-wiki",
+        "d": "Karpathy's LLM Wiki: build/query interlinked markdown KB.",
+        "l": 702
+      },
+      {
+        "n": "polymarket",
+        "d": "Query Polymarket: markets, prices, orderbooks, history.",
+        "l": 77
+      },
+      {
+        "n": "research-paper-writing",
+        "d": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.",
+        "l": 2377
+      }
+    ]
+  },
+  {
+    "c": "smart-home",
+    "skills": [
+      {
+        "n": "openhue",
+        "d": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.",
+        "l": 109
+      }
+    ]
+  },
+  {
+    "c": "social-media",
+    "skills": [
+      {
+        "n": "xurl",
+        "d": "X/Twitter via xurl CLI: post, search, DM, media, v2 API.",
+        "l": 432
+      }
+    ]
+  },
+  {
+    "c": "software-development",
+    "skills": [
+      {
+        "n": "codegraph",
+        "d": "CodeGraph — 预建代码知识图谱 MCP 工具。20+ 语言符号搜索、调用链追踪、影响分析。接入后 agent 直接 query 图谱，省 token 省时间。",
+        "l": 156
+      },
+      {
+        "n": "debugging-hermes-tui-commands",
+        "d": "Debug Hermes TUI slash commands: Python, gateway, Ink UI.",
+        "l": 152
+      },
+      {
+        "n": "design-an-interface",
+        "d": "Generate multiple radically different interface designs for a module using parallel sub-agents. Based on \"Design It Twice\" from A Philosophy of Softwa",
+        "l": 32
+      },
+      {
+        "n": "diagnose",
+        "d": "Disciplined diagnosis loop for hard bugs and performance regressions. Reproduce → hypothesise → instrument → fix → regression-test. Use when user says",
+        "l": 85,
+        "s": 59
+      },
+      {
+        "n": "django-chart-dashboard",
+        "d": "Build data analysis dashboards in Django — template rendering, charting library integration, category browsing with search, and AI analysis panels.",
+        "l": 301,
+        "s": 57
+      },
+      {
+        "n": "django-concurrent-ingest",
+        "d": "Bulk data ingestion in Django: N worker threads (one per API key/token) + single writer thread + SQLite batch upsert. Supports checkpoint/resume, grac",
+        "l": 481,
+        "s": 63
+      },
+      {
+        "n": "django-llm-analysis",
+        "d": "Django API endpoints that send structured data to an LLM (DeepSeek, OpenAI, etc.) for analysis — hot-reloadable context files, data formatting, JSON s",
+        "l": 297,
+        "s": 59
+      },
+      {
+        "n": "django-model-docs",
+        "d": "Auto-generate Chinese documentation for Django project models by parsing models.py files with AST — extracts class names, inheritance, docstrings, fie",
+        "l": 222,
+        "s": 57
+      },
+      {
+        "n": "django-model-documentation",
+        "d": "生成 Django 项目模型文档：逐代码阅读 models，为每张表撰写详细的中文业务说明（不含字段明细）",
+        "l": 112,
+        "s": 52
+      },
+      {
+        "n": "django-react-deployment",
+        "d": "Build and deploy a full-stack app with Django REST backend serving a React/Vite SPA from a single service on Cloper/Zeabur. Covers the frontend_build/",
+        "l": 310,
+        "s": 60
+      },
+      {
+        "n": "educational-content-audit",
+        "d": "系统化审计教育/技术类 Wiki 内容质量的 5 维度框架，含知识依赖链检查、格式一致性、导航完备性、手算示例覆盖度。",
+        "l": 279,
+        "s": 62
+      },
+      {
+        "n": "grill-with-docs",
+        "d": "Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inlin",
+        "l": 40,
+        "s": 46
+      },
+      {
+        "n": "hermes-agent-skill-authoring",
+        "d": "Author in-repo SKILL.md: frontmatter, validator, structure.",
+        "l": 165,
+        "s": 61
+      },
+      {
+        "n": "hermes-s6-container-supervision",
+        "d": "Modify, debug, or extend the s6-overlay supervision tree inside the Hermes Agent Docker image — adding new services, debugging profile gateways, under",
+        "l": 176,
+        "s": 62
+      },
+      {
+        "n": "i18n-audit",
+        "d": "Systematic UI text audit and internationalization — find hardcoded strings, add i18n keys, convert components.",
+        "l": 137,
+        "s": 57
+      },
+      {
+        "n": "improve-codebase-architecture",
+        "d": "Find deepening opportunities in a codebase informed by the domain language in CONTEXT.md and the decisions in docs/adr/. Use when user wants to improv",
+        "l": 37,
+        "s": 43
+      },
+      {
+        "n": "irm-project",
+        "d": "IRM（研究管理平台）Django 项目开发——架构、审批流、文件存储、评级模型等核心知识",
+        "l": 578,
+        "s": 62
+      },
+      {
+        "n": "karpathy-think",
+        "d": "编程前思考流程 — 基于 Andrej Karpathy 的 LLM 编码四原则。每次编写、审查或重构代码前执行此思考框架，避免常见 LLM 编码错误。",
+        "l": 401,
+        "s": 64
+      },
+      {
+        "n": "migrate-to-shoehorn",
+        "d": "Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs ",
+        "l": 55,
+        "s": 46
+      },
+      {
+        "n": "node-inspect-debugger",
+        "d": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
+        "l": 319,
+        "s": 64
+      },
+      {
+        "n": "plan",
+        "d": "Plan mode: write markdown plan to .hermes/plans/, no exec.",
+        "l": 58,
+        "s": 51
+      },
+      {
+        "n": "portfolio-cosmic-design",
+        "d": "Portfolio Cosmic-inspired design system for GitHub Pages — liquid-glass CSS, video hero, hover blur overlays, dark theme, SPA routing, i18n. Covers Vi",
+        "l": 479,
+        "s": 60
+      },
+      {
+        "n": "prototype",
+        "d": "Build a throwaway prototype to flesh out a design before committing to it. Routes between logic prototypes (interactive terminal app) and UI prototype",
+        "l": 26,
+        "s": 42
+      },
+      {
+        "n": "python-debugpy",
+        "d": "Debug Python: pdb REPL + debugpy remote (DAP).",
+        "l": 375,
+        "s": 64
+      },
+      {
+        "n": "qa",
+        "d": "Interactive QA session where user reports bugs or issues conversationally, and the agent files issues. Explores the codebase in the background for con",
+        "l": 25,
+        "s": 40
+      },
+      {
+        "n": "quant-wiki-content",
+        "d": "Write and maintain Quant Wiki content (VitePress + KaTeX). Covers math content writing style, VitePress setup, KaTeX integration, and deployment.",
+        "l": 197,
+        "s": 58
+      },
+      {
+        "n": "react-doctor",
+        "d": "使用时机：扫描或修复 React 项目代码质量时、提交代码前、或用户要求跑 react-doctor 时。提供 react-doctor 规则提炼的最佳实践指南 + 系统性修复策略（优先级排序、高频模式、验证步骤）。包含 references/fix-patterns.md 实际修复案例。",
+        "l": 564,
+        "s": 57
+      },
+      {
+        "n": "react-remotion",
+        "d": "Remotion-style spring physics + video creation with React. Covers core Remotion APIs (Composition, Sequence, useCurrentFrame, spring, interpolate), re",
+        "l": 636,
+        "s": 60
+      },
+      {
+        "n": "react-touch-drag",
+        "d": "给 React 项目中 HTML5 Drag & Drop 排序组件添加移动端 touch 拖拽支持。",
+        "l": 38,
+        "s": 43
+      },
+      {
+        "n": "request-refactor-plan",
+        "d": "Create a detailed refactor plan with tiny commits via user interview, then file it as an issue. Use when user wants to plan a refactor, create a refac",
+        "l": 30,
+        "s": 44
+      },
+      {
+        "n": "requesting-code-review",
+        "d": "Pre-commit review: security scan, quality gates, auto-fix.",
+        "l": 417,
+        "s": 64
+      },
+      {
+        "n": "resource-allocation",
+        "d": "Design algorithms for scheduling, rostering, staff assignment, and resource allocation — covering priority systems, constraint handling, and iterative",
+        "l": 229,
+        "s": 60
+      },
+      {
+        "n": "review",
+        "d": "Review changes since a fixed point (commit, branch, tag) along two axes — Standards (does code follow documented coding standards?) and Spec (does cod",
+        "l": 30
+      },
+      {
+        "n": "scaffold-exercises",
+        "d": "Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, ",
+        "l": 39
+      },
+      {
+        "n": "self-contained-tutorial-writing",
+        "d": "Writing educational/technical content where every concept is defined before it is used — no external dependencies or assumed knowledge beyond declared",
+        "l": 114
+      },
+      {
+        "n": "setup-matt-pocock-skills",
+        "d": "Sets up per-repo configuration (issue tracker, triage labels, domain docs) so engineering skills know where to read/write. Run before first use of to-",
+        "l": 32
+      },
+      {
+        "n": "spike",
+        "d": "Throwaway experiments to validate an idea before build.",
+        "l": 197
+      },
+      {
+        "n": "spring-anim-engine",
+        "d": "Lightweight spring physics engine for DOM animation — adapted from Remotion's semi-implicit Euler integration. Vanilla JS (no React), esbuild bundle. ",
+        "l": 286
+      },
+      {
+        "n": "subagent-driven-development",
+        "d": "Execute plans via delegate_task subagents (2-stage review).",
+        "l": 443
+      },
+      {
+        "n": "systematic-debugging",
+        "d": "4-phase root cause debugging: understand bugs before fixing.",
+        "l": 719
+      },
+      {
+        "n": "tauri",
+        "d": "Tauri 2 app development — Rust backend, React/Vite frontend, plugin API, build & deploy",
+        "l": 371
+      },
+      {
+        "n": "tdd",
+        "d": "Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions \"red-green-refactor\", want",
+        "l": 47
+      },
+      {
+        "n": "technical-education-writing",
+        "d": ">-",
+        "l": 289
+      },
+      {
+        "n": "test-driven-development",
+        "d": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
+        "l": 343
+      },
+      {
+        "n": "to-issues",
+        "d": "Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices. Use when user wants t",
+        "l": 32
+      },
+      {
+        "n": "to-prd",
+        "d": "Turn the current conversation context into a PRD and publish it to the project issue tracker. Use when user wants to create a PRD from the current con",
+        "l": 52
+      },
+      {
+        "n": "triage",
+        "d": "Triage issues through a state machine driven by triage roles. Use when user wants to create an issue, triage issues, review incoming bugs or feature r",
+        "l": 46
+      },
+      {
+        "n": "ubiquitous-language",
+        "d": "Extract a DDD-style ubiquitous language glossary from the current conversation, flagging ambiguities and proposing canonical terms. Save to UBIQUITOUS",
+        "l": 33
+      },
+      {
+        "n": "vitepress-docs",
+        "d": "Setup, configure, and deploy VitePress documentation sites with KaTeX math, custom CSS, and Cloudflare Pages.",
+        "l": 165
+      },
+      {
+        "n": "vitepress-educational-wiki",
+        "d": "Build教材级 educational wikis with VitePress — structure, content depth, math formulas, sidebar, Cloudflare Pages deployment",
+        "l": 436
+      },
+      {
+        "n": "wasm-engine-integration",
+        "d": "Embed Emscripten-compiled C/C++ engines (Stockfish, whisper.cpp, Tesseract.js, etc.) as WASM in Vite web apps. Covers loading, locateFile, build pipel",
+        "l": 195
+      },
+      {
+        "n": "web-scraping",
+        "d": "Python web scraping with Scrapling — anti-bot bypass, Nuxt/Vue payload extraction, Chinese market sites, data pipelines",
+        "l": 539
+      },
+      {
+        "n": "writing-plans",
+        "d": "Write implementation plans: bite-sized tasks, paths, code.",
+        "l": 299
+      },
+      {
+        "n": "zoom-out",
+        "d": "Tell the agent to zoom out and give broader context or a higher-level perspective. Use when you're unfamiliar with a section of code or need to unders",
+        "l": 6
+      }
+    ]
+  },
+  {
+    "c": "software-engineering",
+    "skills": [
+      {
+        "n": "write-spec",
+        "d": "Write a feature spec or PRD from a problem statement or feature idea. Use when turning a vague idea or user request into a structured document, scopin",
+        "l": 171
+      }
+    ]
+  },
+  {
+    "c": "yuanbao",
+    "skills": [
+      {
+        "n": "yuanbao",
+        "d": "Yuanbao (元宝) groups: @mention users, query info/members.",
+        "l": 108
+      }
+    ]
+  }
+]

@@ -25,6 +25,7 @@
       <div class="nav-links">
         <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Work</a>
         <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url == '/about/' %}active{% endif %}">About</a>
+        <a href="{{ '/skills' | relative_url }}" class="nav-link {% if page.url contains '/skills' %}active{% endif %}">Skills</a>
       </div>
     </nav>
   </header>
