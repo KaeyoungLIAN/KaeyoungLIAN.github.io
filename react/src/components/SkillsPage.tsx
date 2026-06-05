@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { DESC_ZH } from '../data/skill-desc-zh';
 
 interface Skill {
   n: string;
@@ -320,7 +321,7 @@ export default function SkillsPage() {
                           {s.n}
                           {scoreHtml}
                         </div>
-                        <div className="skill-desc">{s.d || '—'}</div>
+                        <div className="skill-desc">{DESC_ZH[s.n] || s.d || '—'}</div>
                       </div>
                       <div className="skill-meta">{s.l} 行</div>
                     </div>
