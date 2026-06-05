@@ -261,17 +261,17 @@ export default function SkillsPage() {
       `}</style>
 
       <div className="skills-inner">
-        <Link to="/" className="back-home">← Back to home</Link>
+        <Link to="/" className="back-home">← 返回首页</Link>
 
         <div className="skills-header">
           <h1>Agent Skills</h1>
-          <p className="skills-subtitle">Hermes Agent skill library</p>
+          <p className="skills-subtitle">Hermes 代理技能库</p>
           <div className="skills-stats">
             <span className="stat-badge">
-              <strong>{data.reduce((a, c) => a + c.skills.length, 0)}</strong> Skills
+              <strong>{data.reduce((a, c) => a + c.skills.length, 0)}</strong> 个技能
             </span>
             <span className="stat-badge">
-              <strong>{data.length}</strong> Categories
+              <strong>{data.length}</strong> 个分类
             </span>
           </div>
         </div>
@@ -280,7 +280,7 @@ export default function SkillsPage() {
           <span className="search-icon">⌕</span>
           <input
             type="text"
-            placeholder="Search skills..."
+            placeholder="搜索技能..."
             value={filter}
             onChange={e => setFilter(e.target.value)}
           />
@@ -316,7 +316,7 @@ export default function SkillsPage() {
                         </div>
                         <div className="skill-desc">{s.d || '—'}</div>
                       </div>
-                      <div className="skill-meta">{s.l} lines</div>
+                      <div className="skill-meta">{s.l} 行</div>
                     </div>
                   );
                 })}
@@ -326,13 +326,13 @@ export default function SkillsPage() {
         })}
 
         {data.length > 0 && !data.some(c => c.skills.some(s => q ? s.n.includes(q) : true)) && (
-          <div className="no-results">No skills match your search.</div>
+          <div className="no-results">没有找到匹配的技能。</div>
         )}
 
         <div className="score-legend">
-          <span><span className="dot" style={{background:'#81c784'}}></span> Strong (≥60)</span>
-          <span><span className="dot" style={{background:'#ffb74d'}}></span> Medium (45-59)</span>
-          <span><span className="dot" style={{background:'#ef9a9a'}}></span> Weak (&lt;45)</span>
+          <span><span className="dot" style={{background:'#81c784'}}></span> 强 (≥60)</span>
+          <span><span className="dot" style={{background:'#ffb74d'}}></span> 中等 (45-59)</span>
+          <span><span className="dot" style={{background:'#ef9a9a'}}></span> 弱 (&lt;45)</span>
         </div>
       </div>
     </div>
