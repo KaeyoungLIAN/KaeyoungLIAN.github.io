@@ -264,8 +264,8 @@ export default function SkillsPage() {
         <Link to="/" className="back-home">← 返回首页</Link>
 
         <div className="skills-header">
-          <h1>Agent Skills</h1>
-          <p className="skills-subtitle">Hermes 代理技能库</p>
+          <h1>代理技能库</h1>
+          <p className="skills-subtitle">Hermes 技能库 — 共 {data.reduce((a, c) => a + c.skills.length, 0)} 个技能</p>
           <div className="skills-stats">
             <span className="stat-badge">
               <strong>{data.reduce((a, c) => a + c.skills.length, 0)}</strong> 个技能
@@ -287,9 +287,15 @@ export default function SkillsPage() {
         </div>
 
         {data.map(cat => {
+          // 按分数降序排列（有分的在前，无分的在后）
+          const sorted = [...cat.skills].sort((a, b) => {
+            const sa = scoresMap[a.n] ?? -1;
+            const sb = scoresMap[b.n] ?? -1;
+            return sb - sa;
+          });
           const matched = q
-            ? cat.skills.filter(s => s.n.includes(q) || s.d.toLowerCase().includes(q))
-            : cat.skills;
+            ? sorted.filter(s => s.n.includes(q) || s.d.toLowerCase().includes(q))
+            : sorted;
           if (matched.length === 0) return null;
 
           return (
