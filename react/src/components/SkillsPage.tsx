@@ -37,7 +37,13 @@ export default function SkillsPage() {
     ]).then(([skills, scores]) => {
       setData(skills);
       const m: Record<string, number> = {};
-      (scores as { n: string; s: number }[]).forEach(s => { m[s.n] = s.s; });
+      (scores as { n: string; s: number }[]).forEach(s => {
+        // scores may have prefix like 'productivity/airtable' or 'research/arxiv'
+        const base = s.n.includes('/') ? s.n.split('/').pop()! : s.n;
+        m[base] = s.s;
+        // also store prefixed version for exact match
+        m[s.n] = s.s;
+      });
       setScoresMap(m);
     });
   }, []);
